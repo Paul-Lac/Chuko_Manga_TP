@@ -87,13 +87,13 @@
   margin-bottom: 20px;
 }
 
-.payment-method-add {
+/* .payment-method-add {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 0.5rem;
   cursor: pointer;
-}
+} */
 
 .payment-method-add .plus-icon {
   font-size: 1.5rem;
