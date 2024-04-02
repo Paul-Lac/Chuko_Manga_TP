@@ -1,0 +1,151 @@
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.component-card li {
+  list-style-type: none;
+}
+.main-content {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  margin: 0px 10px;
+}
+
+.left-column {
+  width: 70%;
+}
+
+.right-column {
+  width: 25%;
+}
+
+.order-cards {
+  background: #f8f8f8;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.address-container,
+.payment-section {
+  background: #f8f8f8;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.add-address {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cross-icon {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.plus-icon {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+.address-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}
+.address-info {
+  position: relative;
+}
+
+.address-actions {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.payment-section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.payment-section h3 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.payment-method-add {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.payment-method-add .plus-icon {
+  font-size: 1.5rem;
+  margin-left: 10px;
+}
+
+.payment-method-select {
+  color: #dd7a06;
+}
+.confirmation-payment-mobile button {
+  background-color: #dd7a06;
+  border: 1px solid;
+  border-color: #dd7a06;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+  display: none;
+}
+
+.confirmation-payment-mobile {
+  display: none;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+  .confirmation-payment-mobile {
+    display: block;
+  }
+  .confirmation-payment-mobile button {
+    display: block;
+    width: 100%;
+  }
+
+  .confirmation-payment-mobile img {
+    width: 25%;
+  }
+  .main-content {
+    margin: 0px 10px;
+  }
+  .confirmation-payment-mobile .information-security-payment {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .information-security-payment {
+    margin-top: 20px;
+  }
+  .information-security-payment img {
+    width: 20px;
+    object-fit: cover;
+    height: 20px;
+  }
+}

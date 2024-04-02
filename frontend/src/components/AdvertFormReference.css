@@ -1,0 +1,33 @@
+.advert-tab-container {
+  display: flex;
+  margin-top: 1.25rem;
+}
+
+.advert-tab-container button {
+  width: 50%;
+  font-size: var(--fs-M);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.advert-tab-container .active-tab {
+  color: var(--neutral-800);
+  font-weight: 500;
+  border-bottom: 3px solid var(--primary-clr);
+}
+
+.advert-tab-container .inactive-tab {
+  color: var(--neutral-700);
+  border-bottom: 2px solid var(--neutral-600);
+}
+
+.advert-ref {
+  font-size: var(--fs-M);
+  margin-bottom: 0.6rem;
+  font-weight: 500;
+}
+
+.advert-instruction {
+  color: var(--neutral-700);
+  font-size: var(--fs-S);
+}

@@ -1,0 +1,30 @@
+.advert-label {
+  font-size: var(--fs-M);
+  display: block;
+  font-weight: 500;
+}
+
+.advert-select {
+  width: 100%;
+  margin-top: 0.5rem;
+  margin-bottom: 2.5rem;
+  padding: 0.3rem;
+  background-color: var(--neutral-200);
+  border: 1px solid var(--neutral-700);
+  border-radius: 3px;
+}
+
+.advert-form .add-button {
+  padding: 0.5rem 3rem;
+  background-color: var(--primary-clr);
+  border: none;
+  border-radius: 5px;
+  color: var(--neutral-100);
+  font-weight: 600;
+  margin: 2rem auto;
+  display: block;
+}
+
+.advert-form .add-button:hover {
+  background-color: var(--primary-clr-accent);
+}

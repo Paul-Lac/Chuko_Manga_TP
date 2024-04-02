@@ -1,0 +1,106 @@
+.final-price {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  padding: 10px 0;
+  margin: 0;
+}
+
+.payment-section {
+  box-shadow:
+    rgba(0, 0, 0, 0.12) 0px 1px 3px,
+    rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+.commande-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.resume-payment {
+  background: #f8f8f8;
+  margin-top: 27px;
+  height: 397px;
+  padding: 0px 5px;
+  border-radius: 4px;
+  padding: 10px;
+  box-shadow:
+    rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.resume-payment p {
+  padding: 0px 5px 0px 5px;
+  margin-bottom: 16px;
+}
+
+.paraCrypteSecurise {
+  font-size: small;
+}
+
+.confirmation-payment button {
+  width: 100%;
+  margin-top: 25px;
+}
+
+.logo-card-payment-desktop {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.information-security-payment-desktop {
+  display: flex;
+  text-align: start;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.information-security-payment-desktop img {
+  width: 10%;
+  padding-bottom: 10px;
+}
+
+.add-payment-card img {
+  cursor: pointer;
+}
+
+.confirmation-payment button {
+  background-color: #dd7a06;
+  border: 1px solid;
+  border-color: #dd7a06;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+}
+
+.logo-card-payment-desktop img {
+  width: 100%;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+  .main-content {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .right-column {
+    width: 100%;
+  }
+  .left-column {
+    width: 100%;
+  }
+  .confirmation-payment {
+    display: none;
+  }
+
+  .resume-payment {
+    height: 214px;
+  }
+  .logo-card-payment-desktop {
+    display: none;
+  }
+  .information-security-payment-desktop {
+    display: none;
+  }
+}

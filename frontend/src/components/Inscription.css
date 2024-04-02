@@ -1,0 +1,63 @@
+.inscription-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin: 1rem 7rem 1rem 7rem;
+  padding: 1rem;
+}
+
+.inscription-form h1 {
+  font-size: var(--fs-L);
+}
+
+.inscription-form .inForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.inscription-form input {
+  width: 230px;
+  height: 35px;
+  padding-left: 0.2rem;
+  font-size: var(--fs-S);
+  border-radius: 3px;
+  margin-top: 1rem;
+}
+
+.inscription-form .text-inscription {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inscription-form .Button-type {
+  margin-top: 1.5rem;
+  color: var(--neutral-100);
+  background-color: var(--primary-clr);
+  font-weight: 600;
+  padding: 0.5rem 2.2rem;
+  border-radius: 5px;
+}
+
+.inscription-form .Button-type:hover {
+  background-color: var(--primary-clr-accent);
+}
+
+.inscription-form .to-click {
+  color: var(--primary-clr);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.inscription-form .to-click:hover {
+  color: var(--primary-clr-accent);
+}
+
+.inscription-form .text-info {
+  color: var(--neutral-700);
+  text-align: center;
+}

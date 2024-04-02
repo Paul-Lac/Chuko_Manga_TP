@@ -1,0 +1,226 @@
+.containerOnglets {
+  margin-top: 10%;
+}
+
+.containerButton {
+  height: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-bottom: 3rem;
+}
+
+.buttonOnglet {
+  border-bottom: 2px solid var(--neutral-600);
+  color: var(--neutral-700);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  font-size: var(--fs-M);
+}
+
+.selected {
+  border-bottom: 3px solid var(--primary-clr);
+  color: var(--neutral-800);
+  font-weight: 500;
+}
+
+/********************** Utilise ces propriétées pour l'onglet "Mes annonces et Mon historique d'achat" ***********************/
+.containerAnnonces {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.cardAnnonces {
+  width: 275px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0.4rem;
+  font-family: "Monserrat", sans-serif;
+  box-shadow:
+    rgba(0, 0, 0, 0.12) 0px 1px 3px,
+    rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  border-radius: 6px;
+  padding: 8px;
+  margin-right: 20px;
+}
+.cardAnnonces:hover {
+  transform: scale(1.05);
+}
+
+.linkCard:hover {
+  text-decoration: none;
+}
+
+.imagePathAnnonces {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: center;
+  box-shadow: 0 0 5px var(--neutral-600);
+  margin-bottom: 0.5rem;
+  border-radius: 3px;
+}
+
+.titleSearchMangaAnnonces {
+  font-size: var(--fs-XS);
+  font-weight: normal;
+  display: flex;
+  align-items: start;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.priceAnnonces {
+  font-size: var(--fs-L);
+  font-weight: bold;
+}
+.name_condition {
+  color: var(--neutral-600);
+  font-size: var(--fs-XS);
+  margin-bottom: 0.2rem;
+  display: flex;
+  align-items: start;
+}
+/******************************************************************************************************************************/
+
+.statusOrder {
+  font-size: var(--fs-XS);
+  margin-top: 2%;
+}
+.completed {
+  color: green;
+}
+
+.pending {
+  color: orange;
+}
+
+.cancelled {
+  color: red;
+}
+
+.default {
+  color: gray;
+}
+
+.orderDate {
+  font-size: var(--fs-XS);
+  margin-top: 2%;
+}
+
+/********************** Utilise ces propriétées pour l'onglet "Mes évaluations" ***********************************************/
+.containerEvaluations {
+  height: auto;
+}
+
+.containerNote {
+  border-bottom: solid 0.1rem var(--neutral-700);
+  height: 70px;
+  display: flex;
+  align-items: center;
+}
+
+.average_rating {
+  padding: 0 2rem 0 4.5rem;
+  font-size: var(--fs-XL);
+  font-weight: bold;
+}
+
+.Number_comment {
+  font-size: var(--fs-S);
+}
+
+.containerCom {
+  display: flex;
+  align-items: center;
+  border-bottom: solid 0.1rem var(--neutral-300);
+}
+
+.picture_buyer {
+  height: 10rem;
+  width: 10rem;
+  clip-path: circle(50%);
+  object-fit: cover;
+  margin: 20px 45px 20px 90px;
+}
+
+.commentBuyer {
+  height: auto;
+}
+
+.speudoBuyer {
+  color: var(--primary-clr-accent);
+
+  font-size: var(--fs-M);
+}
+.createdOn {
+  color: var(--neutral-600);
+  font-size: var(--fs-XS);
+  margin-top: 2%;
+}
+
+.comment {
+  margin-top: 2%;
+  font-size: var(--fs-S);
+}
+
+.starcontainer {
+  display: flex;
+  font-size: var(--fs-L);
+}
+
+.rating {
+  display: flex;
+}
+/* -----------------------------------CSS pour les couleurs des étoiles----------------------------------- */
+/* CSS pour les demi-étoiles */
+.half-star {
+  color: #a6a6a6;
+  position: relative;
+}
+
+.half-star::after {
+  content: "★";
+  position: absolute;
+  left: 0;
+  overflow: hidden;
+  width: 50%;
+  color: #ffd700;
+}
+
+/* CSS pour les étoiles vides */
+.empty-star {
+  color: #a6a6a6;
+}
+
+/* CSS pour les étoiles pleines */
+.full-star {
+  color: #ffd700;
+}
+/* ------------------------------------------------------------------------------------------------------ */
+/******************************************************************************************************************************/
+
+@media screen and (max-width: 798px) {
+  .containerCom {
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 2rem;
+  }
+
+  .average_rating {
+    padding-left: 1.5rem;
+  }
+
+  .picture_buyer {
+    margin-left: 30px;
+    margin-right: 30px;
+    height: 8rem;
+    width: 8rem;
+  }
+
+  .commentBuyer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

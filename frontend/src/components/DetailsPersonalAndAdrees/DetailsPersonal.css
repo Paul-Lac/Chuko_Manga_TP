@@ -1,0 +1,111 @@
+.container_of_createprofil {
+  width: 100%;
+  max-width: 800px;
+}
+.title_of_create_profil {
+  font-size: var(--fs-XL);
+  margin-bottom: 3rem;
+}
+.personal_details_form {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 1rem 3rem 3rem 3rem;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3rem;
+  border-radius: 5px;
+}
+.custom_button {
+  background-color: rgb(182, 185, 185);
+  height: 10rem;
+  width: 10rem;
+  clip-path: circle(50%);
+  object-fit: cover;
+  margin: 20px 45px 20px 90px;
+}
+.custom_button img {
+  object-fit: cover;
+}
+.input_label_profil {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+}
+.label_profil {
+  font-size: var(--fs-S);
+  width: 25%;
+}
+.input_profil {
+  font-size: var(--fs-S);
+  border: none;
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 70%;
+}
+.button_modifier {
+  background-color: var(--primary-clr);
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 25px;
+  width: 25%;
+  align-self: center;
+  text-decoration: none;
+  margin-top: 3rem;
+}
+.button_modifier:hover {
+  background-color: var(--primary-clr-accent);
+}
+
+.button_modifier a {
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .container_of_createprofil {
+    width: 100%;
+  }
+  .title_of_create_profil {
+    font-size: var(--fs-S);
+  }
+  .custom_button {
+    height: 5rem;
+    width: 5rem;
+  }
+  .personal_details_form {
+    padding: 10px;
+    margin: 10px;
+    margin-bottom: 20px;
+  }
+  .label_profil {
+    font-size: var(--fs-XS);
+  }
+  .button_modifier {
+    font-size: var(--fs-XS);
+    padding: 5px;
+    margin-right: 20px;
+    width: 30%;
+  }
+}
+
+@media (max-width: 280px) {
+  .custom_button {
+    margin-left: 20px;
+    height: 50px;
+    width: 50px;
+  }
+  .label_profil {
+    font-size: 10px;
+    width: 35%;
+  }
+  .input_profil {
+    font-size: 10px;
+    width: 75%;
+  }
+  .button_modifier {
+    font-size: 10px;
+    margin-right: 0;
+  }
+}

@@ -1,0 +1,88 @@
+.prefiltre-lot {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  /* padding: 3rem 0; */
+  padding-right: 1rem;
+}
+
+.titlePrefilter {
+  font-size: var(--fs-L);
+}
+
+.filter-by-batch-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+.filter-by-batch {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.left-button {
+  width: 80px;
+  position: absolute;
+  top: 160px;
+  left: -40px;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.right-button {
+  width: 80px;
+  position: absolute;
+  top: 160px;
+  right: -40px;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.filtered-adverts-batch {
+  display: flex;
+  flex-direction: row;
+  background-color: orange;
+  width: 0;
+  height: 100%;
+}
+
+.bnt-see-all-tomes-batch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--neutral-200);
+  transition: 0.5s ease;
+  cursor: pointer;
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  border: 0;
+  height: 26rem;
+  width: 17rem;
+  font-size: 1.2em;
+  color: var(--neutral-700);
+  border-radius: 6px;
+  margin: 0.4rem;
+}
+
+.link-btn-batch:hover {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+  .bnt-see-all-tomes-batch {
+    width: 12rem;
+    height: 22.3rem;
+  }
+
+  .titlePrefilter {
+    font-size: var(--fs-M);
+  }
+}

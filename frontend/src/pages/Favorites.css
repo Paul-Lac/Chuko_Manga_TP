@@ -1,0 +1,47 @@
+.title-fav-h1 {
+  font-size: var(--fs-XL);
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.favorite-adverts-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  gap: 2rem;
+}
+
+.fav-page {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.title-fav-h2 {
+  font-size: var(--fs-L);
+}
+
+.fav-img {
+  width: 200px;
+}
+
+.fav-btn {
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-clr);
+  color: white;
+  border: 0.1rem solid var(--primary-clr);
+  border-radius: 0.5rem;
+}
+
+.fav-btn:hover {
+  background-color: var(--primary-clr-accent);
+}
+
+@media screen and (max-width: 768px) {
+  .title-fav-h1 {
+    font-size: var(--fs-L);
+  }
+}

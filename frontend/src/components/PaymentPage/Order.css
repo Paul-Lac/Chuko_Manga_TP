@@ -1,0 +1,61 @@
+.card-Payment {
+  display: flex;
+  border-radius: 8px;
+  list-style: none;
+  width: 70%;
+}
+
+.order-cards {
+  box-shadow:
+    rgba(0, 0, 0, 0.12) 0px 1px 3px,
+    rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+.img-command-annonce {
+  width: 40%;
+}
+
+.information-card {
+  margin-top: 5px;
+  margin-left: 25px;
+  width: 100%;
+}
+.titleOrder {
+  font-size: 1.5em;
+  padding-bottom: 20px;
+}
+
+.user-section {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 1.3em;
+}
+
+.conditionOrder {
+  font-size: 1.3em;
+}
+
+.priceOrder {
+  margin-top: 150px;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+.user-section img {
+  clip-path: circle(50%);
+  width: 24px;
+  height: 24px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+  .card-Payment {
+    align-items: center;
+    width: 100%;
+  }
+  .img-command-annonce {
+    width: 25%;
+    object-fit: cover;
+  }
+}

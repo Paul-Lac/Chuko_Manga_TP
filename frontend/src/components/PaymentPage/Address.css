@@ -1,0 +1,116 @@
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.address-container {
+  box-shadow:
+    rgba(0, 0, 0, 0.12) 0px 1px 3px,
+    rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+.modal-content-adress {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  width: 50%;
+  max-width: 500px;
+  box-shadow:
+    rgba(0, 0, 0, 0.12) 0px 1px 3px,
+    rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+.modal-content-adress label {
+  align-items: center;
+}
+
+.infoAdress {
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+.modification-address {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.champ {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.submit-new-address {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.form-label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.inputAdress {
+  width: 100%;
+  padding: 4px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  border: 1px solid var(--secondary-clr);
+  border-radius: 4px;
+}
+
+.inputCodePostal {
+  width: 25%;
+  padding: 4px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  border: 1px solid var(--secondary-clr);
+  border-radius: 4px;
+}
+
+.close {
+  margin-top: -10px;
+  float: right;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cross-icon {
+  display: flex;
+}
+
+.cross-icon img {
+  cursor: pointer;
+}
+
+.containerBtnAddress {
+  display: flex;
+  justify-content: center;
+}
+
+.submit-new-address {
+  border: 1px solid;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+  background-color: var(--primary-clr);
+}
+
+.error-message {
+  color: rgb(186, 9, 51);
+}

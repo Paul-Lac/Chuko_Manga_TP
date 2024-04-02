@@ -1,0 +1,63 @@
+.connexion-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin: 1rem 7rem 1rem 7rem;
+  padding: 1rem;
+}
+
+.connexion-form h1 {
+  font-size: var(--fs-L);
+}
+
+.connexion-form .inForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.connexion-form input {
+  width: 230px;
+  height: 35px;
+  padding-left: 0.2rem;
+  font-size: var(--fs-S);
+  border-radius: 3px;
+  margin-top: 1rem;
+}
+
+.connexion-form .text-connexion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.connexion-form .Button-type {
+  margin-top: 1.5rem;
+  color: var(--neutral-100);
+  background-color: var(--primary-clr);
+  font-weight: 600;
+  padding: 0.5rem 2.2rem;
+  border-radius: 5px;
+}
+
+.connexion-form .Button-type:hover {
+  background-color: var(--primary-clr-accent);
+}
+
+.connexion-form .to-click {
+  color: var(--primary-clr);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.connexion-form .to-click:hover {
+  color: var(--primary-clr-accent);
+}
+
+.connexion-form .text-info {
+  color: var(--neutral-700);
+  text-align: center;
+}

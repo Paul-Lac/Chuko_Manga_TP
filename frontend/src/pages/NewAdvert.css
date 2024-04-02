@@ -1,0 +1,25 @@
+.new-advert {
+  margin: 0 auto 3rem;
+  padding: 2rem 3rem;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.new-advert h1 {
+  font-size: var(--fs-XL);
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .new-advert {
+    box-shadow: none;
+    padding: 0rem;
+  }
+
+  .new-advert h1 {
+    font-size: var(--fs-L);
+  }
+}

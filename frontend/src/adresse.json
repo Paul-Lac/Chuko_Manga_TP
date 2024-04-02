@@ -1,0 +1,9 @@
+{
+  "adresse": [
+    {
+      "rue": "456 Avenue de l'Exemple",
+      "ville": "Exemplebourg",
+      "code_postal": "54321"
+    }
+  ]
+}

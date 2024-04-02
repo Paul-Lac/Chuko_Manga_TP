@@ -1,0 +1,152 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+/* * {
+  margin: 0;
+  padding: 0;
+} */
+
+.card-content {
+  width: 17rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0.4rem;
+  font-family: "Monserrat", sans-serif;
+  box-shadow:
+    rgba(0, 0, 0, 0.12) 0px 1px 3px,
+    rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  border-radius: 6px;
+  margin-right: 20px;
+}
+
+.card-content:hover {
+  .card-image {
+    transform: scale(1.1);
+  }
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  box-shadow: 0 0 5px rgb(184, 184, 184);
+  margin-bottom: 0.5rem;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  transition: all 0.3s ease-in-out;
+}
+
+.card-image-frame {
+  width: 100%;
+  height: 18.75rem;
+  overflow: hidden;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+}
+
+.card-description-container {
+  padding: 0.5rem;
+}
+
+.card-title {
+  font-size: var(--fs-S);
+  font-weight: normal;
+  display: flex;
+  align-items: start;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.link-card-title:hover {
+  text-decoration: none;
+}
+
+.card-price-section {
+  display: flex;
+  flex: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-price {
+  font-size: var(--fs-M);
+  font-weight: bold;
+}
+
+.card-favorite {
+  width: 26px;
+  height: 26px;
+  position: relative;
+  z-index: 2;
+}
+
+.card-condition {
+  font-size: var(--fs-XS);
+  color: var(--neutral-700);
+  margin-bottom: 0.2rem;
+  display: flex;
+  align-items: start;
+}
+
+.card-user-section {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  align-items: center;
+}
+
+.user {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+}
+
+.card-user-name {
+  font-size: var(--fs-XS);
+}
+
+.note {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+}
+
+.note-text {
+  display: flex;
+  flex-direction: row;
+}
+
+.card-evaluation {
+  font-size: var(--fs-XS);
+}
+
+.card-number-feedback {
+  padding-left: 0.5rem;
+  font-size: var(--fs-XS);
+}
+
+.card-user-photo {
+  clip-path: circle(50%);
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.card-star {
+  width: 20px;
+  height: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .card-content {
+    width: 12rem;
+  }
+
+  .card-image-frame {
+    height: 15rem;
+  }
+}

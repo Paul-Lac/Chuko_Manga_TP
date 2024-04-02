@@ -1,0 +1,36 @@
+.advert-input {
+  width: 100%;
+  margin: 0.5rem auto;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid var(--neutral-700);
+  padding: 0.3rem 0;
+  color: var(--neutral-800);
+}
+
+.advert-description {
+  width: 100%;
+  height: 4rem;
+  resize: none;
+  margin: 0.5rem auto;
+  padding: 0.3rem;
+  background-color: var(--neutral-200);
+  border: 1px solid var(--neutral-700);
+  border-radius: 3px;
+  font-size: var(--fs-XS);
+}
+
+.advert-wrong-input {
+  border: 1px solid red;
+  border-radius: 3px;
+}
+
+.advert-warning {
+  color: red;
+  font-size: var(--fs-XS);
+  margin-bottom: 1.5rem;
+}
+
+.advert-hide-warning {
+  visibility: hidden;
+}

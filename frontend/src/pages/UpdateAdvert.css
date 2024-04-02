@@ -1,0 +1,20 @@
+.update-advert {
+  margin: auto;
+  padding: 2rem 3rem;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.update-advert h1 {
+  font-size: var(--fs-XL);
+  margin-bottom: 3rem;
+}
+
+@media screen and (max-width: 768px) {
+  .update-advert {
+    box-shadow: none;
+    padding: 2rem 0rem;
+  }
+}

@@ -1,0 +1,15 @@
+.container_of_createprofil {
+  max-width: 800px;
+}
+
+.title_of_create_profil {
+  font-size: var(--fs-XL);
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .title_of_create_profil {
+    font-size: var(--fs-L);
+  }
+}

@@ -1,0 +1,174 @@
+.navbar-header-desktop {
+  top: 0;
+  position: sticky;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 1440px;
+  width: 100vw;
+  background-color: var(--neutral-100);
+  z-index: 15;
+  padding: 1rem 1rem;
+  border-bottom: 1px solid var(--neutral-400);
+}
+
+.header-left-container {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+#logo {
+  height: 2.5rem;
+  margin-right: 2.5rem;
+}
+
+.explore-btn {
+  padding: 0.5rem 1rem;
+  /* height: 100%; */
+  height: 2.5rem;
+  background-color: var(--neutral-300);
+  color: var(--neutral-700);
+  border-radius: 0.5rem;
+}
+
+.explore-btn:hover {
+  background-color: var(--neutral-200);
+}
+
+.buttonHeader-container {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  position: relative;
+}
+
+.inscription-login-button {
+  padding: 0.5rem 1rem;
+  height: 2.5rem;
+  background-color: var(--neutral-100);
+  color: var(--primary-clr);
+  border: 0.1rem solid var(--primary-clr);
+  border-radius: 0.5rem;
+}
+
+.inscription-login-button:hover {
+  color: var(--primary-clr-accent);
+}
+
+.icon-heart {
+  display: block;
+  height: 2.2rem;
+}
+
+.icon-user {
+  margin-right: 2.5rem;
+  height: 2rem;
+}
+
+.user-menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 4rem;
+  left: -5rem;
+  box-shadow:
+    rgba(0, 0, 0, 0.12) 0px 1px 3px,
+    rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  background-color: var(--neutral-100);
+  width: 12rem;
+  border-radius: 0.5rem;
+}
+
+.user-menu-link {
+  text-align: start;
+  padding: 1rem;
+  border-bottom: 1px solid var(--neutral-500);
+  color: var(--neutral-700);
+  text-decoration: none;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.user-menu-logout {
+  text-align: start;
+  padding: 1rem;
+  color: var(--primary-clr);
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.user-menu-link:hover {
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--neutral-800);
+}
+
+.user-menu-logout:hover {
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--primary-clr-accent);
+}
+
+.vendre-button {
+  padding: 0.5rem 1rem;
+  height: 2.5rem;
+  background-color: var(--primary-clr);
+  color: var(--neutral-100);
+  border-radius: 0.5rem;
+}
+
+.vendre-button:hover {
+  background-color: var(--primary-clr-accent);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* .mobile-buttonHeader-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 1rem;
+  grid-row-gap: 0px;
+  a button {
+    width: 100%;
+  }
+} */
+
+@media (max-width: 1200px) {
+  /* .explore-btn,
+  .navbar-header-desktop,
+  .inscription-login-button,
+  .vendre-button {
+    display: none;
+  } */
+  /* .buttonHeader-container {
+    display: none;
+  } */
+
+  .navbar-header-desktop {
+    display: none;
+  }
+  /* 
+  .inscription-login-button {
+    height: 4rem;
+    font-size: var(--fs-L);
+    grid-area: 1 / 1 / 2 / 2;
+  }
+  .vendre-button {
+    height: 4rem;
+    font-size: var(--fs-M);
+    grid-area: 1 / 2 / 2 / 3;
+  }
+
+  .explore-btn {
+    padding: 0.5rem 1rem;
+    font-size: var(--fs-M);
+    width: 100%;
+    height: 4rem;
+    background-color: var(--neutral-600);
+    color: var(--neutral-100);
+    border-radius: 0.5rem;
+  } */
+}

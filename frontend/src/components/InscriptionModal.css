@@ -1,0 +1,13 @@
+.modal-inscription {
+  position: fixed;
+  top: 20%; /* Déplacer la modal vers le haut */
+  left: 50%; /* Centre horizontalement */
+  transform: translate(0%, -20%);
+  background-color: white;
+  width: 30rem;
+  max-width: 60%; /* Largeur maximale de la modal */
+  height: fit-content; /* Ajuste la hauteur en fonction du contenu */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
