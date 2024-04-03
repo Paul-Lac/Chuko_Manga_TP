@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./RappelRecherche.css";
+import "./CallResearch.css";
 import SearchBar from "./SearchBar";
 
-function RappelRecherche() {
+function CallResearch() {
   const [mangas, setMangas] = useState([]);
   useEffect(() => {
     fetch("http://localhost:3310/api/manga/catalog")
@@ -43,4 +43,4 @@ function RappelRecherche() {
   );
 }
 
-export default RappelRecherche;
+export default CallResearch;

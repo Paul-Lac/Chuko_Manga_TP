@@ -54,7 +54,7 @@ function AdvertCard({ advert }) {
   return (
     <section className="card-content" key={advert.id}>
       <Link
-        to={`/display-adverts/${advert.id}`}
+        to={`/advert/${advert.id}`}
         onClick={handleCardClick}
         className="link-card-title"
       >

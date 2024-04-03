@@ -3,10 +3,11 @@ import { useState, useEffect } from "react";
 
 import Stars from "./StarsRating";
 // import FilteredadvertsCard from "../PrefilterAdvertByDesc";
-import "./AnnounceDetail.css";
-import AdvertCard from "../AdvertCard";
+import AdvertCard from "./AdvertCard";
 
-function AnnouncementDetail({ userId, id }) {
+import "./AdvertDetailSeller.css";
+
+function AdvertDetailSeller({ userId, id }) {
   const [userSells, setUserSells] = useState([]);
   const [sellerInfo, setSellerInfo] = useState({
     pseudo: "",
@@ -94,9 +95,9 @@ function AnnouncementDetail({ userId, id }) {
   );
 }
 
-AnnouncementDetail.propTypes = {
+AdvertDetailSeller.propTypes = {
   userId: PropTypes.number.isRequired,
   id: PropTypes.number.isRequired,
 };
 
-export default AnnouncementDetail;
+export default AdvertDetailSeller;

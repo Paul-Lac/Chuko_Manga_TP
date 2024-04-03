@@ -1,4 +1,4 @@
-.sidebar {
+/* .sidebar {
   position: sticky;
   background-color: var(--neutral-200);
   color: #4c6374;
@@ -57,7 +57,6 @@
 }
 
 .sidebar li {
-  /* display: flex; */
   align-items: center;
   align-items: center;
   padding: 10px;
@@ -187,5 +186,5 @@
   overflow-y: scroll;
 }
 .filter-dropdown::-webkit-scrollbar {
-  display: none; /* Masquer la barre de défilement */
-}
+  display: none;
+} */

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import "./DeliveryOption.css";
+import "./PaymentDeliveryOption.css";
 
-function DeliveryOption() {
+function PaymentDeliveryOption() {
   return (
     <div className="delivery-option-container">
       <h3>Option de livraison</h3>
@@ -47,4 +47,4 @@ function DeliveryOption() {
   );
 }
 
-export default DeliveryOption;
+export default PaymentDeliveryOption;

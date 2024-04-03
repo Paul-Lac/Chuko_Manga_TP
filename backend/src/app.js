@@ -76,6 +76,7 @@ app.use(
 
 // Uncomment one or more of these options depending on the format of the data sent by your client:
 
+// Comment PL : la ligne suivante permet de remplir le req.body
 app.use(express.json());
 app.use(express.urlencoded());
 

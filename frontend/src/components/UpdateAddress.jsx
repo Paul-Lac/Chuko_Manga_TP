@@ -5,10 +5,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import "./DetailsPersonal.css";
+import "./UpdateDetails.css";
 import axios from "axios";
 
-function Adresse() {
+function UpdateAddress() {
   const { id } = useParams();
   const [formData, setFormData] = useState({
     city: "",
@@ -152,4 +152,4 @@ function Adresse() {
   );
 }
 
-export default Adresse;
+export default UpdateAddress;

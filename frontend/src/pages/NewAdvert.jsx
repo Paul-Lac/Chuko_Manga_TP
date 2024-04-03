@@ -176,7 +176,7 @@ function NewAdvert() {
       .post("http://localhost:3310/api/new-advert", formData)
       .then((res) => {
         console.info("Advert created successfully", res.data);
-        navigate(`/profilUser/${userId}`);
+        navigate(`/profile/${userId}`);
       })
       .catch((error) => {
         console.error("Error creating advert", error);

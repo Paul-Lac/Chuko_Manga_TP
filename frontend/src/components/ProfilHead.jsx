@@ -3,7 +3,7 @@
 /* eslint-disable no-plusplus */
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Stars from "./AnnouncementDetails/StarsRating";
+import Stars from "./StarsRating";
 import "./ProfilHead.css";
 
 function ProfilHead({ children }) {

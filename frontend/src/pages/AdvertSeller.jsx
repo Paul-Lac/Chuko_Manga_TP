@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import "./MyAnounces.css";
+import "./AdvertSeller.css";
 
 import NoImage from "../assets/navBar.png";
 
@@ -36,7 +36,7 @@ function MyAnounces() {
   const navigateToProfilUser = () => {
     if (anounces && anounces.length > 0) {
       const userId = anounces[0].user_id;
-      navigate(`/profilUser/${userId}`);
+      navigate(`/profile/${userId}`);
     }
   };
 

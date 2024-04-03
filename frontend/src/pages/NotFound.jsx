@@ -1,8 +1,8 @@
 /* eslint-disable import/no-unresolved */
 import { Link } from "react-router-dom";
-import "./NotfoundPage.css";
+import "./NotFound.css";
 
-function NotFoundPage() {
+function NotFound() {
   return (
     <div className="container-404">
       <img
@@ -16,4 +16,4 @@ function NotFoundPage() {
     </div>
   );
 }
-export default NotFoundPage;
+export default NotFound;

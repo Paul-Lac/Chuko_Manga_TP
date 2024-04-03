@@ -1,23 +1,32 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import AdvertCard from "./AdvertCard";
-import "./PrefilterAdvertByBatch.css";
-
 import Left from "../assets/leftlogo.png";
 import Right from "../assets/rightlogo.png";
+import AdvertCard from "./AdvertCard";
+import "./PrefilterTome.css";
 
-function PrefilterAdvertByBatch() {
-  // eslint-disable-next-line no-unused-vars
+function PrefilterTome({
+  titlefromAnnounceDetail,
+  titleClassName,
+  useDivWrapper,
+}) {
   const [filteredAdverts, setFilteredAdverts] = useState([]);
-  const containerRef = useRef(null);
-  // Ajoutez un état pour suivre si les images "left" et "right" doivent être affichées
+  const defaultTitle = "Explorer les derniers tomes ajoutés";
   const [showLeftButton, setShowLeftButton] = useState(false);
   const [showRightButton, setShowRightButton] = useState(true);
-
+  const titleToShow = (
+    <h2 className={`titlePrefilter ${titleClassName || ""}`}>
+      {titlefromAnnounceDetail || defaultTitle}
+    </h2>
+  );
+  const containerRef = useRef(null);
+  const renderedTitle = useDivWrapper ? <div>{titleToShow}</div> : titleToShow;
   useEffect(() => {
-    fetch("http://localhost:3310/api/find-recent-adverts?batch=true")
+    fetch("http://localhost:3310/api/find-recent-adverts?batch=false")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Error HTTP, status: ${response.status}`);
@@ -54,15 +63,17 @@ function PrefilterAdvertByBatch() {
       container.scrollLeft += cardWidth * 2;
     }
 
+    // Vérifiez si la position de défilement horizontal permet d'afficher les images "left" et "right" et mettez à jour leurs états
     setShowLeftButton(container.scrollLeft > 0);
     setShowRightButton(
       container.scrollLeft + container.clientWidth < container.scrollWidth
     );
   }
+
   return (
-    <section className="prefiltre-lot container_limit">
-      <h2 className="titlePrefilter">Explorer les derniers lots ajoutés</h2>
-      <div className="filter-by-batch-wrapper">
+    <section className="prefiltre-unique container_limit">
+      <h2 className="titlePrefilter">{renderedTitle}</h2>
+      <div className="filter-by-date-desc-wrapper">
         {showLeftButton && (
           <img
             className="left-button"
@@ -79,9 +90,8 @@ function PrefilterAdvertByBatch() {
             onClick={() => scrollContainer("right")}
           />
         )}
-
-        <div className="filter-by-batch" ref={containerRef}>
-          <div className="filtered-adverts-batch">
+        <div className="filter-by-date-desc" ref={containerRef}>
+          <div className="filtered-adverts">
             {filteredAdverts.length > 0 ? (
               filteredAdverts.slice(0, 8).map((advert) => (
                 <div key={advert.id} className="AdvertCard">
@@ -91,10 +101,9 @@ function PrefilterAdvertByBatch() {
             ) : (
               <p>Loading...</p>
             )}
-
-            <Link className="link-btn-batch" to="/explore?batch=true">
-              <button type="button" className="bnt-see-all-tomes-batch">
-                Voir tous les lots
+            <Link className="link-btn-desc" to="/explore?batch=false">
+              <button type="button" className="bnt-see-all-tomes-desc">
+                Voir tous les tomes
               </button>
             </Link>
           </div>
@@ -104,4 +113,4 @@ function PrefilterAdvertByBatch() {
   );
 }
 
-export default PrefilterAdvertByBatch;
+export default PrefilterTome;

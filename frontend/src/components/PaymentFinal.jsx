@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import "./Payment.css";
+import "./PaymentFinal.css";
 
-import { useNotifications } from "../../context/NotificationContext";
-import UserContext from "../../context/UserContext";
+import { useNotifications } from "../context/NotificationContext";
+import UserContext from "../context/UserContext";
 
-function Payment({ price, articleData }) {
+function PaymentFinal({ price, articleData }) {
   const navigate = useNavigate();
   const cost = parseFloat(price);
   const fraisDePort = (cost * 5) / 100;
@@ -56,15 +56,15 @@ function Payment({ price, articleData }) {
         <p>Résumé de ta commande</p>
         <div className="final-price">
           <div className="commande-label">
-            Commande :<div className="price-value">{price} €</div>
+            Commande <div className="price-value">{price} €</div>
           </div>
 
           <div className="commande-label">
-            Frais de port :
+            Frais de port
             <div className="price-value"> {fraisDePort.toFixed(2)} € </div>
           </div>
           <div className="commande-label">
-            Total : <div className="price-value"> {total.toFixed(2)} €</div>
+            Total<div className="price-value"> {total.toFixed(2)} €</div>
           </div>
         </div>
       </div>
@@ -89,4 +89,4 @@ function Payment({ price, articleData }) {
     </div>
   );
 }
-export default Payment;
+export default PaymentFinal;

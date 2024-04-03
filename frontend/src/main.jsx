@@ -6,15 +6,15 @@ import Explore from "./pages/Explore";
 import NewAdvert from "./pages/NewAdvert";
 import UpdateAdvert from "./pages/UpdateAdvert";
 import Home from "./pages/Home";
-import PaymentPage from "./pages/PaymentPage";
-import AnnouncementDetail from "./pages/AnnouncementDetails";
+import PaymentPage from "./pages/Payment";
+import AdvertDetail from "./pages/AdvertDetail";
 import ProfilUser from "./pages/ProfilUser";
-import NotFoundPage from "./pages/NotFoundPage";
+import NotFound from "./pages/NotFound";
 import Favorites from "./pages/Favorites";
 import Catalog from "./pages/Catalog";
-import MyAnounces from "./pages/MyAnounces";
+import AdvertSeller from "./pages/AdvertSeller";
 import RequireAuth from "./context/RequireAuth";
-import ProfilSeller from "./pages/ProfilSeller";
+// import ProfilSeller from "./pages/ProfilSeller";
 import UpdateProfile from "./pages/UpdateProfile";
 
 const router = createBrowserRouter([
@@ -24,6 +24,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/advert/:id",
+        element: <AdvertDetail />,
+      },
+      {
+        path: "/catalog",
+        element: <Catalog />,
       },
       {
         path: "/explore",
@@ -38,18 +46,19 @@ const router = createBrowserRouter([
         element: <Explore />,
       },
       {
-        path: "/manga/catalog",
-        element: <Catalog />,
+        path: "/favorites",
+        element: <Favorites />,
       },
+
       {
-        path: "manga/:id",
+        path: "/manga/:id",
         element: <MangaDetails />,
       },
       {
-        path: "/paymentPage/:id",
+        path: "/advert-seller/:id",
         element: (
           <RequireAuth>
-            <PaymentPage />
+            <AdvertSeller />
           </RequireAuth>
         ),
       },
@@ -62,8 +71,32 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/display-adverts/:id",
-        element: <AnnouncementDetail />,
+        path: "/payment/:id",
+        element: (
+          <RequireAuth>
+            <PaymentPage />
+          </RequireAuth>
+        ),
+      },
+      {
+        path: "/profile/:id",
+        element: (
+          <RequireAuth>
+            <ProfilUser />
+          </RequireAuth>
+        ),
+      },
+      // {
+      //   path: "/profilseller/:id",
+      //   element: <ProfilSeller />,
+      // },
+      {
+        path: "/update-advert/:id",
+        element: (
+          <RequireAuth>
+            <UpdateAdvert />
+          </RequireAuth>
+        ),
       },
       {
         path: "/update-profile/:id",
@@ -74,45 +107,12 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/profilUser/:id",
-        element: (
-          <RequireAuth>
-            {" "}
-            <ProfilUser />{" "}
-          </RequireAuth>
-        ),
-      },
-      {
-        path: "/profilseller/:id",
-        element: <ProfilSeller />,
-      },
-      {
         path: "*",
-        element: <NotFoundPage />,
+        element: <NotFound />,
       },
       {
         path: "/404",
-        element: <NotFoundPage />,
-      },
-      {
-        path: "/myAnounces/:id",
-        element: (
-          <RequireAuth>
-            <MyAnounces />
-          </RequireAuth>
-        ),
-      },
-      {
-        path: "/update-advert/:id",
-        element: (
-          <RequireAuth>
-            <UpdateAdvert />
-          </RequireAuth>
-        ),
-      },
-      {
-        path: "/favorites",
-        element: <Favorites />,
+        element: <NotFound />,
       },
     ],
   },

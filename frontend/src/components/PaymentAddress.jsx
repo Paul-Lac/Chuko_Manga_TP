@@ -1,8 +1,8 @@
 import { useState } from "react";
-import "./Address.css";
+import "./PaymentAddress.css";
 
 // eslint-disable-next-line react/prop-types
-function Address({ adresse, handleChange, updateModal }) {
+function PaymentAddress({ adresse, handleChange, updateModal }) {
   const [formData, setFormData] = useState({ ...adresse });
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
@@ -107,4 +107,4 @@ function Address({ adresse, handleChange, updateModal }) {
   );
 }
 
-export default Address;
+export default PaymentAddress;

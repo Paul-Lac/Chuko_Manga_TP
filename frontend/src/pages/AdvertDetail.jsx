@@ -1,12 +1,12 @@
 /* eslint-disable react/no-array-index-key */
-import "./AnnouncementDetails.css";
+import "./AdvertDetail.css";
 import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import AnnounceDetail from "../components/AnnouncementDetails/AnnounceDetail";
+import AdvertDetailSeller from "../components/AdvertDetailSeller";
 import MangaDetails from "./MangaDetails";
 import UserContext from "../context/UserContext";
 
-function AnnouncementDetail() {
+function AdvertDetail() {
   const navigate = useNavigate();
   const { id } = useParams();
   const [detailManga, setDetailManga] = useState(null);
@@ -48,7 +48,7 @@ function AnnouncementDetail() {
   const navigateToPaymentPage = () => {
     const token = localStorage.getItem("auth");
     if (token) {
-      navigate(`/PaymentPage/${id}`, {
+      navigate(`/payment/${id}`, {
         state: { articleData: detailManga[0] },
       });
     } else {
@@ -137,7 +137,7 @@ function AnnouncementDetail() {
         >
           {activeTab === "annonce" && (
             <div>
-              <AnnounceDetail userId={userId} id={id} />
+              <AdvertDetailSeller userId={userId} id={id} />
             </div>
           )}
           {activeTab === "manga" && (
@@ -157,4 +157,4 @@ function AnnouncementDetail() {
     </div>
   );
 }
-export default AnnouncementDetail;
+export default AdvertDetail;

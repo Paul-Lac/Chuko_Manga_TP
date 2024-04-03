@@ -1,7 +1,7 @@
 /* eslint-disable import/order */
 import { useParams } from "react-router-dom";
 import ButtonProfilUser from "../components/ButtonProfilUser";
-import OngletProfil from "../components/OngletProfil";
+import ProfilTab from "../components/ProfilTab";
 import ProfilHead from "../components/ProfilHead";
 
 import "./ProfilUser.css";
@@ -28,7 +28,7 @@ function ProfilUser() {
       <ProfilHead id={id}>
         <ButtonProfilUser id={id} />
       </ProfilHead>
-      <OngletProfil />
+      <ProfilTab />
     </div>
   );
 }

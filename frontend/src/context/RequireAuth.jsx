@@ -7,6 +7,7 @@ function RequireAuth({ children }) {
   const { auth, setIsModalOpen } = useContext(UserContext);
   const navigate = useNavigate();
   const location = useLocation();
+
   useEffect(() => {
     if (!auth.token) {
       setIsModalOpen(true);
@@ -20,4 +21,5 @@ function RequireAuth({ children }) {
 
   return children;
 }
+
 export default RequireAuth;

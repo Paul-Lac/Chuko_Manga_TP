@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import "./OngletProfil.css";
+import "./ProfilTab.css";
 
-function OngletProfil() {
+function ProfilTab() {
   const { advertId, id } = useParams();
   const [annonces, setAnnonces] = useState();
   const [evaluations, setEvaluations] = useState([]);
@@ -137,7 +137,7 @@ function OngletProfil() {
               <div key={advertId}>
                 <Link
                   key={advertId}
-                  to={`/myAnounces/${annonce.advert_id}`}
+                  to={`/advert-seller/${annonce.advert_id}`}
                   className="linkCard"
                 >
                   <li className="cardAnnonces">
@@ -242,4 +242,4 @@ function OngletProfil() {
   );
 }
 
-export default OngletProfil;
+export default ProfilTab;

@@ -1,20 +1,21 @@
-import "./Home.css";
-import PrefilterAdvertByDesc from "../components/PrefilterAdvertByDesc";
-import PrefilterAdvertByBatch from "../components/PrefilterAdvertByBatch";
-import RepalledeSale from "../components/RepalledeSale/RepalledeSale";
-import RappelRecherche from "../components/RappelRecherche";
-import CoupDeCoeur from "../components/CoupDeCoeur";
+import PrefilterTome from "../components/PrefilterTome";
+import PrefilterBatch from "../components/PrefilterBatch";
+import CallCatalog from "../components/CallCatalog";
+import CallResearch from "../components/CallResearch";
+import TeamFavorites from "../components/TeamFavorites";
 import HeroBanner from "../components/HeroBanner";
+
+import "./Home.css";
 
 function Home() {
   return (
     <main className="home_main container_limit">
       <HeroBanner />
-      <PrefilterAdvertByDesc />
-      <RepalledeSale />
-      <PrefilterAdvertByBatch />
-      <RappelRecherche />
-      <CoupDeCoeur />
+      <PrefilterTome />
+      <CallCatalog />
+      <PrefilterBatch />
+      <CallResearch />
+      <TeamFavorites />
     </main>
   );
 }

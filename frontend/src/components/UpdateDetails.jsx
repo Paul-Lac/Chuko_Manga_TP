@@ -5,10 +5,10 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
-import "./DetailsPersonal.css";
+import "./UpdateDetails.css";
 import axios from "axios";
 
-function DetailsPersonal() {
+function UpdateDetails() {
   const { id } = useParams();
   const [file, setFile] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -201,4 +201,4 @@ function DetailsPersonal() {
   );
 }
 
-export default DetailsPersonal;
+export default UpdateDetails;

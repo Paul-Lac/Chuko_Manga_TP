@@ -29,7 +29,7 @@ function HeaderNav() {
   };
 
   const handleProfileClick = () => {
-    navigate(`/profilUser/${auth.user.id}`);
+    navigate(`/profile/${auth.user.id}`);
     setUserMenu(false);
   };
 

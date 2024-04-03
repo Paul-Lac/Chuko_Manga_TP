@@ -45,7 +45,7 @@ function HeaderNavMobile() {
   };
 
   const handleProfilClick = () => {
-    navigate(`/profilUser/${auth.user.id}`);
+    navigate(`/profile/${auth.user.id}`);
     setmenuMobileActive(!menuMobileActive);
   };
 

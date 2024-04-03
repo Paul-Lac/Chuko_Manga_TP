@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import "./PaymentPage.css";
-import Order from "../components/PaymentPage/Order";
-import Address from "../components/PaymentPage/Address";
-import Payment from "../components/PaymentPage/Payment";
-import DeliveryOption from "../components/PaymentPage/DeliveryOption";
+import "./Payment.css";
+import PaymentAddress from "../components/PaymentAddress";
+import PaymentDeliveryOption from "../components/PaymentDeliveryOption";
+import PaymentFinal from "../components/PaymentFinal";
+import PaymentOrder from "../components/PaymentOrder";
 
 function PaymentPage() {
   const location = useLocation();
@@ -35,7 +35,7 @@ function PaymentPage() {
         <div className="left-column">
           <h3>Commande</h3>
           <div className="order-cards">
-            <Order articleInfo={articleData} />
+            <PaymentOrder articleInfo={articleData} />
           </div>
           <div className="address-container">
             <h3 className="section-title">Adresse</h3>
@@ -83,7 +83,7 @@ function PaymentPage() {
                 >
                   &times;
                 </button>
-                <Address
+                <PaymentAddress
                   handleChange={handleAddressChange}
                   adresse={adresse}
                   updateModal={closeModal}
@@ -91,7 +91,7 @@ function PaymentPage() {
               </div>
             </div>
           )}
-          <DeliveryOption />
+          <PaymentDeliveryOption />
           <div className="payment-section">
             <h3>Paiement</h3>
             <div className="payment-method-select">
@@ -110,7 +110,7 @@ function PaymentPage() {
           </div>
         </div>
         <div className="right-column">
-          <Payment price={articleData.price} articleData={articleData} />
+          <PaymentFinal price={articleData.price} articleData={articleData} />
         </div>
       </div>
     </container>

@@ -1,5 +1,3 @@
-import "./CoupDeCoeur.css";
-
 import NarutoLogo from "../assets/naruto-logo.png";
 import OnePieceLogo from "../assets/onepiece-logo.png";
 import LoveHinaLogo from "../assets/lovehina-logo.png";
@@ -13,7 +11,9 @@ import BlackCloverLogo from "../assets/blackclover-logo.png";
 // import JujutsuKaisenLogo from "../assets/jujutsukaisen-logo.png";
 // import CenturyboysLogo from "../assets/20centuryboys-logo.png";
 
-function CoupDeCoeur() {
+import "./TeamFavorites.css";
+
+function TeamFavorites() {
   return (
     <section className="section-coup-de-coeur">
       <h2 className="title-coup-de-coeur">Coup de coeur de l'équipe</h2>
@@ -71,4 +71,4 @@ function CoupDeCoeur() {
   );
 }
 
-export default CoupDeCoeur;
+export default TeamFavorites;

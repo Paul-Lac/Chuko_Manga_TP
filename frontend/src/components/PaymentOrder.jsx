@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import "./Order.css";
+import "./PaymentOrder.css";
 
-function Order({ articleInfo }) {
+function PaymentOrder({ articleInfo }) {
   return (
     <div className="component-card">
       <li key={articleInfo.id}>
@@ -29,4 +29,4 @@ function Order({ articleInfo }) {
     </div>
   );
 }
-export default Order;
+export default PaymentOrder;
