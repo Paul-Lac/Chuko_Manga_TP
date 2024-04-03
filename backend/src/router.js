@@ -59,8 +59,8 @@ router.get("/conditions", conditionsControllers.getAllConditions);
 
 // ROUTES TO GET MANGAS
 router.get("/mangas", mangasControllers.getMangas);
-router.get("/manga/catalog", mangasControllers.getCatalogMangas);
 router.get("/mangas/:id", mangasControllers.getMangaById);
+router.get("/mangas-catalog", mangasControllers.getCatalogMangas);
 
 // ROUTES TO GET ORDERS
 // Route to get all orders by buyer (page Profil/onglet my purchase history)
@@ -126,6 +126,7 @@ router.put(
 /* ************************************************************************* */
 // Route to delete advert by user
 router.delete("/advert/:id", advertsControllers.deleteAdvert);
+router.delete("/mangas/:id", mangasControllers.deleteManga);
 
 // Import authControllers module for handling auth-related operations
 const authControllers = require("./controllers/authControllers");

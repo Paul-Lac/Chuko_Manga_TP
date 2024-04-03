@@ -6,7 +6,7 @@ import SearchBar from "./SearchBar";
 function CallResearch() {
   const [mangas, setMangas] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3310/api/manga/catalog")
+    fetch("http://localhost:3310/api/mangas-catalog")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Error HTTP, status: ${response.status}`);

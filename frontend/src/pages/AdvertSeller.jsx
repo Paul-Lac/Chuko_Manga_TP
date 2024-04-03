@@ -6,7 +6,7 @@ import "./AdvertSeller.css";
 
 import NoImage from "../assets/navBar.png";
 
-function MyAnounces() {
+function AdvertSeller() {
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -194,4 +194,4 @@ function MyAnounces() {
     </div>
   );
 }
-export default MyAnounces;
+export default AdvertSeller;

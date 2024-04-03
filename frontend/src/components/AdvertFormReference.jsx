@@ -30,14 +30,14 @@ function AdvertFormReference(props) {
       });
   }, []);
 
-  console.info(
-    "récupération du batch de l'annonce dans advertformreference :",
-    batch
-  );
-  console.info(
-    "récupération du volume de l'annonce dans advertformreference :",
-    volumeAnounce
-  );
+  // console.info(
+  //   "récupération du batch de l'annonce dans advertformreference :",
+  //   batch
+  // );
+  // console.info(
+  //   "récupération du volume de l'annonce dans advertformreference :",
+  //   volumeAnounce
+  // );
 
   let volumeText;
   if (isNewAdvertPage) {

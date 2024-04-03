@@ -60,25 +60,25 @@ function MangaDetails({ id: propId, showVolumes = true }) {
         <div className="status-manga">
           <div className="grid-status-manga">
             <p>
-              <strong>Sortie en France</strong>
-            </p>
-            <p>{formatDate(manga.date_france)}</p>
-            <p>
-              <strong>Sortie au Japon</strong>
-            </p>
-            <p>{formatDate(manga.date_japan)}</p>
-            <p>
               <strong>Genre</strong>
             </p>
             <p className="genre-info">
               <span className="genre-value">{manga.genre_genre}</span>
             </p>
             <p>
-              <strong>Japon</strong>
+              <strong>Editeur</strong>
+            </p>
+            <p>{manga.name_publishing_house}</p>
+            <p>
+              <strong>Date de sortie</strong>
+            </p>
+            <p>{formatDate(manga.release_date)}</p>
+            <p>
+              <strong>Au Japon</strong>
             </p>
             <p>{manga.finish_japan ? "Terminée" : "Pas terminée"}</p>
             <p>
-              <strong>France</strong>
+              <strong>En France</strong>
             </p>
             <p>{manga.finish_france ? "Terminée" : "Pas terminée"}</p>
           </div>

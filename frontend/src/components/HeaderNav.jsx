@@ -42,7 +42,7 @@ function HeaderNav() {
   return (
     <>
       <header className="navbar-header-desktop">
-        <container className="header-left-container">
+        <div className="header-left-container">
           <Link to="/">
             <img id="logo" src={logo} alt="Logo" />
           </Link>
@@ -54,8 +54,12 @@ function HeaderNav() {
           <div className="navbar-desktop-search">
             <SearchBar />
           </div>
-        </container>
-
+        </div>
+        <Link to="/cma">
+          <button type="button" className="admin-btn">
+            Admin
+          </button>
+        </Link>
         <div className="buttonHeader-container">
           {!auth?.token ? (
             <button

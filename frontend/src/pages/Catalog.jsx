@@ -11,7 +11,7 @@ function Catalog() {
     const fetchMangas = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3310/api/manga/catalog"
+          "http://localhost:3310/api/mangas-catalog"
         );
         setMangas(response.data);
       } catch (error) {

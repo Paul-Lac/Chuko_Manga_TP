@@ -1,6 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import Admin from "./pages/Admin";
+import AdminManga from "./components/AdminManga";
 import MangaDetails from "./pages/MangaDetails";
 import Explore from "./pages/Explore";
 import NewAdvert from "./pages/NewAdvert";
@@ -32,6 +34,14 @@ const router = createBrowserRouter([
       {
         path: "/catalog",
         element: <Catalog />,
+      },
+      {
+        path: "/cma",
+        element: <Admin />,
+      },
+      {
+        path: "/cma/mangas",
+        element: <AdminManga />,
       },
       {
         path: "/explore",

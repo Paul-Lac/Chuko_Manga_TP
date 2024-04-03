@@ -30,7 +30,7 @@ function PaymentPage() {
   };
 
   return (
-    <container className="container">
+    <section className="container">
       <div className="main-content">
         <div className="left-column">
           <h3>Commande</h3>
@@ -113,7 +113,7 @@ function PaymentPage() {
           <PaymentFinal price={articleData.price} articleData={articleData} />
         </div>
       </div>
-    </container>
+    </section>
   );
 }
 

@@ -82,7 +82,7 @@ function HeaderNavMobile() {
         />
       )}
       {/* Overlay */}
-      <container className="mobile-header">
+      <div className="mobile-header">
         <Link to="/">
           <img className="mobile-logo" src={logo} alt="Logo" />
         </Link>
@@ -91,7 +91,7 @@ function HeaderNavMobile() {
             <img className="icon-open" src={iconBurger} alt="Menu" />
           </button>
         )}
-      </container>
+      </div>
 
       {/* <container className="mobile-menu-container"> */}
       {/* Mobile Menu when user is not connected */}

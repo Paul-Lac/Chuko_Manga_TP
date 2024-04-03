@@ -1,0 +1,50 @@
+.overlay-manga {
+  background: rgba(49, 49, 49, 0.8);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+}
+
+.delete-modal-content {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  background: var(--neutral-100);
+  padding: 14px 28 px;
+  border-radius: 0.5rem;
+  max-width: 20rem;
+  min-width: 40rem;
+  height: 10rem;
+}
+
+.delete-message-modal {
+  color: var(--primary-clr-accent);
+  text-align: center;
+  padding: 5% 5% 6% 5%;
+  font-size: var(--fs-L);
+}
+
+.confirmation-container {
+  display: flex;
+  justify-content: center;
+  font-size: var(--fs-S);
+}
+
+.close-delete-modal {
+  border-right: solid 0.1rem var(--neutral-600);
+  padding-right: 20%;
+}
+
+.close-delete-modal:hover {
+  color: var(--primary-clr-accent);
+}
+
+.confirm-delete {
+  padding-left: 20%;
+}
+
+.confirm-delete:hover {
+  color: var(--primary-clr-accent);
+}
