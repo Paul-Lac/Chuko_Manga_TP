@@ -22,44 +22,6 @@ class AdvertsManager extends AbstractManager {
     return rows;
   }
 
-  async findRecentUniqueItems() {
-    const [rows] = await this.database.query(
-      `SELECT advert.id, advert.title_search_manga, advert.price, article_condition.name_condition, 
-      advert_image.image_path, user.pseudo, user.picture as user_picture, 
-      ROUND(joint_table.average, 1) as average, joint_table.feedback_nber, advert.publication_date_advert
-      FROM ${this.table}
-      LEFT JOIN advert_image ON advert.id=advert_image.advert_id AND advert_image.is_primary=1
-      JOIN article_condition ON advert.article_condition_id=article_condition.id
-      JOIN user ON advert.user_id=user.id 
-      JOIN (SELECT user.pseudo as rated_pseudo, ROUND(AVG(feedback.rating), 1) as average, COUNT(feedback.rating) as feedback_nber
-            FROM user
-            JOIN feedback ON user.id = feedback.user_id
-            GROUP BY user.pseudo) as joint_table ON user.pseudo=joint_table.rated_pseudo
-      WHERE advert.batch=0
-      ORDER BY advert.publication_date_advert DESC;`
-    );
-
-    return rows;
-  }
-
-  async findRecentBatch() {
-    const [rows] = await this.database.query(
-      `SELECT advert.id, advert.title_search_manga, advert.price, article_condition.name_condition, advert_image.image_path, user.id as user_id, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber, advert.publication_date_advert
-    FROM ${this.table}
-    LEFT JOIN advert_image ON advert.id=advert_image.advert_id AND advert_image.is_primary=1
-    JOIN article_condition ON advert.article_condition_id=article_condition.id
-    JOIN user ON advert.user_id=user.id 
-    JOIN (SELECT user.pseudo as rated_pseudo,  ROUND(AVG(feedback.rating), 1) as average, COUNT(feedback.rating) as feedback_nber
-        FROM user
-        JOIN feedback ON user.id = feedback.user_id
-        GROUP BY user.pseudo) as joint_table ON user.pseudo=joint_table.rated_pseudo
-    WHERE advert.batch=1
-    ORDER BY advert.publication_date_advert DESC;`
-    );
-
-    return rows;
-  }
-
   async findAdvertQuery(searchQuery) {
     console.info(`Manager Search query: ${searchQuery}`);
 
@@ -121,24 +83,7 @@ class AdvertsManager extends AbstractManager {
     return rows;
   }
 
-  async getMinMaxPrice(batch) {
-    let whereConditions = "";
-
-    if (batch !== undefined) {
-      whereConditions = batch ? "WHERE batch = 1" : "WHERE batch = 0";
-    }
-
-    const query = `
-      SELECT MIN(price) AS minPrice, MAX(price) AS maxPrice
-      FROM ${this.table}
-      ${whereConditions};
-    `;
-    const [rows] = await this.database.query(query);
-    return rows;
-  }
-
   async addAdvert(advert) {
-  
     const [result] = await this.database.query(
       `INSERT INTO ${this.table} (price, description, alert, batch, title_search_manga, publication_date_advert, user_id, volume_id, article_condition_id, manga_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
@@ -187,7 +132,7 @@ class AdvertsManager extends AbstractManager {
     }
 
     if (genreId) {
-  whereConditions += " AND manga.genre_id = ?";
+      whereConditions += " AND manga.genre_id = ?";
       queryParams.push(genreId);
     }
 
@@ -209,9 +154,9 @@ class AdvertsManager extends AbstractManager {
       whereConditions += " AND advert.volume_id = ?";
       queryParams.push(searchVolume);
     }
-if (batch !== null && batch !== undefined) {
-  whereConditions += batch ? " AND advert.batch=1" : " AND advert.batch=0";
-}
+    if (batch !== null && batch !== undefined) {
+      whereConditions += batch ? " AND advert.batch=1" : " AND advert.batch=0";
+    }
     const query = `
     SELECT advert.id, advert.title_search_manga, advert.price, article_condition.name_condition,advert.volume_id, advert.batch,
     advert_image.image_path, user.pseudo, user.picture as user_picture, manga.genre_id,
@@ -249,5 +194,59 @@ if (batch !== null && batch !== undefined) {
     return result.affectedRows > 0 ? id : null;
   }
 }
+
+// async findRecentUniqueItems() {
+//   const [rows] = await this.database.query(
+//     `SELECT advert.id, advert.title_search_manga, advert.price, article_condition.name_condition,
+//     advert_image.image_path, user.pseudo, user.picture as user_picture,
+//     ROUND(joint_table.average, 1) as average, joint_table.feedback_nber, advert.publication_date_advert
+//     FROM ${this.table}
+//     LEFT JOIN advert_image ON advert.id=advert_image.advert_id AND advert_image.is_primary=1
+//     JOIN article_condition ON advert.article_condition_id=article_condition.id
+//     JOIN user ON advert.user_id=user.id
+//     JOIN (SELECT user.pseudo as rated_pseudo, ROUND(AVG(feedback.rating), 1) as average, COUNT(feedback.rating) as feedback_nber
+//           FROM user
+//           JOIN feedback ON user.id = feedback.user_id
+//           GROUP BY user.pseudo) as joint_table ON user.pseudo=joint_table.rated_pseudo
+//     WHERE advert.batch=0
+//     ORDER BY advert.publication_date_advert DESC;`
+//   );
+
+//   return rows;
+// }
+
+// async findRecentBatch() {
+//   const [rows] = await this.database.query(
+//     `SELECT advert.id, advert.title_search_manga, advert.price, article_condition.name_condition, advert_image.image_path, user.id as user_id, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber, advert.publication_date_advert
+//   FROM ${this.table}
+//   LEFT JOIN advert_image ON advert.id=advert_image.advert_id AND advert_image.is_primary=1
+//   JOIN article_condition ON advert.article_condition_id=article_condition.id
+//   JOIN user ON advert.user_id=user.id
+//   JOIN (SELECT user.pseudo as rated_pseudo,  ROUND(AVG(feedback.rating), 1) as average, COUNT(feedback.rating) as feedback_nber
+//       FROM user
+//       JOIN feedback ON user.id = feedback.user_id
+//       GROUP BY user.pseudo) as joint_table ON user.pseudo=joint_table.rated_pseudo
+//   WHERE advert.batch=1
+//   ORDER BY advert.publication_date_advert DESC;`
+//   );
+
+//   return rows;
+// }
+
+// async getMinMaxPrice(batch) {
+//   let whereConditions = "";
+
+//   if (batch !== undefined) {
+//     whereConditions = batch ? "WHERE batch = 1" : "WHERE batch = 0";
+//   }
+
+//   const query = `
+//     SELECT MIN(price) AS minPrice, MAX(price) AS maxPrice
+//     FROM ${this.table}
+//     ${whereConditions};
+//   `;
+//   const [rows] = await this.database.query(query);
+//   return rows;
+// }
 
 module.exports = AdvertsManager;

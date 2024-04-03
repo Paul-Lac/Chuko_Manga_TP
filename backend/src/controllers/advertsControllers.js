@@ -15,20 +15,6 @@ const getAllCards = (req, res) => {
     .catch((err) => console.error(err));
 };
 
-const getRecentUniqueAdverts = (req, res) => {
-  models.advert
-    .findRecentUniqueItems()
-    .then((cards) => res.json(cards))
-    .catch((err) => console.error(err));
-};
-
-const getRecentBatch = (req, res) => {
-  models.advert
-    .findRecentBatch()
-    .then((cards) => res.json(cards))
-    .catch((err) => console.error(err));
-};
-
 const getAdvertById = async (req, res) => {
   try {
     const advert = await models.advert.getAdvertById(req.params.id);
@@ -46,32 +32,6 @@ const getAdvertById = async (req, res) => {
 const getAdvertsBySeller = async (req, res) => {
   try {
     const adverts = await models.advert.getAdvertsBySeller(req.params.id);
-    if (adverts == null) {
-      res.sendStatus(404);
-    } else {
-      res.json(adverts);
-    }
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-const getAdvertsByGenre = async (req, res) => {
-  try {
-    const adverts = await models.advert.getAdvertsByGenre(req.params.id);
-    if (adverts == null) {
-      res.sendStatus(404);
-    } else {
-      res.json(adverts);
-    }
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-const getAdvertsByCondition = async (req, res) => {
-  try {
-    const adverts = await models.advert.getAdvertsByCondition(req.params.id);
     if (adverts == null) {
       res.sendStatus(404);
     } else {
@@ -201,29 +161,6 @@ const recentAdverts = async (req, res) => {
     return res.status(500).json({ error: "Erreur interne du serveur" });
   }
 };
-const getAdvertsByPrice = async (req, res) => {
-  const { batch } = req.query;
-  let isBatch = null; // Par défaut, isBatch est null
-  if (batch !== undefined) {
-    if (batch === 'true') {
-      isBatch = true;
-    } else if (batch === 'false') {
-      isBatch = false;
-    }
-
-  }
-  try {
-    const priceRange = await models.advert.getMinMaxPrice(isBatch);
-
-    if (priceRange.length > 0) {
-      return res.json(priceRange[0]);
-    }
-    return res.status(404).json({ message: "Aucune annonce trouvée." });
-  } catch (error) {
-    console.error("Erreur lors de la récupération des prix min et max:", error);
-    return res.status(500).json({ error: "Erreur interne du serveur" });
-  }
-};
 
 const deleteAdvert = async (req, res) => {
   try {
@@ -239,19 +176,82 @@ const deleteAdvert = async (req, res) => {
   }
 };
 
+// const getRecentUniqueAdverts = (req, res) => {
+//   models.advert
+//     .findRecentUniqueItems()
+//     .then((cards) => res.json(cards))
+//     .catch((err) => console.error(err));
+// };
+
+// const getRecentBatch = (req, res) => {
+//   models.advert
+//     .findRecentBatch()
+//     .then((cards) => res.json(cards))
+//     .catch((err) => console.error(err));
+// };
+
+// const getAdvertsByGenre = async (req, res) => {
+//   try {
+//     const adverts = await models.advert.getAdvertsByGenre(req.params.id);
+//     if (adverts == null) {
+//       res.sendStatus(404);
+//     } else {
+//       res.json(adverts);
+//     }
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };
+
+// const getAdvertsByCondition = async (req, res) => {
+//   try {
+//     const adverts = await models.advert.getAdvertsByCondition(req.params.id);
+//     if (adverts == null) {
+//       res.sendStatus(404);
+//     } else {
+//       res.json(adverts);
+//     }
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };
+
+// const getAdvertsByPrice = async (req, res) => {
+//   const { batch } = req.query;
+//   let isBatch = null; // Par défaut, isBatch est null
+//   if (batch !== undefined) {
+//     if (batch === "true") {
+//       isBatch = true;
+//     } else if (batch === "false") {
+//       isBatch = false;
+//     }
+//   }
+//   try {
+//     const priceRange = await models.advert.getMinMaxPrice(isBatch);
+
+//     if (priceRange.length > 0) {
+//       return res.json(priceRange[0]);
+//     }
+//     return res.status(404).json({ message: "Aucune annonce trouvée." });
+//   } catch (error) {
+//     console.error("Erreur lors de la récupération des prix min et max:", error);
+//     return res.status(500).json({ error: "Erreur interne du serveur" });
+//   }
+// };
+
 module.exports = {
   getAllAdverts,
   getAllCards,
   recentAdverts,
-  getRecentUniqueAdverts,
-  getRecentBatch,
   getSearchAdverts,
   getAdvertById,
   getAdvertsBySeller,
-  getAdvertsByGenre,
-  getAdvertsByCondition,
-  getAdvertsByPrice,
   createAdvert,
   getAdvertsImage,
   deleteAdvert,
+  // getRecentUniqueAdverts,
+  // getRecentBatch,
+  // getAdvertsByGenre,
+  // getAdvertsByCondition,
+  // getAdvertsByPrice,
 };
