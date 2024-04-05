@@ -8,6 +8,7 @@ const models = require("../modelsProviders");
 const login = async (req, res, next) => {
   try {
     // Fetch a specific user from the database based on the provided email
+    // PL : Rename with : findByEmail
     const user = await models.user.readByEmailWithPassword(req.body.email);
 
     if (user == null) {
@@ -32,6 +33,7 @@ const login = async (req, res, next) => {
       );
       res.cookie("token", token, {
         httpOnly: true,
+        // ajouter secure: false ?
       });
       res.json({
         token,

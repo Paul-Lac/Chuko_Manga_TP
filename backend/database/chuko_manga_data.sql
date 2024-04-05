@@ -97,7 +97,7 @@ VALUES
 -- email
 'j.dubois@gmail.com', 
 -- password
-'01001', 
+'$argon2id$v=19$m=19456,t=2,p=1$9zVfDj5TBIGwfn0Ai/8QGg$mcijxbcIZkBNoGyFGrEl88Qx0Kh24AdoVnx8kf0pW6I', 
 -- phone
 '0611223344', 
 -- role
@@ -115,11 +115,29 @@ VALUES
 -- email
 'm.tournesol@gmail.com', 
 -- password
-'110001', 
+'$argon2id$v=19$m=19456,t=2,p=1$9zVfDj5TBIGwfn0Ai/8QGg$mcijxbcIZkBNoGyFGrEl88Qx0Kh24AdoVnx8kf0pW6I', 
 -- phone
 '0611220011', 
 -- role
 'user', 
+-- picture
+'/static/marc.jpeg'
+),
+(
+  -- firstname
+'Chuko', 
+-- lastname
+'Manga', 
+-- pseudo
+'Admin', 
+-- email
+'admin@gmail.com', 
+-- password
+'$argon2id$v=19$m=19456,t=2,p=1$9zVfDj5TBIGwfn0Ai/8QGg$mcijxbcIZkBNoGyFGrEl88Qx0Kh24AdoVnx8kf0pW6I', 
+-- phone
+'0611220011', 
+-- role
+'admin', 
 -- picture
 '/static/marc.jpeg'
 );

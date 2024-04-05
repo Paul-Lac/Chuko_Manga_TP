@@ -1,0 +1,10 @@
+.manga-form-container h1 {
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.img-to-update {
+  height: 6rem;
+  width: 4rem;
+  object-fit: cover;
+}

@@ -19,8 +19,10 @@ const validateUser = require("./middlewares/validateUser");
 const advertsControllers = require("./controllers/advertsControllers");
 const addressControllers = require("./controllers/addressControllers");
 const conditionsControllers = require("./controllers/conditionsControllers");
+const genresControllers = require("./controllers/genresControllers");
 const mangasControllers = require("./controllers/mangasControllers");
 const ordersControllers = require("./controllers/ordersControllers");
+const publishersControllers = require("./controllers/publishersControllers");
 const usersControllers = require("./controllers/usersControllers");
 const volumesControllers = require("./controllers/volumesControllers");
 // const itemControllers = require("./controllers/itemControllers");
@@ -54,13 +56,20 @@ router.get(
 router.get("/explore", advertsControllers.getAllAdverts);
 router.get("/explore/:query", advertsControllers.getSearchAdverts);
 
-// // ROUTE TO GET CONDITIONS
+// ROUTE TO GET CONDITIONS
 router.get("/conditions", conditionsControllers.getAllConditions);
+
+// ROUTES TO GET GENRES
+router.get("/genres", genresControllers.getAllGenres);
 
 // ROUTES TO GET MANGAS
 router.get("/mangas", mangasControllers.getMangas);
 router.get("/mangas/:id", mangasControllers.getMangaById);
 router.get("/mangas-catalog", mangasControllers.getCatalogMangas);
+router.get("/mangas-fk", mangasControllers.getMangasWithFK);
+
+// ROUTE TO GET PUBLISHING HOUSES
+router.get("/publishers", publishersControllers.getAllPublishers);
 
 // ROUTES TO GET ORDERS
 // Route to get all orders by buyer (page Profil/onglet my purchase history)
@@ -81,16 +90,17 @@ router.get("/user-profil-com/:id", usersControllers.getUserProfilComById);
 
 // ROUTES TO GET VOLUMES
 // Route to get all volumes by manga ID (page manga details)
+// A mettre place ? mangas/:id/volumes
 router.get("/volumes/:mangaId", volumesControllers.getVolumesByMangaId);
 
 /* ************************************************************************* */
 // ROUTES POST
 /* ************************************************************************* */
 
-// ROUTES TO POST ADDRESS
+// ROUTE TO POST ADDRESS
 router.post("/address/:id", validateAddress, addressControllers.addAddressbyId);
 
-// ROUTES TO POST ADVERTS
+// ROUTE TO POST ADVERTS
 router.post(
   "/new-advert",
   multer,
@@ -98,7 +108,10 @@ router.post(
   advertsControllers.createAdvert
 );
 
-// ROUTES TO POST USERS
+// ROUTES TO POST MANGAS
+router.post("/mangas", multerSingle, mangasControllers.createManga);
+
+// ROUTE TO POST USERS => appelé dans inscription.jsx - Pourquoi pas de validateUser ici ???
 router.post("/users", hashPassword, usersControllers.add);
 
 /* ************************************************************************* */
@@ -119,6 +132,8 @@ router.put(
   usersControllers.updateUser
 );
 
+router.put("/mangas/:id", multerSingle, mangasControllers.updateManga);
+
 // router.put("/update-advert/:id", multer, advertsControllers.updateAdvert);
 
 /* ************************************************************************* */
@@ -132,7 +147,9 @@ router.delete("/mangas/:id", mangasControllers.deleteManga);
 const authControllers = require("./controllers/authControllers");
 const cookieJwAuth = require("./middlewares/cookieJwtAuth");
 
+// /login appelé dans connexion.jsx => pourquoi pas de validateLogin ??? et cookieJwtAuth ?
 router.post("/login", authControllers.login);
+// /add n'est appelé nulle part dans le front
 router.post("/add", cookieJwAuth, authControllers.login);
 router.use(verifyToken);
 

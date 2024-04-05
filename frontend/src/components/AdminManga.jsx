@@ -29,41 +29,12 @@ function AdminManga() {
           Ajouter un Manga
         </button>
       </div>
-      {tabShow ? <AdminListManga /> : <AdminAddManga />}
+      {tabShow ? (
+        <AdminListManga />
+      ) : (
+        <AdminAddManga tabShow={tabShow} setTabShow={setTabShow} />
+      )}
     </section>
-
-    // {mangaList.map((manga) => (
-    //   <div className="manga-item">
-    //     <div className="data-container">
-    //       <h2 className="category-title">Titre</h2>
-    //       <p>{manga.title}</p>
-    //     </div>
-    //     <div className="data-container">
-    //       <h2 className="category-title">Description</h2>
-    //       <p>{manga.description}</p>
-    //     </div>
-    //     <div className="data-container">
-    //       <h2 className="category-title">Auteur</h2>
-    //       <p>{manga.author}</p>
-    //     </div>
-    //     <div className="data-container">
-    //       <h2 className="category-title">Illustrateur</h2>
-    //       <p>{manga.illustrator}</p>
-    //     </div>
-    //     <div className="data-container">
-    //       <h2 className="category-title">Scénariste</h2>
-    //       <p>{manga.script_writer}</p>
-    //     </div>
-    //     <div className="data-container">
-    //       <h2 className="category-title">Date de sortie</h2>
-    //       <p>{manga.release_date}</p>
-    //     </div>
-    //     <div className="data-container">
-    //       <h2 className="category-title">Genre</h2>
-    //       <p>Liste des genre</p>
-    //     </div>
-    //   </div>
-    // ))}
   );
 }
 

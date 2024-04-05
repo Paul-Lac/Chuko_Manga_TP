@@ -1,0 +1,50 @@
+.manga-form-container {
+  width: 80%;
+  margin: auto;
+  margin-bottom: 5rem;
+}
+
+.admin-label {
+  font-size: var(--fs-S);
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  margin-top: 2rem;
+}
+
+.admin-submit-btn {
+  display: block;
+  color: var(--neutral-100);
+  background-color: var(--secondary-clr);
+  padding: 0.5rem 3rem;
+  border-radius: 0.5rem;
+  flex-basis: 45%;
+  text-align: center;
+  border: 2px solid var(--secondary-clr);
+  margin: 2rem auto;
+}
+
+.manga-form-container input,
+.manga-form-container textarea {
+  width: 100%;
+  padding: 0.2rem;
+  border-radius: 0.5rem;
+}
+
+.container-form {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.container-authors {
+  width: 100%;
+}
+
+.item-to-select {
+  width: 45%;
+}
+
+.item-to-select select {
+  width: 100%;
+}

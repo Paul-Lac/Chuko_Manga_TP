@@ -1,18 +1,92 @@
+.manga-section {
+  width: 100%;
+}
+
+.overview-container {
+  border: 1px solid var(--neutral-600);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+.admin-manga-img {
+  height: 6rem;
+  width: 4rem;
+  margin-left: 2rem;
+  object-fit: cover;
+}
+
+.admin-manga-title {
+  margin-left: 2rem;
+  font-size: var(--fs-M);
+}
+
+.btn-action {
+  color: var(--neutral-100);
+  background-color: var(--secondary-clr);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--secondary-clr);
+  margin: 0 1rem;
+}
+
+.btn-action:hover {
+  color: var(--secondary-clr);
+  background-color: var(--neutral-100);
+  border: 1px solid var(--secondary-clr);
+}
+
+.btn-disabled {
+  color: var(--neural-100);
+  background-color: var(--neutral-300);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--neutral-300);
+  margin: 0 1rem;
+}
+
+.admin-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999; /* Assurez-vous que le z-index est supérieur aux autres éléments */
+}
+
 .overlay-manga {
   background: rgba(49, 49, 49, 0.8);
-  width: 100vw;
-  height: 100vh;
   position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.see-modal-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--neutral-100);
+  padding: 14px 28px;
+  border-radius: 0.5rem;
+  width: 70vw;
+  height: 80vh;
+  overflow: auto;
 }
 
 .delete-modal-content {
-  position: absolute;
-  top: 40%;
+  position: fixed;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   line-height: 1.4;
   background: var(--neutral-100);
-  padding: 14px 28 px;
+  padding: 14px 28px;
   border-radius: 0.5rem;
   max-width: 20rem;
   min-width: 40rem;
@@ -32,12 +106,12 @@
   font-size: var(--fs-S);
 }
 
-.close-delete-modal {
+.cancel-delete {
   border-right: solid 0.1rem var(--neutral-600);
   padding-right: 20%;
 }
 
-.close-delete-modal:hover {
+.cancel-delete:hover {
   color: var(--primary-clr-accent);
 }
 

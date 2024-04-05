@@ -4,32 +4,35 @@
 /* ************************************************************************* */
 
 // Import the manager modules responsible for handling data operations on the tables
-const ItemManager = require("./models/ItemManager");
-// ------
-const CharactersManager = require("./models/CharactersManager");
-// const housesManager = require("./models/housesManager");
-const MangasManager = require("./models/MangasManager");
-const UsersManager = require("./models/UsersManager");
-const AdvertsManager = require("./models/AdvertsManager");
-const ConditionsManager = require("./models/ConditionsManager");
-const OrdersManager = require("./models/OrdersManager");
-const AddressManager = require("./models/AddressManager");
-const VolumesManager = require("./models/VolumesManager");
 const AdvertImagesManager = require("./models/advertImagesManager");
+const AdvertsManager = require("./models/AdvertsManager");
+const AddressManager = require("./models/AddressManager");
+const ConditionsManager = require("./models/ConditionsManager");
+const GenresManager = require("./models/GenresManager");
+const MangasManager = require("./models/MangasManager");
+const OrdersManager = require("./models/OrdersManager");
+const PublishersManager = require("./models/PublishersManager");
+const UsersManager = require("./models/UsersManager");
+const VolumesManager = require("./models/VolumesManager");
+// const ItemManager = require("./models/ItemManager");
+// const CharactersManager = require("./models/CharactersManager");
+// const housesManager = require("./models/housesManager");
 
 const managers = [
-  ItemManager,
   // Add other managers here
-  CharactersManager,
-  // housesManager,
-  MangasManager,
   AdvertsManager,
-  UsersManager,
-  ConditionsManager,
-  OrdersManager,
-  AddressManager,
-  VolumesManager,
   AdvertImagesManager,
+  AddressManager,
+  ConditionsManager,
+  GenresManager,
+  MangasManager,
+  OrdersManager,
+  PublishersManager,
+  UsersManager,
+  VolumesManager,
+  // ItemManager,
+  // CharactersManager,
+  // housesManager,
 ];
 
 // Create an empty object to hold data managers for different tables

@@ -72,8 +72,6 @@ CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`manga` (
   `genre_id` INT NOT NULL,
   `finish_japan` TINYINT NOT NULL,
   `finish_france` TINYINT NOT NULL,
-  -- `date_france` DATE NULL,
-  -- `date_japan` DATE NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_manga_publishing_house1_idx` (`publishing_house_id` ASC) VISIBLE,
   INDEX `fk_manga_genre1_idx` (`genre_id` ASC) VISIBLE,
