@@ -34,17 +34,19 @@ const volumesControllers = require("./controllers/volumesControllers");
 /* ************************************************************************* */
 // GET ROUTES
 /* ************************************************************************* */
-// GET ADDRESS
+// Address table
 router.get("/address/:id", addressControllers.getAddressbyId);
 
 // GET ADVERTS
-router.get("/advert-cards", advertsControllers.recentAdverts);
+router.get("/advert-cards", advertsControllers.getAdvertCards);
+// OLD :
+// router.get("/advert-cards-old", advertsControllers.recentAdverts);
 router.get("/advert-cards/:id", advertsControllers.getAdvertById);
-router.get("/advert-image", advertsControllers.getAdvertsImage);
 router.get("/users/:id/adverts", advertsControllers.getAdvertsBySeller);
-router.get("/explore", advertsControllers.getAllAdverts);
-router.get("/explore/:query", advertsControllers.getSearchAdverts);
 // NEVER USED IN FRONTEND
+// router.get("/explore/:query", advertsControllers.getSearchAdverts);
+// router.get("/explore", advertsControllers.getAllAdverts);
+// router.get("/advert-image", advertsControllers.getAdvertsImage);
 // Route to display advert table - NEVER USED IN FRONTEND
 // router.get("/adverts", advertsControllers.getAllAdverts);
 // Route to display advert card
@@ -133,7 +135,7 @@ router.post("/login", authControllers.login);
 // /add n'est appelé nulle part dans le front
 router.post("/add", cookieJwtAuth, authControllers.login);
 
-router.use(verifyToken);
+// router.use(verifyToken);
 
 // SUPPRIMER VERIFYTOKEN
 

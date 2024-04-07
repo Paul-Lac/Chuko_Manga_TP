@@ -55,11 +55,11 @@ function HeaderNav() {
             <SearchBar />
           </div>
         </div>
-        <Link to="/cma">
+        {/* <Link to="/cma">
           <button type="button" className="admin-btn">
             Admin
           </button>
-        </Link>
+        </Link> */}
         <div className="buttonHeader-container">
           {!auth?.token ? (
             <button

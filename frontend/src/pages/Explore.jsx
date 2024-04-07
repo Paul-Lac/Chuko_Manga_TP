@@ -1,101 +1,153 @@
 import { useState, useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
-import { useFilters } from "../context/FilterContext";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 import AdvertCard from "../components/AdvertCard";
 import "./Explore.css";
 
 function Explore() {
-  const [dataAdverts, setDataAdverts] = useState([]);
-  const [filteredAdverts, setFilteredAdverts] = useState([]);
-  const location = useLocation();
   const { searchQuery, volumeId } = useParams(); // console.info("searchQuery reçue dans explore", searchQuery);
-  const queryParams = new URLSearchParams(location.search);
-  const batchFromUrl = queryParams.get("batch"); // console.info("volumeId reçu dans explore", volumeId);
-  const { filters, setBatch, setMinMaxPrices, dynamicPriceFilter } =
-    useFilters();
+  const [genreList, setGenreList] = useState([]);
+  const [conditionList, setConditionList] = useState([]);
+  const [adverts, setAdverts] = useState([]);
+  const [selectedGenre, setSelectedGenre] = useState("");
+  const [selectedCondition, setSelectedCondition] = useState("");
+  const [selectedPriceRange, setSelectedPriceRange] = useState("");
 
+  // Retrieve filter options from API
   useEffect(() => {
-    setBatch(batchFromUrl);
-    const fetchData = async () => {
+    const fetchFilters = async () => {
       try {
-        let url = "http://localhost:3310/api/advert-cards?";
-        if (searchQuery) {
-          url += `searchQuery=${encodeURIComponent(searchQuery)}`;
-        } else if (batchFromUrl !== null && batchFromUrl !== undefined) {
-          url += `batch=${encodeURIComponent(batchFromUrl)}`;
-        }
-        if (volumeId) {
-          url += `&searchVolume=${encodeURIComponent(volumeId)}`;
-          console.info("searchVolumeFromUrl", volumeId);
-        }
-        if (filters.genreId) {
-          url += `&genreId=${encodeURIComponent(filters.genreId)}`;
-        }
-        if (filters.condition) {
-          url += `&conditionName=${encodeURIComponent(filters.condition)}`;
-        }
-        if (filters.priceMin) {
-          url += `&minPrice=${encodeURIComponent(filters.priceMin)}`;
-        }
-        if (filters.priceMax) {
-          url += `&maxPrice=${encodeURIComponent(filters.priceMax)}`;
-        } // console.info("URL de la requête fetch :", url);
-
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error(`Erreur HTTP, statut : ${response.status}`);
-        }
-        const data = await response.json();
-        setDataAdverts(data);
-        if (data.length > 0) {
-          const prices = data.map((advert) => advert.price);
-          const calculatedMinPrice = Math.min(...prices);
-          const calculatedMaxPrice = Math.max(...prices);
-          setMinMaxPrices(calculatedMinPrice, calculatedMaxPrice);
-          setFilteredAdverts(data); // console.info("resulat annonce dans explore", data);
-        }
+        const [conditionsResponse, genresResponse] = await Promise.all([
+          axios.get("http://localhost:3310/api/conditions"),
+          axios.get("http://localhost:3310/api/genres"),
+        ]);
+        setConditionList(conditionsResponse.data);
+        setGenreList(genresResponse.data);
       } catch (error) {
-        console.error(
-          "Une erreur s'est produite lors de la récupération des données:",
-          error
-        );
+        console.error("Error fetching data:", error);
       }
     };
+    fetchFilters();
+  }, []);
 
-    fetchData();
-  }, [
-    searchQuery,
-    batchFromUrl,
-    filters.genreId,
-    filters.condition,
-    filters.priceMin,
-    filters.priceMax,
-    dynamicPriceFilter,
-  ]);
+  const getPriceRange = (range) => {
+    switch (range) {
+      case "0-10":
+        return { min: 0, max: 10 };
+      case "10-20":
+        return { min: 10, max: 20 };
+      case "20-50":
+        return { min: 20, max: 50 };
+      case "50+":
+        return { min: 50, max: null };
+      default:
+        return { min: null, max: null };
+    }
+  };
+
+  // Retrieve adverts from API
   useEffect(() => {
-    // console.info("Mise à jour du filtrage dynamique", dynamicPriceFilter);
-    const filtered = dataAdverts.filter((advert) =>
-      dynamicPriceFilter.minPrice != null && dynamicPriceFilter.maxPrice != null
-        ? parseFloat(advert.price) >= dynamicPriceFilter.minPrice &&
-          parseFloat(advert.price) <= dynamicPriceFilter.maxPrice
-        : true
-    );
-    setFilteredAdverts(filtered);
-  }, [dynamicPriceFilter, dataAdverts]);
+    const fetchAdverts = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3310/api/advert-cards",
+          {
+            params: {
+              genreId: selectedGenre,
+              conditionId: selectedCondition,
+              minPrice: getPriceRange(selectedPriceRange).min,
+              maxPrice: getPriceRange(selectedPriceRange).max,
+              searchVolume: volumeId,
+              searchQuery,
+            },
+          }
+        );
+        console.info("selectedGenre", selectedGenre);
+        setAdverts(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchAdverts();
+  }, [
+    selectedGenre,
+    selectedCondition,
+    selectedPriceRange,
+    volumeId,
+    searchQuery,
+  ]);
+
+  const handleClearFilters = () => {
+    setSelectedGenre("");
+    setSelectedCondition("");
+    setSelectedPriceRange("");
+  };
 
   return (
-    <div className="explore container_limit">
+    <section className="explore-container">
       <h1>Nos annonces</h1>
-      <div className="filteredAdverts-explore ">
-        {filteredAdverts.length > 0 ? (
-          filteredAdverts.map((dataAdvert) => (
+      <div className="filters-section">
+        <div className="filters-container">
+          <select
+            id="genre"
+            className="explore-select"
+            name="genre_id"
+            value={selectedGenre}
+            onChange={(e) => setSelectedGenre(e.target.value)}
+          >
+            <option value="">Genre</option>
+            {genreList.map((genreItem) => (
+              <option key={genreItem.id} value={genreItem.id}>
+                {genreItem.genre}
+              </option>
+            ))}
+          </select>
+          <select
+            id="condition"
+            className="explore-select"
+            name="article_condition_id"
+            value={selectedCondition}
+            onChange={(e) => setSelectedCondition(e.target.value)}
+          >
+            <option value="">Etat</option>
+            {conditionList.map((conditionItem) => (
+              <option key={conditionItem.id} value={conditionItem.id}>
+                {conditionItem.name_condition}
+              </option>
+            ))}
+          </select>
+          <select
+            id="priceRange"
+            className="explore-select"
+            value={selectedPriceRange}
+            onChange={(e) => setSelectedPriceRange(e.target.value)}
+          >
+            <option value="">Prix</option>
+            <option value="0-10">&lt; 10€</option>
+            <option value="10-20">10 à 20€</option>
+            <option value="20-50">20 à 50€</option>
+            <option value="50+">&gt; 50€</option>
+          </select>
+        </div>
+        <button
+          type="button"
+          className="clear-btn"
+          onClick={handleClearFilters}
+        >
+          Réinitialiser les filtres
+        </button>
+      </div>
+
+      <div className="adverts-container">
+        {adverts.length > 0 ? (
+          adverts.map((dataAdvert) => (
             <AdvertCard key={dataAdvert.id} advert={dataAdvert} />
           ))
         ) : (
           <p>Aucun article ne correspond à vos critères de recherche.</p>
         )}
       </div>
-    </div>
+    </section>
   );
 }
 

@@ -82,7 +82,7 @@ VALUES ('Tome 1', 1, '2002', '/static/naruto.jpg', '2871294143', 1),
 ('Tome 10', 10, '2021', '/static/jujutsuKaisenTome10.png', '1974720756', 5);
 
 INSERT INTO article_condition (name_condition)
-VALUES ('Abimé'), ('Bon état'), ('Comme neuf');
+VALUES ('Satisfaisant'), ('Bon état'), ('Comme neuf');
 
 INSERT INTO
 user (firstname, lastname, pseudo, email, hashed_password, phone, role, picture)

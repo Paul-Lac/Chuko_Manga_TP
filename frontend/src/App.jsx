@@ -7,7 +7,7 @@ import { NotificationProvider } from "./context/NotificationContext";
 // import LeftNavbar from "./components/LeftNavbar";
 import HeaderNav from "./components/HeaderNav";
 import Footer from "./components/Footer";
-import { FiltersProvider } from "./context/FilterContext";
+// import { FiltersProvider } from "./context/FilterContext";
 import "./App.css";
 import "./style/global.css";
 import "./style/variables.css";
@@ -36,20 +36,20 @@ function App() {
     [auth, isModalOpen]
   );
   return (
-    <FiltersProvider>
-      <UserContext.Provider value={userContextValue}>
-        <NotificationProvider>
-          <div className="mainContainer">
-            {/* <LeftNavbar /> */}
-            <div className="mainContent">
-              <HeaderNav />
-              <Outlet />
-              <Footer />
-            </div>
-          </div>
-        </NotificationProvider>
-      </UserContext.Provider>
-    </FiltersProvider>
+    // <FiltersProvider>
+    <UserContext.Provider value={userContextValue}>
+      <NotificationProvider>
+        {/* <div className="mainContainer"> */}
+        {/* <LeftNavbar /> */}
+        <div className="mainContent">
+          <HeaderNav />
+          <Outlet />
+          <Footer />
+        </div>
+        {/* </div> */}
+      </NotificationProvider>
+    </UserContext.Provider>
+    // </FiltersProvider>
   );
 }
 

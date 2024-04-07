@@ -19,13 +19,13 @@
 } */
 
 .mainContent {
-  padding: 1rem 2rem;
+  padding: 0rem 2rem;
   gap: 2rem;
-  /* position: relative; */
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   height: 100%;
   /* grid-area: 1 / 2 / 2 / 11; */
   background-color: var(--neutral-100);

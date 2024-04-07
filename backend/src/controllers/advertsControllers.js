@@ -1,12 +1,12 @@
 /* eslint-disable prettier/prettier */
 const models = require("../modelsProviders");
 
-const getAllAdverts = (req, res) => {
-  models.advert
-    .findAll()
-    .then((adverts) => res.json(adverts))
-    .catch((err) => console.error(err));
-};
+// const getAllAdverts = (req, res) => {
+//   models.advert
+//     .findAll()
+//     .then((adverts) => res.json(adverts))
+//     .catch((err) => console.error(err));
+// };
 
 // const getAllCards = (req, res) => {
 //   models.advert
@@ -42,18 +42,18 @@ const getAdvertsBySeller = async (req, res) => {
   }
 };
 
-const getAdvertsImage = async (req, res) => {
-  try {
-    const adverts = await models.advert.getAdvertsImage(req.params.image_path);
-    if (adverts == null) {
-      res.sendStatus(404);
-    } else {
-      res.json(adverts);
-    }
-  } catch (err) {
-    console.error(err);
-  }
-};
+// const getAdvertsImage = async (req, res) => {
+//   try {
+//     const adverts = await models.advert.getAdvertsImage(req.params.image_path);
+//     if (adverts == null) {
+//       res.sendStatus(404);
+//     } else {
+//       res.json(adverts);
+//     }
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };
 
 const createAdvert = async (req, res) => {
   // console.info("image1 uploaded:", req.files["image1"][0]);
@@ -104,28 +104,29 @@ const createAdvert = async (req, res) => {
   }
 };
 
-const getSearchAdverts = async (req, res) => {
-  try {
-    const userQuery = req.params.query;
-    console.info(`Controller Search query: ${userQuery}`);
+// const getSearchAdverts = async (req, res) => {
+//   try {
+//     const userQuery = req.params.query;
+//     console.info(`Controller Search query: ${userQuery}`);
 
-    const advert = await models.advert.findAdvertQuery(userQuery);
+//     const advert = await models.advert.findAdvertQuery(userQuery);
 
-    if (advert != null) {
-      res.json(advert);
-      console.info(advert);
-    } else {
-      res.sendStatus(404);
-    }
-  } catch (err) {
-    console.error(err);
-  }
-};
-const recentAdverts = async (req, res) => {
+//     if (advert != null) {
+//       res.json(advert);
+//       console.info(advert);
+//     } else {
+//       res.sendStatus(404);
+//     }
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };
+
+const getAdvertCards = async (req, res) => {
   const {
     batch,
     genreId,
-    conditionName,
+    conditionId,
     minPrice,
     maxPrice,
     searchQuery,
@@ -142,10 +143,10 @@ const recentAdverts = async (req, res) => {
   }
 
   try {
-    const adverts = await models.advert.findAdverts({
+    const adverts = await models.advert.findAdvertCards({
       batch: isBatch,
       genreId,
-      conditionName,
+      conditionId,
       minPrice,
       maxPrice,
       searchQuery,
@@ -154,13 +155,48 @@ const recentAdverts = async (req, res) => {
 
     return res.json(adverts);
   } catch (error) {
-    console.error(
-      "Erreur lors de la récupération des annonces récentes:",
-      error
-    );
-    return res.status(500).json({ error: "Erreur interne du serveur" });
+    console.error("Error retrieving advert cards:", error);
+    return res.status(500).json({ error: "Internal servor error" });
   }
 };
+
+// const recentAdverts = async (req, res) => {
+//   const {
+//     batch,
+//     genreId,
+//     conditionName,
+//     minPrice,
+//     maxPrice,
+//     searchQuery,
+//     searchVolume,
+//   } = req.query;
+
+//   let isBatch = null;
+//   if (batch !== undefined) {
+//     if (batch === "true") {
+//       isBatch = true;
+//     } else if (batch === "false") {
+//       isBatch = false;
+//     }
+//   }
+
+//   try {
+//     const adverts = await models.advert.findAdvertCards({
+//       batch: isBatch,
+//       genreId,
+//       conditionName,
+//       minPrice,
+//       maxPrice,
+//       searchQuery,
+//       searchVolume,
+//     });
+
+//     return res.json(adverts);
+//   } catch (error) {
+//     console.error("Erreur lors de la récupération des annonces:", error);
+//     return res.status(500).json({ error: "Internal servor error" });
+//   }
+// };
 
 const deleteAdvert = async (req, res) => {
   try {
@@ -240,14 +276,15 @@ const deleteAdvert = async (req, res) => {
 // };
 
 module.exports = {
-  getAllAdverts,
+  // getAllAdverts,
   // getAllCards,
-  recentAdverts,
-  getSearchAdverts,
+  // recentAdverts,
+  // getSearchAdverts,
   getAdvertById,
   getAdvertsBySeller,
+  getAdvertCards,
   createAdvert,
-  getAdvertsImage,
+  // getAdvertsImage,
   deleteAdvert,
   // getRecentUniqueAdverts,
   // getRecentBatch,

@@ -41,7 +41,7 @@
   position: absolute;
   background-color: var(--neutral-100);
   top: -1rem;
-  right: -2rem;
+  right: -1rem;
   width: 21rem;
   height: 110vh;
   z-index: 10;
