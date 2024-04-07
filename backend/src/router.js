@@ -32,17 +32,72 @@ const volumesControllers = require("./controllers/volumesControllers");
 // const moviesControllers = require("./controllers/moviesControllers");
 
 /* ************************************************************************* */
-// GET ROUTES
+// PUBLIC ROUTES
 /* ************************************************************************* */
-// Address table
-router.get("/address/:id", addressControllers.getAddressbyId);
 
-// GET ADVERTS
+// ADVERT TABLE
 router.get("/advert-cards", advertsControllers.getAdvertCards);
-// OLD :
-// router.get("/advert-cards-old", advertsControllers.recentAdverts);
 router.get("/advert-cards/:id", advertsControllers.getAdvertById);
 router.get("/users/:id/adverts", advertsControllers.getAdvertsBySeller);
+
+// CONDITIONS TABLE
+router.get("/conditions", conditionsControllers.getAllConditions);
+
+// GENRES TABLE
+router.get("/genres", genresControllers.getAllGenres);
+
+// MANGA TABLE
+router.get("/mangas", mangasControllers.getMangas);
+router.get("/mangas/:id", mangasControllers.getMangaById);
+router.get("/mangas-catalog", mangasControllers.getCatalogMangas);
+router.get("/mangas-fk", mangasControllers.getMangasWithFK);
+
+// PUBLISHING_HOUSE TABLE
+router.get("/publishers", publishersControllers.getAllPublishers);
+
+// VOLUME TABLE
+router.get("/mangas/:id/volumes", volumesControllers.getVolumesByMangaId);
+
+/* ************************************************************************* */
+// PROTECTED ROUTES
+/* ************************************************************************* */
+
+// ADDRESS TABLE
+router.get("/address/:id", addressControllers.getAddressbyId);
+router.post("/address/:id", validateAddress, addressControllers.addAddressbyId);
+
+// ADVERT TABLE
+// router.put("/update-advert/:id", multer, advertsControllers.updateAdvert);
+router.delete("/adverts/:id", advertsControllers.deleteAdvert);
+
+// FROM FEEDBACKS TABLE ??
+router.get("/users/:id/feedbacks", usersControllers.getUserProfilComById);
+
+// MANGA TABLE
+router.put("/mangas/:id", multerSingle, mangasControllers.updateManga);
+router.delete("/mangas/:id", mangasControllers.deleteManga);
+
+// ORDER TABLE
+// Route to get all orders by buyer (page Profil/onglet my purchase history)
+router.get(
+  "/display-order-history-bybuyer/:id",
+  ordersControllers.getHistoryOrderByBuyer
+);
+
+// USER TABLE
+router.get("/users/:id", usersControllers.getUserById);
+router.get("/user-profiles/:id", usersControllers.getUserProfilById);
+// Pourquoi pas de validateUser ici ???
+router.post("/users", hashPassword, usersControllers.add);
+router.put(
+  "/user/:id",
+  multerSingle,
+  validateUser,
+  usersControllers.updateUser
+);
+
+// OLD :
+// router.get("/advert-cards-old", advertsControllers.recentAdverts);
 // NEVER USED IN FRONTEND
 // router.get("/explore/:query", advertsControllers.getSearchAdverts);
 // router.get("/explore", advertsControllers.getAllAdverts);
@@ -52,79 +107,15 @@ router.get("/users/:id/adverts", advertsControllers.getAdvertsBySeller);
 // Route to display advert card
 // router.get("/display-adverts", advertsControllers.getAllCards);
 
-// ROUTE TO GET CONDITIONS
-router.get("/conditions", conditionsControllers.getAllConditions);
-
-// ROUTES TO GET GENRES
-router.get("/genres", genresControllers.getAllGenres);
-
-// ROUTES TO GET MANGAS
-router.get("/mangas", mangasControllers.getMangas);
-router.get("/mangas/:id", mangasControllers.getMangaById);
-router.get("/mangas-catalog", mangasControllers.getCatalogMangas);
-router.get("/mangas-fk", mangasControllers.getMangasWithFK);
-
-// ROUTE TO GET PUBLISHING HOUSES
-router.get("/publishers", publishersControllers.getAllPublishers);
-
-// ROUTES TO GET ORDERS
-// Route to get all orders by buyer (page Profil/onglet my purchase history)
-router.get(
-  "/display-order-history-bybuyer/:id",
-  ordersControllers.getHistoryOrderByBuyer
-);
-
-// ROUTES TO GET USERS
-router.get("/users/:id", usersControllers.getUserById);
-router.get("/user-profiles/:id", usersControllers.getUserProfilById);
-// FROM FEEDBACKS TABLE ??
-router.get("/users/:id/feedbacks", usersControllers.getUserProfilComById);
 // NEVER USED IN FRONTEND
 // Route to get all users table
 // router.get("/users", usersControllers.getAllUsers);
 
-// ROUTES TO GET VOLUMES
-router.get("/mangas/:id/volumes", volumesControllers.getVolumesByMangaId);
-
-/* ************************************************************************* */
-// ROUTES POST
-/* ************************************************************************* */
-
-// ROUTE TO POST ADDRESS
-router.post("/address/:id", validateAddress, addressControllers.addAddressbyId);
-
-// ROUTE TO POST USERS => appelé dans inscription.jsx - Pourquoi pas de validateUser ici ???
-router.post("/users", hashPassword, usersControllers.add);
-
-/* ************************************************************************* */
-// ROUTES PUT
-/* ************************************************************************* */
-// Route Update Address
 router.put(
   "/address/user/:userId/address/:addressId",
   validateAddress,
   addressControllers.updateAddress
 );
-
-// Route Update User
-router.put(
-  "/user/:id",
-  multerSingle,
-  validateUser,
-  usersControllers.updateUser
-);
-
-// Route Update manga
-router.put("/mangas/:id", multerSingle, mangasControllers.updateManga);
-
-// router.put("/update-advert/:id", multer, advertsControllers.updateAdvert);
-
-/* ************************************************************************* */
-// ROUTES DELETE
-/* ************************************************************************* */
-// Route to delete advert by user
-router.delete("/adverts/:id", advertsControllers.deleteAdvert);
-router.delete("/mangas/:id", mangasControllers.deleteManga);
 
 // Import authControllers module for handling auth-related operations
 const authControllers = require("./controllers/authControllers");
