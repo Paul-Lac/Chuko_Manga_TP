@@ -18,7 +18,7 @@ function Explore() {
     setBatch(batchFromUrl);
     const fetchData = async () => {
       try {
-        let url = "http://localhost:3310/api/find-recent-adverts?";
+        let url = "http://localhost:3310/api/advert-cards?";
         if (searchQuery) {
           url += `searchQuery=${encodeURIComponent(searchQuery)}`;
         } else if (batchFromUrl !== null && batchFromUrl !== undefined) {

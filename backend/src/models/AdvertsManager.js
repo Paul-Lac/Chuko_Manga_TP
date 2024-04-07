@@ -6,21 +6,21 @@ class AdvertsManager extends AbstractManager {
     super({ table: "advert" });
   }
 
-  async findCards() {
-    const [rows] = await this.database.query(
-      `SELECT advert.title_search_manga, advert.price, article_condition.name_condition, advert_image.image_path, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber
-      FROM ${this.table}
-      LEFT JOIN advert_image ON advert.id=advert_image.advert_id AND advert_image.is_primary=1
-      JOIN article_condition ON advert.article_condition_id=article_condition.id
-      JOIN user ON advert.user_id=user.id 
-      JOIN (SELECT user.pseudo as rated_pseudo, AVG(feedback.rating) as average, COUNT(feedback.rating) as feedback_nber
-		    FROM user
-		    JOIN feedback ON user.id = feedback.user_id
-		    GROUP BY user.pseudo) as joint_table ON user.pseudo=joint_table.rated_pseudo;`
-    );
+  // async findCards() {
+  //   const [rows] = await this.database.query(
+  //     `SELECT advert.title_search_manga, advert.price, article_condition.name_condition, advert_image.image_path, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber
+  //     FROM ${this.table}
+  //     LEFT JOIN advert_image ON advert.id=advert_image.advert_id AND advert_image.is_primary=1
+  //     JOIN article_condition ON advert.article_condition_id=article_condition.id
+  //     JOIN user ON advert.user_id=user.id
+  //     JOIN (SELECT user.pseudo as rated_pseudo, AVG(feedback.rating) as average, COUNT(feedback.rating) as feedback_nber
+  // 	    FROM user
+  // 	    JOIN feedback ON user.id = feedback.user_id
+  // 	    GROUP BY user.pseudo) as joint_table ON user.pseudo=joint_table.rated_pseudo;`
+  //   );
 
-    return rows;
-  }
+  //   return rows;
+  // }
 
   async findAdvertQuery(searchQuery) {
     console.info(`Manager Search query: ${searchQuery}`);

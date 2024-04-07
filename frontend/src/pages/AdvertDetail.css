@@ -8,18 +8,20 @@
   align-items: flex-start;
   justify-content: center;
   width: 100%;
+  border: 2px solid pink;
 }
 
 .image-manga-sell {
   display: flex;
   flex-direction: row;
   width: 100%;
-
   justify-content: center;
+  border: 2px solid blue;
 }
 
 .image-advert-sell {
   display: flex;
+  border: 2px solid green;
 }
 
 .image-from-annoucement {

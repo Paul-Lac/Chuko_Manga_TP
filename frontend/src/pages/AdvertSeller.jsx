@@ -16,7 +16,7 @@ function AdvertSeller() {
 
   useEffect(() => {
     console.info("valeur de l'id au fetch:", id);
-    fetch(`http://localhost:3310/api/display-adverts/${id}`)
+    fetch(`http://localhost:3310/api/advert-cards/${id}`)
       .then((res) => {
         return res.json();
       })
@@ -60,7 +60,7 @@ function AdvertSeller() {
   const handleDeleteAdvert = (advertId) => {
     if (advertId) {
       axios
-        .delete(`http://localhost:3310/api/advert/${advertId}`)
+        .delete(`http://localhost:3310/api/adverts/${advertId}`)
         .then((response) => {
           console.warn("Success delete advert:", response.data);
           toggleModal1();

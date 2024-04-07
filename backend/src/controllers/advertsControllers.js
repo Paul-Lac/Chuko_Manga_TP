@@ -8,12 +8,12 @@ const getAllAdverts = (req, res) => {
     .catch((err) => console.error(err));
 };
 
-const getAllCards = (req, res) => {
-  models.advert
-    .findCards()
-    .then((cards) => res.json(cards))
-    .catch((err) => console.error(err));
-};
+// const getAllCards = (req, res) => {
+//   models.advert
+//     .findCards()
+//     .then((cards) => res.json(cards))
+//     .catch((err) => console.error(err));
+// };
 
 const getAdvertById = async (req, res) => {
   try {
@@ -241,7 +241,7 @@ const deleteAdvert = async (req, res) => {
 
 module.exports = {
   getAllAdverts,
-  getAllCards,
+  // getAllCards,
   recentAdverts,
   getSearchAdverts,
   getAdvertById,

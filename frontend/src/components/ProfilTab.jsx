@@ -11,7 +11,7 @@ function ProfilTab() {
   const [ongletActif, setongletActif] = useState("Annonces");
 
   useEffect(() => {
-    fetch(`http://localhost:3310/api/display-adverts-byseller/${id}`)
+    fetch(`http://localhost:3310/api/users/${id}/adverts`)
       .then((res) => res.json())
       .then((data) => {
         console.info("Mes annonces dans OngletProfil:", data);
@@ -20,7 +20,7 @@ function ProfilTab() {
   }, [id]); // Ajoutez un identifiant en fonction de celui-ci pour que useEffect se déclenche lorsque l'identifi
 
   useEffect(() => {
-    fetch(`http://localhost:3310/api/user-profil-com/${id}`)
+    fetch(`http://localhost:3310/api/users/${id}/feedbacks`)
       .then((res) => res.json())
       .then((data) => {
         console.info("commentairesTableau:", data);

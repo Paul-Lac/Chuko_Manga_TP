@@ -28,6 +28,7 @@ class UsersManager extends AbstractManager {
     return rows;
   }
 
+  // FROM FEEDBACKS TABLES ???
   async getUserProfilComById(id) {
     const [rows] = await this.database.query(
       `SELECT u.pseudo, u.picture AS picture_buyer, f.user_id, f.created_on, f.user_buyer, f.rating, f.\`comment\`, 

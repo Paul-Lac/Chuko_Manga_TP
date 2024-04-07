@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import ProfilHead from "../components/ProfilHead";
-import "../components/OngletProfil.css";
+import "./ProfilUser.css";
 
 function ProfilSeller() {
   const { advertId, id } = useParams();
@@ -10,7 +10,7 @@ function ProfilSeller() {
   const [ongletActif, setongletActif] = useState("Annonces");
 
   useEffect(() => {
-    fetch(`http://localhost:3310/api/display-adverts-byseller/${id}`)
+    fetch(`http://localhost:3310/api/users/${id}/adverts`)
       .then((res) => res.json())
       .then((data) => {
         console.info("Mes annonces dans OngletProfil:", data);
@@ -19,7 +19,7 @@ function ProfilSeller() {
   }, [id]);
 
   useEffect(() => {
-    fetch(`http://localhost:3310/api/user-profil-com/${id}`)
+    fetch(`http://localhost:3310/api/users/${id}/feedbacks`)
       .then((res) => res.json())
       .then((data) => {
         console.info("commentairesTableau:", data);

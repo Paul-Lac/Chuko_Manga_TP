@@ -5,7 +5,7 @@ const router = express.Router();
 
 const { hashPassword, verifyToken } = require("./services/auth");
 
-const multer = require("./middlewares/multer-config");
+const multer = require("./middlewares/multerConfigMultiple");
 const multerSingle = require("./middlewares/multerConfigSingle");
 
 const validateAddress = require("./middlewares/validateAddress");
@@ -38,23 +38,17 @@ const volumesControllers = require("./controllers/volumesControllers");
 router.get("/address/:id", addressControllers.getAddressbyId);
 
 // GET ADVERTS
-// Route to display advert table
-router.get("/adverts", advertsControllers.getAllAdverts);
-// Route to display advert card
-router.get("/display-adverts", advertsControllers.getAllCards);
+router.get("/advert-cards", advertsControllers.recentAdverts);
+router.get("/advert-cards/:id", advertsControllers.getAdvertById);
 router.get("/advert-image", advertsControllers.getAdvertsImage);
-router.get("/find-recent-adverts", advertsControllers.recentAdverts);
-// Route to get detailed information for one specific advert (page on detail advert)
-router.get("/display-adverts/:id", advertsControllers.getAdvertById);
-// Route to get all adverts for one specific seller (page on detailed advert)
-router.get(
-  "/display-adverts-byseller/:id",
-  advertsControllers.getAdvertsBySeller
-);
-// !!! A mettre en place ? ""/users/:id/adverts"
-// Routes for search feature
+router.get("/users/:id/adverts", advertsControllers.getAdvertsBySeller);
 router.get("/explore", advertsControllers.getAllAdverts);
 router.get("/explore/:query", advertsControllers.getSearchAdverts);
+// NEVER USED IN FRONTEND
+// Route to display advert table - NEVER USED IN FRONTEND
+// router.get("/adverts", advertsControllers.getAllAdverts);
+// Route to display advert card
+// router.get("/display-adverts", advertsControllers.getAllCards);
 
 // ROUTE TO GET CONDITIONS
 router.get("/conditions", conditionsControllers.getAllConditions);
@@ -79,19 +73,16 @@ router.get(
 );
 
 // ROUTES TO GET USERS
+router.get("/users/:id", usersControllers.getUserById);
+router.get("/user-profiles/:id", usersControllers.getUserProfilById);
+// FROM FEEDBACKS TABLE ??
+router.get("/users/:id/feedbacks", usersControllers.getUserProfilComById);
+// NEVER USED IN FRONTEND
 // Route to get all users table
-router.get("/users", usersControllers.getAllUsers);
-// Route to get all users for one specific user
-router.get("/user/:id", usersControllers.getUserById);
-// Route to get profil user for one specific user
-router.get("/user-profil/:id", usersControllers.getUserProfilById);
-// Route to get comment profil user for one specific user
-router.get("/user-profil-com/:id", usersControllers.getUserProfilComById);
+// router.get("/users", usersControllers.getAllUsers);
 
 // ROUTES TO GET VOLUMES
-// Route to get all volumes by manga ID (page manga details)
-// A mettre place ? mangas/:id/volumes
-router.get("/volumes/:mangaId", volumesControllers.getVolumesByMangaId);
+router.get("/mangas/:id/volumes", volumesControllers.getVolumesByMangaId);
 
 /* ************************************************************************* */
 // ROUTES POST
@@ -99,17 +90,6 @@ router.get("/volumes/:mangaId", volumesControllers.getVolumesByMangaId);
 
 // ROUTE TO POST ADDRESS
 router.post("/address/:id", validateAddress, addressControllers.addAddressbyId);
-
-// ROUTE TO POST ADVERTS
-router.post(
-  "/new-advert",
-  multer,
-  validateAdvert,
-  advertsControllers.createAdvert
-);
-
-// ROUTES TO POST MANGAS
-router.post("/mangas", multerSingle, mangasControllers.createManga);
 
 // ROUTE TO POST USERS => appelé dans inscription.jsx - Pourquoi pas de validateUser ici ???
 router.post("/users", hashPassword, usersControllers.add);
@@ -132,6 +112,7 @@ router.put(
   usersControllers.updateUser
 );
 
+// Route Update manga
 router.put("/mangas/:id", multerSingle, mangasControllers.updateManga);
 
 // router.put("/update-advert/:id", multer, advertsControllers.updateAdvert);
@@ -140,20 +121,36 @@ router.put("/mangas/:id", multerSingle, mangasControllers.updateManga);
 // ROUTES DELETE
 /* ************************************************************************* */
 // Route to delete advert by user
-router.delete("/advert/:id", advertsControllers.deleteAdvert);
+router.delete("/adverts/:id", advertsControllers.deleteAdvert);
 router.delete("/mangas/:id", mangasControllers.deleteManga);
 
 // Import authControllers module for handling auth-related operations
 const authControllers = require("./controllers/authControllers");
-const cookieJwAuth = require("./middlewares/cookieJwtAuth");
+const cookieJwtAuth = require("./middlewares/cookieJwtAuth");
 
-// /login appelé dans connexion.jsx => pourquoi pas de validateLogin ??? et cookieJwtAuth ?
+// /login appelé dans connexion.jsx => pourquoi pas de validateLogin ?? et cookieJwtAuth appelé nulle part ??
 router.post("/login", authControllers.login);
 // /add n'est appelé nulle part dans le front
-router.post("/add", cookieJwAuth, authControllers.login);
+router.post("/add", cookieJwtAuth, authControllers.login);
+
 router.use(verifyToken);
 
+// SUPPRIMER VERIFYTOKEN
+
+// ROUTES TO POST MANGAS
+router.post("/mangas", multerSingle, mangasControllers.createManga);
+
+// ROUTE TO POST ADVERTS
+router.post(
+  "/adverts",
+  multer,
+  validateAdvert,
+  advertsControllers.createAdvert
+);
+
 // Thoses routes are protected
+// Mettre toutes les routes POST, PUT, etc....
+// CHANGER LES AXIOS
 
 // Search route, post and retrieve search queries for advert
 // router.get("/search", searchControllers.getSearchQuery);

@@ -1,12 +1,12 @@
 /* eslint-disable no-restricted-syntax */
 const models = require("../modelsProviders");
 
-const getAllUsers = (req, res) => {
-  models.user
-    .findAll()
-    .then((users) => res.json(users))
-    .catch((err) => console.error(err));
-};
+// const getAllUsers = (req, res) => {
+//   models.user
+//     .findAll()
+//     .then((users) => res.json(users))
+//     .catch((err) => console.error(err));
+// };
 
 const add = async (req, res, next) => {
   // Extract the item data from the request body
@@ -85,7 +85,7 @@ const updateUser = async (req, res) => {
 
 module.exports = {
   // pictureUpdate,
-  getAllUsers,
+  // getAllUsers,
   add,
   getUserById,
   getUserProfilById,

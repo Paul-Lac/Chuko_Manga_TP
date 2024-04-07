@@ -11,7 +11,7 @@ function MangaVolume() {
   // Get the list of volumes given the manga id
   useEffect(() => {
     axios
-      .get(`http://localhost:3310/api/volumes/${id}`)
+      .get(`http://localhost:3310/api/mangas/${id}/volumes`)
       .then((response) => {
         setVolumes(response.data);
         console.info("volumes:", response.data);

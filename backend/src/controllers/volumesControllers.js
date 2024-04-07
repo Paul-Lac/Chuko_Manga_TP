@@ -2,12 +2,9 @@ const models = require("../modelsProviders");
 
 const getVolumesByMangaId = async (req, res) => {
   try {
-    // Supposons que vous passiez l'ID du manga via les paramètres de l'URL, par exemple /api/volumes/:mangaId
-    const { mangaId } = req.params;
+    const { id } = req.params;
 
-    const volumes = await models.volume.getVolumesByMangaId(
-      parseInt(mangaId, 10)
-    );
+    const volumes = await models.volume.getVolumesByMangaId(parseInt(id, 10));
     if (!volumes || volumes.length === 0) {
       return res.sendStatus(404);
     }

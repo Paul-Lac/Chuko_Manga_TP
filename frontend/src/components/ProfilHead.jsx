@@ -32,7 +32,7 @@ function ProfilHead({ children }) {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:3310/api/user-profil/${id}`)
+    fetch(`http://localhost:3310/api/user-profiles/${id}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error("Network response was not ok");

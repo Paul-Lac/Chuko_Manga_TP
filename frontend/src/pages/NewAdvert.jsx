@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+// import UserContext from "../context/UserContext";
 
 import "./NewAdvert.css";
 import AdvertForm from "../components/AdvertForm";
 
 function NewAdvert() {
+  // Added with verifyToken method (import useContext)
+  // const { auth } = useContext(UserContext);
+
   // defined if we are on the New-Advert or Update-Advert page with a boolean
   const isNewAdvertPage = true;
   const navigate = useNavigate();
@@ -79,7 +83,7 @@ function NewAdvert() {
   useEffect(() => {
     if (selectedManga !== "") {
       axios
-        .get(`http://localhost:3310/api/volumes/${selectedManga}`)
+        .get(`http://localhost:3310/api/mangas/${selectedManga}/volumes`)
         .then((res) => {
           // console.info("Volumes are", res.data);
           setVolumeList(res.data);
@@ -172,8 +176,18 @@ function NewAdvert() {
       }
     }
     console.info("Data to send:", formData);
+    // console.info("auth.token", auth.token);
     axios
-      .post("http://localhost:3310/api/new-advert", formData)
+      .post(
+        "http://localhost:3310/api/adverts",
+        formData
+        // {
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //     Authorization: `Bearer ${auth.token}`, // Inclusion du jeton JWT
+        //   },
+        // }
+      )
       .then((res) => {
         console.info("Advert created successfully", res.data);
         navigate(`/profile/${userId}`);

@@ -26,7 +26,7 @@ function PrefilterTome({
   const containerRef = useRef(null);
   const renderedTitle = useDivWrapper ? <div>{titleToShow}</div> : titleToShow;
   useEffect(() => {
-    fetch("http://localhost:3310/api/find-recent-adverts?batch=false")
+    fetch("http://localhost:3310/api/advert-cards?batch=false")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Error HTTP, status: ${response.status}`);

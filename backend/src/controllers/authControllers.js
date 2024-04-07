@@ -25,6 +25,7 @@ const login = async (req, res, next) => {
       // Respond with the user and a signed token in JSON format (but without the hashed password)
       delete user.hashed_password;
       const token = await jwt.sign(
+        // equivalent du payload
         { sub: user.id, role: user.role },
         process.env.APP_SECRET,
         {
@@ -33,7 +34,6 @@ const login = async (req, res, next) => {
       );
       res.cookie("token", token, {
         httpOnly: true,
-        // ajouter secure: false ?
       });
       res.json({
         token,

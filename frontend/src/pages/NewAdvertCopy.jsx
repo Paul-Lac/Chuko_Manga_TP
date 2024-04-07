@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import UserContext from "../context/UserContext";
 
-import "./UpdateAdvert.css";
-
+import "./NewAdvert.css";
 import AdvertForm from "../components/AdvertForm";
 
-function UpdateAdvert() {
-  const { id } = useParams();
+function NewAdvert() {
+  const { auth } = useContext(UserContext);
   // defined if we are on the New-Advert or Update-Advert page with a boolean
-  const isNewAdvertPage = false;
+  const isNewAdvertPage = true;
   const navigate = useNavigate();
   // States designed to display options for selection and control user's input
   const [selectedManga, setSelectedManga] = useState(null);
@@ -19,23 +19,20 @@ function UpdateAdvert() {
   // State designed to switch tab : selling a tome or a batch
   const [batch, setBatch] = useState(0);
 
-  // States designed to handle values provided by advert
+  // States designed to handle values provided by user
   const [advertTitle, setAdvertTitle] = useState("");
   const [description, setDescription] = useState("");
   const [conditionId, setConditionId] = useState(null);
-  const [conditionAnounce, setConditionAnounce] = useState();
   const [price, setPrice] = useState("");
   const [volumeId, setVolumeId] = useState(null);
-  const [volumeAnounce, setVolumeAnounce] = useState();
-  const [mangaAnounce, setMangaAnounce] = useState("");
   const alert = 0;
   const publicationDate = new Date().toISOString().split("T")[0];
 
   // States designed to preview images
   const [previewUrls, setPreviewUrls] = useState({
-    image1: "",
-    image2: "",
-    image3: "",
+    image1: null,
+    image2: null,
+    image3: null,
   });
 
   // States designed transfer images
@@ -44,39 +41,6 @@ function UpdateAdvert() {
     image2: null,
     image3: null,
   });
-
-  useEffect(() => {
-    fetch(`http://localhost:3310/api/advert-cards/${id}`)
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        console.info("récupération de l'annonce :", data);
-        setAdvertTitle(data[0].title_search_manga);
-        setDescription(data[0].description);
-        setConditionAnounce(data[0].name_condition);
-        setPrice(data[0].price);
-        setBatch(data[0].batch);
-        setMangaAnounce(data[0].manga_title);
-        setVolumeAnounce(data[0].volume_title);
-        // Vérification des images retournées par l'API
-        const imagePaths = data[0].image_paths;
-        const images = {};
-        if (imagePaths && imagePaths.length > 0) {
-          images.image1 = `http://localhost:3310${imagePaths[0]}`;
-          if (imagePaths.length > 1) {
-            images.image2 = `http://localhost:3310${imagePaths[1]}`;
-          }
-          if (imagePaths.length > 2) {
-            images.image3 = `http://localhost:3310${imagePaths[2]}`;
-          }
-        }
-        setPreviewUrls(images);
-      })
-      .catch((error) => {
-        console.error("Error get advert:", error);
-      });
-  }, [id]);
 
   // Variables designed to control user's input
   const MAX_LENGTH_TITLE = 40;
@@ -210,11 +174,17 @@ function UpdateAdvert() {
       }
     }
     console.info("Data to send:", formData);
+    console.info("auth.token", auth.token);
     axios
-      .post("http://localhost:3310/api/adverts", formData)
+      .post("http://localhost:3310/api/adverts", formData, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${auth.token}`, // Inclusion du jeton JWT
+        },
+      })
       .then((res) => {
         console.info("Advert created successfully", res.data);
-        navigate(`/profilUser/${userId}`);
+        navigate(`/profile/${userId}`);
       })
       .catch((error) => {
         console.error("Error creating advert", error);
@@ -222,8 +192,8 @@ function UpdateAdvert() {
   };
 
   return (
-    <section className="update-advert">
-      <h1>Modifie ton annonce</h1>
+    <section className="new-advert">
+      <h1>Crée ton annonce</h1>
       <AdvertForm
         advertTitle={advertTitle}
         batch={batch}
@@ -242,15 +212,12 @@ function UpdateAdvert() {
         previewUrls={previewUrls}
         setBatch={setBatch}
         setConditionId={setConditionId}
-        conditionAnounce={conditionAnounce}
         setVolumeId={setVolumeId}
-        volumeAnounce={volumeAnounce}
         volumeList={volumeList}
         isNewAdvertPage={isNewAdvertPage}
-        mangaAnounce={mangaAnounce}
       />
     </section>
   );
 }
 
-export default UpdateAdvert;
+export default NewAdvert;

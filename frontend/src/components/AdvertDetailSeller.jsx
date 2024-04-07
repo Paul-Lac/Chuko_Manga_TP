@@ -17,7 +17,7 @@ function AdvertDetailSeller({ userId, id }) {
   });
 
   useEffect(() => {
-    fetch(`http://localhost:3310/api/display-adverts-byseller/${userId}`)
+    fetch(`http://localhost:3310/api/users/${userId}/adverts`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);

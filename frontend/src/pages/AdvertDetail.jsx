@@ -18,7 +18,7 @@ function AdvertDetail() {
     `images-${detailManga[0].image_paths.length}`;
   const { setIsModalOpen } = useContext(UserContext);
   useEffect(() => {
-    fetch(`http://localhost:3310/api/display-adverts/${id}`)
+    fetch(`http://localhost:3310/api/advert-cards/${id}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
