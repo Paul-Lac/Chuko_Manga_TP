@@ -11,7 +11,7 @@ export default function FooterMobile() {
         <div className="mobile-footer-links-block">
           <h3 className="footer-title">Chuko Manga</h3>
           <a href="youtube.com" target="_blank" rel="noreferrer">
-            A propos de Chuko Manga
+            A propos
           </a>
         </div>
         <div className="mobile-footer-links-block">
@@ -19,21 +19,21 @@ export default function FooterMobile() {
           <a href="youtube.com" target="_blank" rel="noreferrer">
             Comment ça marche ?
           </a>
-          <a href="youtube.com" target="_blank" rel="noreferrer">
+          {/* <a href="youtube.com" target="_blank" rel="noreferrer">
             Tableau de bord
-          </a>
+          </a> */}
         </div>
         <div className="mobile-footer-links-block">
           <h3 className="footer-title">Aide</h3>
           <a href="youtube.com" target="_blank" rel="noreferrer">
             Centre d'aide
           </a>
-          <a href="youtube.com" target="_blank" rel="noreferrer">
+          {/* <a href="youtube.com" target="_blank" rel="noreferrer">
             Vendre
           </a>
           <a href="youtube.com" target="_blank" rel="noreferrer">
             Acheter
-          </a>
+          </a> */}
         </div>
       </div>
       <div className="mobile-socialMedia">
