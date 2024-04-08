@@ -1,149 +1,91 @@
-.announcement-detail {
+.detail-page {
   width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column; /* Ajoutez cette ligne */
+  align-items: center;
+  padding: 2rem 0;
 }
 
-.container-Details {
+.advert-detail-container {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
   justify-content: center;
   width: 100%;
-  border: 2px solid pink;
+  gap: 2rem;
+  height: auto;
 }
 
-.image-manga-sell {
+.single-picture-container {
+  width: 20rem;
+  height: 30rem;
+}
+
+.two-pictures-container,
+.three-pictures-container {
+  width: 30rem;
+  height: 30rem;
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: center;
-  border: 2px solid blue;
+  gap: 0.5rem;
 }
 
-.image-advert-sell {
-  display: flex;
-  border: 2px solid green;
-}
-
-.image-from-annoucement {
-  overflow: hidden;
-}
-
-.image-from-annoucement img {
-  display: flex;
+.picture {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.secondary-images-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-template-rows: 250px 250px;
-  gap: 5px;
-  width: 40%;
-}
-
-.image-from-annoucement:nth-child(1) {
-  grid-column: 1;
-  grid-row: 1 / span 2;
-}
-
-.image-from-annoucement:nth-child(2):last-child {
-  grid-column: 2;
-  grid-row: 1 / span 2;
-}
-
-.image-from-annoucement:nth-child(3) {
-  grid-column: 2;
-  grid-row: 2;
-}
-
-.secondary-images-container.images-2 .image-from-annoucement:nth-child(2) {
-  grid-column: 2;
-  grid-row: 1 / span 2;
-}
-
-.secondary-images-container.images-3 .image-from-annoucement:nth-child(2),
-.secondary-images-container.images-3 .image-from-annoucement:nth-child(3) {
-  grid-column: 2;
-  grid-row: auto;
-}
-
-.image-other-sell h2 {
-  font-size: 0.9rem;
-  font-weight: normal;
-}
-
-.price-other-sell {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.condition-other-sell {
-  font-size: 0.9rem;
-  color: #b5b5b5;
-  margin-bottom: 0.2rem;
-  display: flex;
-  align-items: start;
-}
-
-.information-manga-sell {
-  width: 30%;
-  padding: 1.5rem;
-  height: auto;
+.small-picture-container {
+  width: 50%;
   display: flex;
   flex-direction: column;
-
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  gap: 0.5rem;
 }
 
-.information-manga-sell p {
-  margin: 5px 0;
+.content-section {
+  max-width: 25rem;
+  padding: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.information-price {
-  font-weight: bold;
-  font-size: 1.5rem;
+.content-price {
+  font-weight: 600;
+  font-size: var(--fs-M);
+  border-bottom: 1px solid var(--neutral-700);
+  color: var(--neutral-800);
+  margin-bottom: 1rem;
 }
 
-.description-annonce {
-  width: 75%;
+.content-value {
+  color: var(--neutral-700);
 }
 
-.information-title p:first-child,
-.information-etat p:first-child,
-.information-date p:first-child {
-  width: 50%;
-  font-weight: bold;
-}
-
-.button-bar {
+.description-box {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 100%;
-  gap: 75px;
-  padding: 20px 0;
+  margin-bottom: 0.5rem;
 }
 
-.btn {
-  padding: 10px 20px;
-  margin: 0 5px;
-  border: 1px solid #dd7a06;
-  background-color: #fff;
-  color: #dd7a06;
-  transition: all 0.3s ease;
-  width: 12rem;
-  border-radius: 5px;
+.description-box h2 {
+  color: var(--neutral-700);
+  font-size: var(--fs-S);
+  min-width: 7rem;
 }
 
-.btn:hover {
-  background-color: #dd7a06;
-  color: #fff;
+.buy-btn {
+  color: var(--neutral-100);
+  background-color: var(--primary-clr);
+  padding: 0.5rem 5rem;
+  border-radius: 0.5rem;
+  margin: 4rem 0;
+  width: 14rem;
+}
+
+.buy-btn:hover {
+  background-color: var(--primary-clr-accent);
 }
 
 .tab-system {
   margin-top: 1.25rem;
+  width: 100%;
 }
 
 .tabs {
@@ -165,161 +107,39 @@
   border-bottom: 3px solid var(--primary-clr);
 }
 
-.content {
-  display: flex;
-  flex-direction: column;
+.manga-tab,
+.seller-tab {
+  width: 80%;
+  margin: auto;
 }
 
-.advert-ref {
-  font-size: var(--fs-M);
-  margin-bottom: 0.6rem;
-  font-weight: 500;
-}
-
-.advert-instruction {
-  color: var(--neutral-700);
-  font-size: var(--fs-S);
-}
-
-/* @media only screen and (max-width: 820px) {
-  .container-Details {
-    margin-bottom: 0px;
-  }
-  .image-advert-sell {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .button-bar {
-    gap: 7px;
-    display: flex;
+@media screen and (max-width: 1200px) {
+  .advert-detail-container {
     flex-direction: column;
-    align-items: center;
-  }
-  .number-article p {
-    font-size: 0.8rem;
-  }
-} */
-
-@media only screen and (min-width: 768px) and (max-width: 1200px) {
-  .image-manga-sell {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-  }
-
-  .button-bar {
-    gap: 20px;
-  }
-
-  .btn {
-    padding: 5px 10px;
-    font-size: 1rem;
-    width: 13%;
-    margin: 2px;
-  }
-
-  .main-image-container img {
-    height: auto;
-    width: 100%;
-  }
-
-  .secondary-images-container {
-    width: 100%;
-  }
-
-  .secondary-image img {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-  }
-
-  .information-manga-sell {
-    width: 100%;
-    margin-left: 0px;
-  }
-
-  .image-advert-sell {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .container-Details {
-    margin-bottom: 0px;
-  }
-
-  .image-from-annoucement img {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .tab-system {
-    width: 100%;
-  }
-
-  .container-other-sell {
     justify-content: center;
+    align-items: center;
+    height: auto;
   }
 
-  .number-article p {
-    font-size: 0.8rem;
+  .image-section {
+    width: 15rem;
+    height: 21rem;
+  }
+
+  .content-section {
+    width: 100%;
+    height: auto;
+  }
+
+  .description-box {
+    flex-direction: column;
   }
 }
 
-@media only screen and (max-width: 767px) {
-  .image-manga-sell {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-  }
-
-  .container-Details {
-    align-items: center;
-  }
-
-  .button-bar {
-    gap: 20px;
-  }
-
-  .btn {
-    padding: 5px 10px;
-    font-size: 1rem;
-    width: 13%;
-    margin: 2px;
-  }
-
-  .main-image-container img {
-    height: auto;
-    width: 100%;
-  }
-
-  .secondary-image img {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-  }
-
-  .information-manga-sell {
-    width: 100%;
-    margin-left: 0px;
-    font-size: 1.5rem;
-  }
-
-  .image-advert-sell {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .container-Details {
-    margin-bottom: 0px;
-  }
-
-  .image-from-annoucement img {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .number-article p {
-    font-size: 0.8rem;
+@media screen and (max-width: 768px) {
+  .two-pictures-container,
+  .three-pictures-container {
+    height: 18rem;
+    width: 20rem;
   }
 }

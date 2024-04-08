@@ -19,7 +19,7 @@ function MangaDetails({ id: propId, showVolumes = true }) {
     axios
       .get(`http://localhost:3310/api/mangas/${mangaId}`)
       .then((response) => {
-        console.info("Réponse de l'API:", response.data);
+        // console.info("Réponse de l'API:", response.data);
         setManga(response.data[0]);
         setIsLoading(false);
       })

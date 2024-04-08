@@ -15,13 +15,13 @@ function AdvertSeller() {
   // const [setUserId] = useState(null);
 
   useEffect(() => {
-    console.info("valeur de l'id au fetch:", id);
+    // console.info("valeur de l'id au fetch:", id);
     fetch(`http://localhost:3310/api/advert-cards/${id}`)
       .then((res) => {
         return res.json();
       })
       .then((data) => {
-        console.info("Mes annonces dans MyAnounces:", data);
+        // console.info("Mes annonces dans MyAnounces:", data);
         setAnounces(data);
       })
       .catch((error) => {

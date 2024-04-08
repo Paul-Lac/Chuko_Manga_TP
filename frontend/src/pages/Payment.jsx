@@ -9,7 +9,7 @@ import PaymentOrder from "../components/PaymentOrder";
 function PaymentPage() {
   const location = useLocation();
   const { articleData } = location.state || {};
-  console.info("info paymentPage", articleData);
+  // console.info("info paymentPage", articleData);
   const [showModal, setShowModal] = useState(false);
   const [adresse, setAdresse] = useState({
     adresse: "",

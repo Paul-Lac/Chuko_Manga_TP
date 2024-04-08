@@ -63,7 +63,7 @@ function AdvertDetailSeller({ userId, id }) {
 
   return (
     <>
-      <div className="number-article">
+      <div className="detail-seller-top">
         <div className="seller-information">
           <img src={`http://localhost:3310${sellerInfo.user_picture}`} alt="" />
           <div className="information-from-card">
@@ -84,13 +84,6 @@ function AdvertDetailSeller({ userId, id }) {
           <AdvertCard key={userSell.id} advert={userSell} />
         ))}
       </div>
-      {/* <div>
-        <FilteredadvertsCard
-          titlefromAnnounceDetail="Ces annonces peuvent vous intéresser :"
-          titleClassName="specific-title-class"
-          useDivWrapper
-        />
-      </div> */}
     </>
   );
 }

@@ -41,7 +41,7 @@ function ProfilHead({ children }) {
         return res.json();
       })
       .then((data) => {
-        console.info("Mes donnees user :", data);
+        // console.info("Mes donnees user :", data);
         const rating = parseFloat(data[0].average_rating);
         setFormData({ ...data[0], rating });
       })

@@ -14,8 +14,7 @@ function MangaVolume() {
       .get(`http://localhost:3310/api/mangas/${id}/volumes`)
       .then((response) => {
         setVolumes(response.data);
-        console.info("volumes:", response.data);
-        console.info("a la recherche de l'info");
+        // console.info("volumes:", response.data);
       })
       .catch((error) => {
         console.error("Error fetching volumes :", error);
