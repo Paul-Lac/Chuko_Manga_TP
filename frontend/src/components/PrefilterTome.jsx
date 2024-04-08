@@ -9,22 +9,18 @@ import Right from "../assets/rightlogo.png";
 import AdvertCard from "./AdvertCard";
 import "./PrefilterTome.css";
 
-function PrefilterTome({
-  titlefromAnnounceDetail,
-  titleClassName,
-  useDivWrapper,
-}) {
+function PrefilterTome() {
   const [filteredAdverts, setFilteredAdverts] = useState([]);
-  const defaultTitle = "Explorer les derniers tomes ajoutés";
+  // const defaultTitle = "Explorer les derniers tomes ajoutés";
   const [showLeftButton, setShowLeftButton] = useState(false);
   const [showRightButton, setShowRightButton] = useState(true);
-  const titleToShow = (
-    <h2 className={`titlePrefilter ${titleClassName || ""}`}>
-      {titlefromAnnounceDetail || defaultTitle}
-    </h2>
-  );
+  // const titleToShow = (
+  //   <h2 className={`titlePrefilter ${titleClassName || ""}`}>
+  //     {titlefromAnnounceDetail || defaultTitle}
+  //   </h2>
+  // );
   const containerRef = useRef(null);
-  const renderedTitle = useDivWrapper ? <div>{titleToShow}</div> : titleToShow;
+  // const renderedTitle = useDivWrapper ? <div>{titleToShow}</div> : titleToShow;
   useEffect(() => {
     fetch("http://localhost:3310/api/advert-cards?batch=false")
       .then((response) => {
@@ -72,7 +68,7 @@ function PrefilterTome({
 
   return (
     <section className="prefiltre-unique container_limit">
-      <h2 className="titlePrefilter">{renderedTitle}</h2>
+      <h2 className="titlePrefilter">Explorer les derniers tomes ajoutés</h2>
       <div className="filter-by-date-desc-wrapper">
         {showLeftButton && (
           <img

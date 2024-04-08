@@ -45,7 +45,7 @@ class AdvertsManager extends AbstractManager {
   async getAdvertById(id) {
     const [rows] = await this.database.query(
       `SELECT advert.id as advert_id, advert.price, advert.title_search_manga, advert.description, 
-      article_condition.name_condition, advert.batch, advert.view_number, advert.publication_date_advert, 
+      article_condition.name_condition, advert.batch, advert.publication_date_advert, 
       manga.id as manga_id, manga.title as manga_title, volume.title as volume_title, volume.ISBN, 
       user.pseudo, user.id as user_id, user.picture as user_picture, 
       joint_table.average, joint_table.feedback_nber, 

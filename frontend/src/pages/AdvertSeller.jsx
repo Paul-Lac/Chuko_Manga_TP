@@ -123,10 +123,10 @@ function AdvertSeller() {
               <p>État :</p> <p> {anounce.name_condition}</p>
             </div>
 
-            <div className="informationVues">
+            {/* <div className="informationVues">
               <p>Nombre de vues :</p>
               <p>{anounce.view_number}</p>
-            </div>
+            </div> */}
             <div className="informationDate">
               <p>Ajouté le :</p>
               <p>

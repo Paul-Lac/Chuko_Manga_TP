@@ -29,7 +29,7 @@ function ProfilTab() {
   }, [id]); // Ajoutez un identifiant en fonction de celui-ci pour que useEffect se déclenche lorsque l'identifi
 
   useEffect(() => {
-    fetch(`http://localhost:3310/api/display-order-history-bybuyer/${id}`)
+    fetch(`http://localhost:3310/api/buyers/${id}/orders`)
       .then((res) => res.json())
       .then((data) => {
         console.info("Mon historique d'achat:", data);
@@ -180,7 +180,7 @@ function ProfilTab() {
                     <Link to={`/profilseller/${evaluation.user_buyer}`}>
                       <img
                         className="picture_buyer"
-                        src={`${evaluation.picture_buyer}`}
+                        src={`http://localhost:3310${evaluation.picture_buyer}`}
                         alt="image_buyer"
                       />
                     </Link>

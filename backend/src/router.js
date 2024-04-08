@@ -19,6 +19,7 @@ const validateUser = require("./middlewares/validateUser");
 const advertsControllers = require("./controllers/advertsControllers");
 const addressControllers = require("./controllers/addressControllers");
 const conditionsControllers = require("./controllers/conditionsControllers");
+const feedbacksControllers = require("./controllers/feedbacksControllers");
 const genresControllers = require("./controllers/genresControllers");
 const mangasControllers = require("./controllers/mangasControllers");
 const ordersControllers = require("./controllers/ordersControllers");
@@ -65,29 +66,39 @@ router.get("/mangas/:id/volumes", volumesControllers.getVolumesByMangaId);
 // ADDRESS TABLE
 router.get("/address/:id", addressControllers.getAddressbyId);
 router.post("/address/:id", validateAddress, addressControllers.addAddressbyId);
+router.put(
+  "/users/:userId/address/:addressId",
+  validateAddress,
+  addressControllers.updateAddress
+);
 
 // ADVERT TABLE
-// router.put("/update-advert/:id", multer, advertsControllers.updateAdvert);
+router.post(
+  "/adverts",
+  multer,
+  validateAdvert,
+  advertsControllers.createAdvert
+);
 router.delete("/adverts/:id", advertsControllers.deleteAdvert);
 
-// FROM FEEDBACKS TABLE ??
-router.get("/users/:id/feedbacks", usersControllers.getUserProfilComById);
+// FEEDBACK TABLE
+router.get("/users/:id/feedbacks", feedbacksControllers.getFeedbacksById);
 
 // MANGA TABLE
+router.post("/mangas", multerSingle, mangasControllers.createManga);
 router.put("/mangas/:id", multerSingle, mangasControllers.updateManga);
 router.delete("/mangas/:id", mangasControllers.deleteManga);
 
 // ORDER TABLE
 // Route to get all orders by buyer (page Profil/onglet my purchase history)
-router.get(
-  "/display-order-history-bybuyer/:id",
-  ordersControllers.getHistoryOrderByBuyer
-);
+router.get("/buyers/:id/orders", ordersControllers.getHistoryOrderByBuyer);
+router.post("/parcel-order", ordersControllers.addOrder);
 
 // USER TABLE
+// => fetchdata for update detail
 router.get("/users/:id", usersControllers.getUserById);
+// => fetchdata for profile head
 router.get("/user-profiles/:id", usersControllers.getUserProfilById);
-// Pourquoi pas de validateUser ici ???
 router.post("/users", hashPassword, usersControllers.add);
 router.put(
   "/user/:id",
@@ -95,6 +106,19 @@ router.put(
   validateUser,
   usersControllers.updateUser
 );
+
+// Import authControllers module for handling auth-related operations
+const authControllers = require("./controllers/authControllers");
+const cookieJwtAuth = require("./middlewares/cookieJwtAuth");
+
+// /login appelé dans connexion.jsx => pourquoi pas de validateLogin ?? et cookieJwtAuth appelé nulle part ??
+router.post("/login", authControllers.login);
+// /add n'est appelé nulle part dans le front
+router.post("/add", cookieJwtAuth, authControllers.login);
+
+// router.use(verifyToken);
+
+module.exports = router;
 
 // OLD :
 // router.get("/advert-cards-old", advertsControllers.recentAdverts);
@@ -111,35 +135,7 @@ router.put(
 // Route to get all users table
 // router.get("/users", usersControllers.getAllUsers);
 
-router.put(
-  "/address/user/:userId/address/:addressId",
-  validateAddress,
-  addressControllers.updateAddress
-);
-
-// Import authControllers module for handling auth-related operations
-const authControllers = require("./controllers/authControllers");
-const cookieJwtAuth = require("./middlewares/cookieJwtAuth");
-
-// /login appelé dans connexion.jsx => pourquoi pas de validateLogin ?? et cookieJwtAuth appelé nulle part ??
-router.post("/login", authControllers.login);
-// /add n'est appelé nulle part dans le front
-router.post("/add", cookieJwtAuth, authControllers.login);
-
-// router.use(verifyToken);
-
 // SUPPRIMER VERIFYTOKEN
-
-// ROUTES TO POST MANGAS
-router.post("/mangas", multerSingle, mangasControllers.createManga);
-
-// ROUTE TO POST ADVERTS
-router.post(
-  "/adverts",
-  multer,
-  validateAdvert,
-  advertsControllers.createAdvert
-);
 
 // Thoses routes are protected
 // Mettre toutes les routes POST, PUT, etc....
@@ -187,5 +183,3 @@ router.post(
 // router.post("/items", itemControllers.add);
 
 // router.get("/characters", charactersControllers.browse);
-
-module.exports = router;

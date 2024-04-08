@@ -8,6 +8,7 @@ const AdvertImagesManager = require("./models/advertImagesManager");
 const AdvertsManager = require("./models/AdvertsManager");
 const AddressManager = require("./models/AddressManager");
 const ConditionsManager = require("./models/ConditionsManager");
+const FeedbacksManager = require("./models/FeedbacksManager");
 const GenresManager = require("./models/GenresManager");
 const MangasManager = require("./models/MangasManager");
 const OrdersManager = require("./models/OrdersManager");
@@ -24,6 +25,7 @@ const managers = [
   AdvertImagesManager,
   AddressManager,
   ConditionsManager,
+  FeedbacksManager,
   GenresManager,
   MangasManager,
   OrdersManager,

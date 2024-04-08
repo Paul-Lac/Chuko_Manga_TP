@@ -50,19 +50,6 @@ const getUserProfilById = async (req, res) => {
   }
 };
 
-const getUserProfilComById = async (req, res) => {
-  try {
-    const user = await models.user.getUserProfilComById(req.params.id);
-    if (user == null) {
-      res.sendStatus(404);
-    } else {
-      res.json(user);
-    }
-  } catch (err) {
-    console.error(err);
-  }
-};
-
 const updateUser = async (req, res) => {
   const { id } = req.params;
   const user = req.body;
@@ -89,6 +76,6 @@ module.exports = {
   add,
   getUserById,
   getUserProfilById,
-  getUserProfilComById,
+  // getUserProfilComById,
   updateUser,
 };

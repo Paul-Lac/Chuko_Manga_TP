@@ -47,7 +47,7 @@ function UpdateAddress() {
       // Si l'adresse existe déjà, effectuer une requête PUT pour la mettre à jour
       axios
         .put(
-          `http://localhost:3310/api/address/user/${id}/address/${formData.id}`,
+          `http://localhost:3310/api/users/${id}/address/${formData.id}`,
           formData
         )
         .then((response) => {

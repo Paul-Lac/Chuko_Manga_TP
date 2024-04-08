@@ -32,11 +32,11 @@ function CallResearch() {
       </h3>
       <ul className="list-suggestion">
         {mangas.slice(0, 5).map((manga) => (
-          <Link to={`manga/${manga.id}`} className="link-suggestion">
-            <li key={manga.id} className="sugg">
+          <li key={manga.id} className="sugg">
+            <Link to={`manga/${manga.id}`} className="link-suggestion">
               {manga.title}
-            </li>
-          </Link>
+            </Link>
+          </li>
         ))}
       </ul>
     </section>

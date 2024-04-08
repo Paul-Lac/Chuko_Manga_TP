@@ -91,5 +91,9 @@ function SearchBar({ searchBarClass }) {
 export default SearchBar;
 
 SearchBar.propTypes = {
-  searchBarClass: PropTypes.string.isRequired,
+  searchBarClass: PropTypes.string,
+};
+
+SearchBar.defaultProps = {
+  searchBarClass: "",
 };

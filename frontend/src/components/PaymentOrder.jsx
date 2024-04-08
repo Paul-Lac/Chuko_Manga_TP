@@ -15,7 +15,7 @@ function PaymentOrder({ articleInfo }) {
             <h3>{articleInfo.title_search_manga}</h3>
             <div className="user-section">
               <img
-                src={articleInfo.user_picture}
+                src={`http://localhost:3310${articleInfo.user_picture}`}
                 alt="userImage"
                 className="img-profil-annonce"
               />

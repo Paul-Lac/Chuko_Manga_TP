@@ -62,7 +62,6 @@ function Explore() {
             },
           }
         );
-        console.info("selectedGenre", selectedGenre);
         setAdverts(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);

@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`user` (
   `lastname` VARCHAR(45) NULL,
   `email` VARCHAR(150) NOT NULL,
   `hashed_password` VARCHAR(255) NOT NULL,
-  `phone` INT NULL,
+  `phone` VARCHAR(15) NULL,
   `role` ENUM('admin', 'user') NOT NULL DEFAULT 'user',
   `picture` VARCHAR(255) NULL,
   PRIMARY KEY (`id`))
@@ -132,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`advert` (
   `alert` TINYINT NOT NULL,
   `batch` TINYINT NOT NULL,
   `title_search_manga` VARCHAR(40) NULL,
-  `view_number` INT NOT NULL DEFAULT 0,
+  -- `view_number` INT NOT NULL DEFAULT 0,
   `publication_date_advert` DATE NOT NULL,
   `delete_advert` TINYINT NOT NULL DEFAULT 0,
   `user_id` INT NOT NULL,
@@ -237,58 +237,58 @@ AUTO_INCREMENT = 1;
 -- -----------------------------------------------------
 -- Table `chuko_manga_db`.`alert_stock`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`alert_stock` (
-  `user_id` INT NOT NULL,
-  `volume_id` INT NOT NULL,
-  PRIMARY KEY (`user_id`, `volume_id`),
-  INDEX `fk_user_has_volume_volume1_idx` (`volume_id` ASC) VISIBLE,
-  INDEX `fk_user_has_volume_user1_idx` (`user_id` ASC) VISIBLE,
-  CONSTRAINT `fk_user_has_volume_user1`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `chuko_manga_db`.`user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_user_has_volume_volume1`
-    FOREIGN KEY (`volume_id`)
-    REFERENCES `chuko_manga_db`.`volume` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-AUTO_INCREMENT = 1;
+-- CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`alert_stock` (
+--   `user_id` INT NOT NULL,
+--   `volume_id` INT NOT NULL,
+--   PRIMARY KEY (`user_id`, `volume_id`),
+--   INDEX `fk_user_has_volume_volume1_idx` (`volume_id` ASC) VISIBLE,
+--   INDEX `fk_user_has_volume_user1_idx` (`user_id` ASC) VISIBLE,
+--   CONSTRAINT `fk_user_has_volume_user1`
+--     FOREIGN KEY (`user_id`)
+--     REFERENCES `chuko_manga_db`.`user` (`id`)
+--     ON DELETE NO ACTION
+--     ON UPDATE NO ACTION,
+--   CONSTRAINT `fk_user_has_volume_volume1`
+--     FOREIGN KEY (`volume_id`)
+--     REFERENCES `chuko_manga_db`.`volume` (`id`)
+--     ON DELETE NO ACTION
+--     ON UPDATE NO ACTION)
+-- ENGINE = InnoDB
+-- AUTO_INCREMENT = 1;
 
 
 -- -----------------------------------------------------
 -- Table `chuko_manga_db`.`category`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`category` (
-  `id_category` INT NOT NULL AUTO_INCREMENT,
-  `name_categoy` VARCHAR(75) NOT NULL,
-  PRIMARY KEY (`id_category`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 1;
+-- CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`category` (
+--   `id_category` INT NOT NULL AUTO_INCREMENT,
+--   `name_categoy` VARCHAR(75) NOT NULL,
+--   PRIMARY KEY (`id_category`))
+-- ENGINE = InnoDB
+-- AUTO_INCREMENT = 1;
 
 
 -- -----------------------------------------------------
 -- Table `chuko_manga_db`.`category_has_manga`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`category_has_manga` (
-  `category_idcategory` INT NOT NULL,
-  `manga_id` INT NOT NULL,
-  PRIMARY KEY (`category_idcategory`, `manga_id`),
-  INDEX `fk_category_has_manga_manga1_idx` (`manga_id` ASC) VISIBLE,
-  INDEX `fk_category_has_manga_category1_idx` (`category_idcategory` ASC) VISIBLE,
-  CONSTRAINT `fk_category_has_manga_category1`
-    FOREIGN KEY (`category_idcategory`)
-    REFERENCES `chuko_manga_db`.`category` (`id_category`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_category_has_manga_manga1`
-    FOREIGN KEY (`manga_id`)
-    REFERENCES `chuko_manga_db`.`manga` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-AUTO_INCREMENT = 1;
+-- CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`category_has_manga` (
+--   `category_idcategory` INT NOT NULL,
+--   `manga_id` INT NOT NULL,
+--   PRIMARY KEY (`category_idcategory`, `manga_id`),
+--   INDEX `fk_category_has_manga_manga1_idx` (`manga_id` ASC) VISIBLE,
+--   INDEX `fk_category_has_manga_category1_idx` (`category_idcategory` ASC) VISIBLE,
+--   CONSTRAINT `fk_category_has_manga_category1`
+--     FOREIGN KEY (`category_idcategory`)
+--     REFERENCES `chuko_manga_db`.`category` (`id_category`)
+--     ON DELETE NO ACTION
+--     ON UPDATE NO ACTION,
+--   CONSTRAINT `fk_category_has_manga_manga1`
+--     FOREIGN KEY (`manga_id`)
+--     REFERENCES `chuko_manga_db`.`manga` (`id`)
+--     ON DELETE NO ACTION
+--     ON UPDATE NO ACTION)
+-- ENGINE = InnoDB
+-- AUTO_INCREMENT = 1;
 
 
 -- -----------------------------------------------------
