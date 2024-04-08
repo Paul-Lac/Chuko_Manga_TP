@@ -1,41 +1,45 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import axios from "axios";
+import AdvertCard from "./AdvertCard";
 import "./ProfilTab.css";
 
 function ProfilTab() {
-  const { advertId, id } = useParams();
-  const [annonces, setAnnonces] = useState();
+  const { id } = useParams();
+  const [adverts, setAdverts] = useState("");
   const [evaluations, setEvaluations] = useState([]);
   const [historyOrders, setHistoryOrders] = useState([]);
   const [ongletActif, setongletActif] = useState("Annonces");
+  const [modalDelete, setModalDelete] = useState(false);
+  const [selectedAdvertId, setSelectedAdvertId] = useState("");
 
   useEffect(() => {
     fetch(`http://localhost:3310/api/users/${id}/adverts`)
       .then((res) => res.json())
       .then((data) => {
-        console.info("Mes annonces dans OngletProfil:", data);
-        setAnnonces(data);
+        // console.info("Mes annonces dans OngletProfil:", data);
+        setAdverts(data);
       });
-  }, [id]); // Ajoutez un identifiant en fonction de celui-ci pour que useEffect se déclenche lorsque l'identifi
+  }, [id]);
 
   useEffect(() => {
     fetch(`http://localhost:3310/api/users/${id}/feedbacks`)
       .then((res) => res.json())
       .then((data) => {
-        console.info("commentairesTableau:", data);
+        // console.info("commentairesTableau:", data);
         setEvaluations(data);
       });
-  }, [id]); // Ajoutez un identifiant en fonction de celui-ci pour que useEffect se déclenche lorsque l'identifi
+  }, [id]);
 
   useEffect(() => {
     fetch(`http://localhost:3310/api/buyers/${id}/orders`)
       .then((res) => res.json())
       .then((data) => {
-        console.info("Mon historique d'achat:", data);
+        // console.info("Mon historique d'achat:", data);
         setHistoryOrders(data);
       });
-  }, [id]); // Ajoutez un identifiant en fonction de celui-ci pour que useEffect se déclenche lorsque l'identifi
+  }, [id]);
 
   function renderStars(averageRating) {
     const fullStars = Math.floor(averageRating); // Nombre d'étoiles pleines
@@ -93,16 +97,49 @@ function ProfilTab() {
         return "default";
     }
   }
+  const toggleModalDelete = (advertId) => {
+    setModalDelete(!modalDelete);
+    setSelectedAdvertId(advertId);
+    // console.info("modal open", modalDelete);
+    if (!modalDelete) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      toggleModalDelete();
+    }
+  };
+
+  const handleDeleteAdvert = (advertId) => {
+    axios
+      .delete(`http://localhost:3310/api/adverts/${advertId}`)
+      .then((response) => {
+        console.info("Success deleting advert:", response.data);
+
+        const updateAdvertList = adverts.filter(
+          (advert) => advert.id !== advertId
+        );
+        setAdverts(updateAdvertList);
+        toggleModalDelete();
+      })
+      .catch((error) => {
+        console.error("Error deleting advert:", error);
+      });
+  };
 
   return (
-    <div className="containerOnglets">
-      <div className="containerButton">
+    <div className="container-onglets">
+      <div className="container-button">
         <button
           type="button"
           className={
             ongletActif === "Annonces"
-              ? "buttonOnglet selected"
-              : "buttonOnglet"
+              ? "button-onglet selected"
+              : "button-onglet"
           }
           onClick={() => setongletActif("Annonces")}
         >
@@ -112,8 +149,8 @@ function ProfilTab() {
           type="button"
           className={
             ongletActif === "Évaluations"
-              ? "buttonOnglet selected"
-              : "buttonOnglet"
+              ? "button-onglet selected"
+              : "button-onglet"
           }
           onClick={() => setongletActif("Évaluations")}
         >
@@ -122,7 +159,7 @@ function ProfilTab() {
         <button
           type="button"
           className={
-            ongletActif === "Achat" ? "buttonOnglet selected" : "buttonOnglet"
+            ongletActif === "Achat" ? "button-onglet selected" : "button-onglet"
           }
           onClick={() => setongletActif("Achat")}
         >
@@ -130,31 +167,63 @@ function ProfilTab() {
         </button>
       </div>
 
-      <div className="containerInformations">
+      <div className="container-information">
         {ongletActif === "Annonces" && (
-          <div className="containerAnnonces">
-            {annonces?.map((annonce) => (
-              <div key={advertId}>
-                <Link
-                  key={advertId}
-                  to={`/advert-seller/${annonce.advert_id}`}
-                  className="linkCard"
+          <div className="container-adverts">
+            {adverts.length > 0 ? (
+              adverts.map((advert) => (
+                <div className="advert-unit">
+                  <AdvertCard
+                    key={advert.id}
+                    id={advert.id}
+                    advert={advert}
+                    showUserSection={false}
+                    showFavorite={false}
+                  />
+                  <button
+                    className="delete-btn"
+                    type="button"
+                    onClick={() => toggleModalDelete(advert.id)}
+                  >
+                    Supprimer
+                  </button>
+                </div>
+              ))
+            ) : (
+              <p>Vous n'avez aucune annonce en vente.</p>
+            )}
+          </div>
+        )}
+
+        {modalDelete && (
+          <div className="modal-delete">
+            <div
+              role="button"
+              tabIndex={0}
+              onClick={toggleModalDelete}
+              onKeyPress={handleKeyPress}
+              aria-label="Cliquez pour ouvrir la modal"
+              className="overlay-delete"
+            />
+            <div className="modal-content">
+              <h2 className="message-modal">Supprimer l'article</h2>
+              <div className="modal-btn-container">
+                <button
+                  className="confirm-delete"
+                  type="button"
+                  onClick={() => handleDeleteAdvert(selectedAdvertId)}
                 >
-                  <li className="cardAnnonces">
-                    <div>
-                      <img
-                        className="imagePathAnnonces"
-                        src={`http://localhost:3310${annonce.image_path}`}
-                        alt="image_article_seller"
-                      />
-                      <h2 className="titleSearchMangaAnnonces">{`${annonce.title_search_manga}`}</h2>
-                      <p className="priceAnnonces">{`${annonce.price}`} €</p>
-                      <p className="name_condition">{`${annonce.name_condition}`}</p>
-                    </div>
-                  </li>
-                </Link>
+                  Confirmer
+                </button>
+                <button
+                  className="cancel-delete"
+                  type="button"
+                  onClick={toggleModalDelete}
+                >
+                  Annuler
+                </button>
               </div>
-            ))}
+            </div>
           </div>
         )}
 

@@ -1,4 +1,4 @@
-.containerAnounce {
+/* .containerAnounce {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -49,6 +49,7 @@
   background-color: var(--neutral-800);
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
 }
+
 .imageSell3 {
   width: 10.9rem;
   height: 14.5rem;
@@ -127,10 +128,10 @@
 .btnModSup:hover {
   background-color: var(--primary-clr);
   color: var(--neutral-100);
-}
+} */
 
-/* ********************************************** */
-/* CSS for Modal */
+
+/* CSS for Modal
 
 .modal,
 .overlayAnounces {

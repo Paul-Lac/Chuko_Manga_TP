@@ -1,15 +1,15 @@
-.containerOnglets {
+.container-onglets {
   margin-top: 10%;
 }
 
-.containerButton {
+.container-button {
   height: 30px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   margin-bottom: 3rem;
 }
 
-.buttonOnglet {
+.button-onglet {
   border-bottom: 2px solid var(--neutral-600);
   color: var(--neutral-700);
   padding: 1rem;
@@ -23,64 +23,111 @@
   font-weight: 500;
 }
 
+.container-information {
+  position: relative;
+}
+
 /********************** Utilise ces propriétées pour l'onglet "Mes annonces et Mon historique d'achat" ***********************/
-.containerAnnonces {
+.container-adverts {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
+  margin: auto;
 }
 
-.cardAnnonces {
-  width: 275px;
+.advert-unit {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin: 0.4rem;
-  font-family: "Monserrat", sans-serif;
-  box-shadow:
-    rgba(0, 0, 0, 0.12) 0px 1px 3px,
-    rgba(0, 0, 0, 0.24) 0px 1px 2px;
-  border-radius: 6px;
-  padding: 8px;
-  margin-right: 20px;
-}
-.cardAnnonces:hover {
-  transform: scale(1.05);
+  align-items: center;
 }
 
-.linkCard:hover {
-  text-decoration: none;
-}
-
-.imagePathAnnonces {
+.delete-btn {
+  color: var(--primary-clr);
+  background-color: var(--neutral-100);
+  border: 1px solid var(--primary-clr);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
   width: 100%;
-  height: 300px;
-  object-fit: cover;
-  object-position: center;
-  box-shadow: 0 0 5px var(--neutral-600);
-  margin-bottom: 0.5rem;
-  border-radius: 3px;
+  margin: 0.2rem;
 }
 
-.titleSearchMangaAnnonces {
-  font-size: var(--fs-XS);
-  font-weight: normal;
-  display: flex;
-  align-items: start;
-  white-space: nowrap;
-  overflow: hidden;
+.delete-btn:hover {
+  color: var(--neutral-100);
+  background-color: var(--primary-clr);
 }
-.priceAnnonces {
+
+/* ********************************************** */
+/* CSS for Modal */
+
+.modal-delete {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  z-index: 15;
+}
+
+.overlay-delete {
+  background: rgba(49, 49, 49, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay-delete {
+  background: rgba(49, 49, 49, 0.8);
+}
+
+.modal-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* top: 40%;
+  left: 50%; */
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  background: var(--neutral-100);
+  padding: 14px 28 px;
+  border-radius: 0.5rem;
+  width: 40rem;
+  height: 10rem;
+}
+
+.message-modal {
+  color: var(--primary-clr-accent);
+  text-align: center;
+  padding: 5% 5% 6% 5%;
   font-size: var(--fs-L);
-  font-weight: bold;
 }
-.name_condition {
-  color: var(--neutral-600);
-  font-size: var(--fs-XS);
-  margin-bottom: 0.2rem;
+
+.modal-btn-container {
   display: flex;
-  align-items: start;
+  justify-content: center;
+  font-size: var(--fs-S);
 }
+
+.confirm-delete {
+  border-right: solid 0.1rem var(--neutral-600);
+  padding-right: 20%;
+}
+
+.confirm-delete:hover {
+  color: var(--primary-clr-accent);
+}
+
+.cancel-delete {
+  padding-left: 20%;
+}
+
+.cancel-delete:hover {
+  color: var(--primary-clr-accent);
+}
+
 /******************************************************************************************************************************/
 
 .statusOrder {
@@ -200,7 +247,23 @@
 /* ------------------------------------------------------------------------------------------------------ */
 /******************************************************************************************************************************/
 
-@media screen and (max-width: 798px) {
+@media screen and (max-width: 768px) {
+  .button-onglet {
+    font-size: var(--fs-S);
+  }
+  .container-adverts {
+    justify-content: center;
+  }
+
+  .message-modal {
+    font-size: var(--fs-M);
+  }
+
+  .modal-content {
+    width: 22rem;
+    height: 7rem;
+  }
+
   .containerCom {
     flex-direction: column;
     align-items: center;

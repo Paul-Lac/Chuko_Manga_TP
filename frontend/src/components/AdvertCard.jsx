@@ -5,7 +5,7 @@ import "./AdvertCard.css";
 import { Link } from "react-router-dom";
 import { useNotifications } from "../context/NotificationContext";
 
-function AdvertCard({ advert }) {
+function AdvertCard({ advert, showUserSection, showFavorite }) {
   const { addNotification } = useNotifications();
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -70,48 +70,54 @@ function AdvertCard({ advert }) {
         <h2 className="card-title">{advert.title_search_manga}</h2>
         <div className="card-price-section">
           <p className="card-price">{advert.price}€</p>
-          <button type="button" onClick={handleFavoriteClick}>
-            <img
-              src={
-                isFavorite
-                  ? "http://localhost:3310/static/heartFull.png"
-                  : "http://localhost:3310/static/heart.png"
-              }
-              alt="logo favorite"
-              className="card-favorite"
-            />
-          </button>
+          {showFavorite && (
+            <button type="button" onClick={handleFavoriteClick}>
+              <img
+                src={
+                  isFavorite
+                    ? "http://localhost:3310/static/heartFull.png"
+                    : "http://localhost:3310/static/heart.png"
+                }
+                alt="logo favorite"
+                className="card-favorite"
+              />
+            </button>
+          )}
         </div>
         <p className="card-condition">{advert.name_condition}</p>
-        <div className="card-user-section">
-          <div className="user">
-            <img
-              src={`http://localhost:3310${advert.user_picture}`}
-              alt="user"
-              className="card-user-photo"
-            />
-            <p className="card-user-name">{advert.pseudo}</p>
-          </div>
-          <div className="note">
-            <img
-              src="http://localhost:3310/static/star.png"
-              alt="logo star"
-              className="card-star"
-            />
-            <div className="note-text">
-              <p className="card-evaluation">
-                {average}
-                <span className="card-number-feedback">
-                  ({advert.feedback_nber})
-                </span>
-              </p>
+        {showUserSection && (
+          <div className="card-user-section">
+            <div className="user">
+              <img
+                src={`http://localhost:3310${advert.user_picture}`}
+                alt="user"
+                className="card-user-photo"
+              />
+              <p className="card-user-name">{advert.pseudo}</p>
+            </div>
+            <div className="note">
+              <img
+                src="http://localhost:3310/static/star.png"
+                alt="logo star"
+                className="card-star"
+              />
+              <div className="note-text">
+                <p className="card-evaluation">
+                  {average}
+                  <span className="card-number-feedback">
+                    ({advert.feedback_nber})
+                  </span>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );
 }
+
+export default AdvertCard;
 
 AdvertCard.propTypes = {
   advert: PropTypes.shape({
@@ -127,6 +133,11 @@ AdvertCard.propTypes = {
       .isRequired,
     feedback_nber: PropTypes.number.isRequired,
   }).isRequired,
+  showUserSection: PropTypes.bool,
+  showFavorite: PropTypes.bool,
 };
 
-export default AdvertCard;
+AdvertCard.defaultProps = {
+  showUserSection: true,
+  showFavorite: true,
+};

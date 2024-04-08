@@ -76,6 +76,7 @@
   background-color: var(--neutral-100);
   display: flex;
   justify-content: space-around;
+  font-size: var(--fs-XS);
 }
 
 @media (max-width: 769px) {

@@ -28,7 +28,7 @@ function AdvertDetailSeller({ userId, id }) {
         if (data && data.length > 0) {
           const transformedData = data.map((advert) => ({
             ...advert,
-            id: advert.advert_id, // Assurez-vous que chaque annonce a une propriété `id`.
+            id: advert.id,
           }));
           setSellerInfo({
             pseudo: data[0].pseudo,

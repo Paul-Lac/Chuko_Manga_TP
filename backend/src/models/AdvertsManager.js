@@ -68,7 +68,7 @@ class AdvertsManager extends AbstractManager {
 
   async getAdvertsBySeller(id) {
     const [rows] = await this.database.query(
-      `SELECT advert.id as advert_id, advert.title_search_manga, advert.price, advert.publication_date_advert, article_condition.name_condition, advert_image.image_path, user.id as user_id, user.pseudo, user.picture as user_picture, COALESCE(joint_table.average, 0) as average, COALESCE(joint_table.feedback_nber, 0) as feedback_nber
+      `SELECT advert.id as id, advert.title_search_manga, advert.price, advert.publication_date_advert, article_condition.name_condition, advert_image.image_path, user.id as user_id, user.pseudo, user.picture as user_picture, COALESCE(joint_table.average, 0) as average, COALESCE(joint_table.feedback_nber, 0) as feedback_nber
     FROM ${this.table}
     LEFT JOIN advert_image ON advert.id=advert_image.advert_id AND advert_image.is_primary=1
     JOIN article_condition ON advert.article_condition_id=article_condition.id
