@@ -81,7 +81,7 @@ function NewAdvert() {
 
   // Fetch manga's list
   useEffect(() => {
-    if (selectedManga !== "") {
+    if (selectedManga !== null) {
       axios
         .get(`http://localhost:3310/api/mangas/${selectedManga}/volumes`)
         .then((res) => {
@@ -171,23 +171,16 @@ function NewAdvert() {
     formData.append("publicationDate", publicationDate);
     for (const key in files) {
       if (files[key]) {
-        // console.info(key, files[key]);
+        console.info(key, files[key]);
         formData.append(key, files[key]);
       }
     }
     console.info("Data to send:", formData);
     // console.info("auth.token", auth.token);
     axios
-      .post(
-        "http://localhost:3310/api/adverts",
-        formData
-        // {
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //     Authorization: `Bearer ${auth.token}`, // Inclusion du jeton JWT
-        //   },
-        // }
-      )
+      .post("http://localhost:3310/api/new-advert", formData, {
+        credentials: "include",
+      })
       .then((res) => {
         console.info("Advert created successfully", res.data);
         navigate(`/profile/${userId}`);

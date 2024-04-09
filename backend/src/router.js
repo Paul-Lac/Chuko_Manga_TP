@@ -11,7 +11,8 @@ const cookieJwtAuth = require("./middlewares/cookieJwtAuth");
 const validateAddress = require("./middlewares/validateAddress");
 const validateAdvert = require("./middlewares/validateAdvert");
 const validateLogin = require("./middlewares/validateLogin");
-const validateUser = require("./middlewares/validateUser");
+const validateUserRegistration = require("./middlewares/validateUserRegistration");
+// const validateUserUpdate = require("./middlewares/validateUserUpdate");
 
 /* ************************************************************************* */
 // Define Your API Routes Here
@@ -55,7 +56,13 @@ router.get("/publishers", publishersControllers.getAllPublishers);
 // VOLUME TABLE
 router.get("/mangas/:id/volumes", volumesControllers.getVolumesByMangaId);
 
-// AUTHENTIFICATION
+// USER TABLE AND AUTHENTIFICATION
+router.post(
+  "/users",
+  validateUserRegistration,
+  hashPassword,
+  usersControllers.add
+);
 router.post("/login", validateLogin, authControllers.login);
 
 /* ************************************************************************* */
@@ -75,7 +82,7 @@ router.put(
 // ADVERT TABLE
 router.get("/users/:id/adverts", advertsControllers.getAdvertsBySeller);
 router.post(
-  "/adverts",
+  "/new-advert",
   multer,
   validateAdvert,
   advertsControllers.createAdvert
@@ -95,21 +102,12 @@ router.delete("/mangas/:id", mangasControllers.deleteManga);
 router.get("/buyers/:id/orders", ordersControllers.getHistoryOrderByBuyer);
 router.post("/parcel-order", ordersControllers.addOrder);
 
-// USER TABLE
+// USER TABLE AND AUTHENTIFICATION
 // => fetchdata for update detail
 router.get("/users/:id", usersControllers.getUserById);
 // => fetchdata for profile head
 router.get("/user-profiles/:id", usersControllers.getUserProfilById);
-router.post("/users", validateUser, hashPassword, usersControllers.add);
-
-router.put(
-  "/user/:id",
-  multerSingle,
-  validateUser,
-  usersControllers.updateUser
-);
-
-// AUTHENTIFICATION
+router.put("/user/:id", multerSingle, usersControllers.updateUser);
 router.get("/logout", authControllers.logout);
 
 module.exports = router;

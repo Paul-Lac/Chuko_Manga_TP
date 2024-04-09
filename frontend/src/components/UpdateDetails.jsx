@@ -78,7 +78,9 @@ function UpdateDetails() {
       data.append("picture", file);
     }
     axios
-      .put(`http://localhost:3310/api/user/${id}`, data)
+      .put(`http://localhost:3310/api/user/${id}`, data, {
+        withCredentials: true,
+      })
       .then((response) => {
         setSuccess(!success);
         console.warn("Success updating user:", response.data);

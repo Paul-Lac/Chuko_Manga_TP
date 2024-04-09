@@ -50,7 +50,10 @@ function UpdateAddress() {
       axios
         .put(
           `http://localhost:3310/api/users/${id}/address/${formData.id}`,
-          formData
+          formData,
+          {
+            withCredentials: true,
+          }
         )
         .then((response) => {
           console.warn("Success updating user:", response.data);

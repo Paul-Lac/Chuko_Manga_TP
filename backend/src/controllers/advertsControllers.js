@@ -61,7 +61,7 @@ const createAdvert = async (req, res) => {
   // console.info("image3 uploaded:", req.files["image3"][0]);
   console.info("req.body is:", req.body);
   const advert = req.body;
-  // console.info("this is advert", advert);
+  console.info("this is advert", advert);
   const imageId = [];
   let imageId1 = null;
   let imageId2 = null;

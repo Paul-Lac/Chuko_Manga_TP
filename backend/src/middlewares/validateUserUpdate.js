@@ -6,7 +6,7 @@ const schema = Joi.object({
   password: Joi.string().min(8).max(20).required(),
 }).options({ abortEarly: false });
 
-const validateUser = (req, res, next) => {
+const validateUserUpdate = (req, res, next) => {
   const { error } = schema.validate(req.body);
 
   if (error) {
@@ -20,4 +20,4 @@ const validateUser = (req, res, next) => {
   }
 };
 
-module.exports = validateUser;
+module.exports = validateUserUpdate;
