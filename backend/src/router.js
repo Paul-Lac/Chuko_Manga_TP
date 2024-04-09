@@ -4,7 +4,7 @@ const router = express.Router();
 
 const { hashPassword } = require("./services/auth");
 
-const multer = require("./middlewares/multerConfigMultiple");
+const multerMultiple = require("./middlewares/multerConfigMultiple");
 const multerSingle = require("./middlewares/multerConfigSingle");
 const cookieJwtAuth = require("./middlewares/cookieJwtAuth");
 
@@ -68,7 +68,14 @@ router.post("/login", validateLogin, authControllers.login);
 /* ************************************************************************* */
 // PROTECTED ROUTES
 /* ************************************************************************* */
+
 router.use(cookieJwtAuth);
+router.post(
+  "/new-advert",
+  multerMultiple,
+  validateAdvert,
+  advertsControllers.createAdvert
+);
 
 // ADDRESS TABLE
 router.get("/address/:id", addressControllers.getAddressbyId);
@@ -81,12 +88,7 @@ router.put(
 
 // ADVERT TABLE
 router.get("/users/:id/adverts", advertsControllers.getAdvertsBySeller);
-router.post(
-  "/new-advert",
-  multer,
-  validateAdvert,
-  advertsControllers.createAdvert
-);
+
 router.delete("/adverts/:id", advertsControllers.deleteAdvert);
 
 // FEEDBACK TABLE

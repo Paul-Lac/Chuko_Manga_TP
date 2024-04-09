@@ -7,10 +7,7 @@ import "./NewAdvert.css";
 import AdvertForm from "../components/AdvertForm";
 
 function NewAdvert() {
-  // Added with verifyToken method (import useContext)
-  // const { auth } = useContext(UserContext);
-
-  // defined if we are on the New-Advert or Update-Advert page with a boolean
+  // defined if we are on the New-Advert or Update-Advert page
   const isNewAdvertPage = true;
   const navigate = useNavigate();
   // States designed to display options for selection and control user's input
@@ -141,7 +138,7 @@ function NewAdvert() {
     if (storedAuth) {
       const authObj = JSON.parse(storedAuth);
       userId = authObj.user.id;
-      console.info("this is user id:", userId);
+      // console.info("this is user id:", userId);
     }
   } catch (error) {
     console.error(
@@ -176,10 +173,9 @@ function NewAdvert() {
       }
     }
     console.info("Data to send:", formData);
-    // console.info("auth.token", auth.token);
     axios
       .post("http://localhost:3310/api/new-advert", formData, {
-        credentials: "include",
+        withCredentials: true,
       })
       .then((res) => {
         console.info("Advert created successfully", res.data);
