@@ -25,7 +25,8 @@ function Connexion({ handleContentModal, handleClickOpen }) {
         {
           method: "post",
           headers: { "Content-Type": "application/json" },
-          // credentials: "include",
+          // In order to include the cookie I have in my navigator :
+          credentials: "include",
           body: JSON.stringify({
             email: emailRef.current.value,
             password: passwordRef.current.value,
@@ -33,7 +34,7 @@ function Connexion({ handleContentModal, handleClickOpen }) {
         }
       );
 
-      // Redirection vers la page de connexion si la création réussit
+      // Teste si la reponse a un statut 200 : la connexion a reussi
       if (response.status === 200) {
         const auth = await response.json();
 

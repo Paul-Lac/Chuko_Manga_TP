@@ -18,7 +18,9 @@ function UpdateAddress() {
     nameAdress: "",
   });
   useEffect(() => {
-    fetch(`http://localhost:3310/api/address/${id}`)
+    fetch(`http://localhost:3310/api/address/${id}`, {
+      credentials: "include",
+    })
       .then((res) => {
         if (!res.ok) {
           throw new Error("Network response was not ok");

@@ -49,6 +49,7 @@ const verifyToken = (req, res, next) => {
 
     // Vérifier la validité du token (son authenticité et sa date d'expériation)
     // En cas de succès, le payload est extrait et décodé
+    // TODO : faire un const avec resultat du jwt.verify (true/flase) si false : ne pas faire next() = envoyer erreur / si true : next()
     req.auth = jwt.verify(token, process.env.APP_SECRET);
 
     next();

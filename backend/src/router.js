@@ -1,12 +1,12 @@
 const express = require("express");
-// http://localhost:4242/api/characters
 
 const router = express.Router();
 
-const { hashPassword, verifyToken } = require("./services/auth");
+const { hashPassword } = require("./services/auth");
 
 const multer = require("./middlewares/multerConfigMultiple");
 const multerSingle = require("./middlewares/multerConfigSingle");
+const cookieJwtAuth = require("./middlewares/cookieJwtAuth");
 
 const validateAddress = require("./middlewares/validateAddress");
 const validateAdvert = require("./middlewares/validateAdvert");
@@ -19,6 +19,7 @@ const validateUser = require("./middlewares/validateUser");
 
 const advertsControllers = require("./controllers/advertsControllers");
 const addressControllers = require("./controllers/addressControllers");
+const authControllers = require("./controllers/authControllers");
 const conditionsControllers = require("./controllers/conditionsControllers");
 const feedbacksControllers = require("./controllers/feedbacksControllers");
 const genresControllers = require("./controllers/genresControllers");
@@ -27,11 +28,6 @@ const ordersControllers = require("./controllers/ordersControllers");
 const publishersControllers = require("./controllers/publishersControllers");
 const usersControllers = require("./controllers/usersControllers");
 const volumesControllers = require("./controllers/volumesControllers");
-// const itemControllers = require("./controllers/itemControllers");
-// const charactersControllers = require("./controllers/charactersControllers");
-// Import itemControllers module for handling item-related operations
-// const searchControllers = require("./controllers/searchControllers");
-// const moviesControllers = require("./controllers/moviesControllers");
 
 /* ************************************************************************* */
 // PUBLIC ROUTES
@@ -40,7 +36,6 @@ const volumesControllers = require("./controllers/volumesControllers");
 // ADVERT TABLE
 router.get("/advert-cards", advertsControllers.getAdvertCards);
 router.get("/advert-cards/:id", advertsControllers.getAdvertById);
-router.get("/users/:id/adverts", advertsControllers.getAdvertsBySeller);
 
 // CONDITIONS TABLE
 router.get("/conditions", conditionsControllers.getAllConditions);
@@ -60,14 +55,13 @@ router.get("/publishers", publishersControllers.getAllPublishers);
 // VOLUME TABLE
 router.get("/mangas/:id/volumes", volumesControllers.getVolumesByMangaId);
 
+// AUTHENTIFICATION
+router.post("/login", validateLogin, authControllers.login);
+
 /* ************************************************************************* */
 // PROTECTED ROUTES
 /* ************************************************************************* */
-// Import authControllers module for handling auth-related operations
-const authControllers = require("./controllers/authControllers");
-const cookieJwtAuth = require("./middlewares/cookieJwtAuth");
-
-// router.use(verifyToken);
+router.use(cookieJwtAuth);
 
 // ADDRESS TABLE
 router.get("/address/:id", addressControllers.getAddressbyId);
@@ -79,6 +73,7 @@ router.put(
 );
 
 // ADVERT TABLE
+router.get("/users/:id/adverts", advertsControllers.getAdvertsBySeller);
 router.post(
   "/adverts",
   multer,
@@ -106,8 +101,7 @@ router.get("/users/:id", usersControllers.getUserById);
 // => fetchdata for profile head
 router.get("/user-profiles/:id", usersControllers.getUserProfilById);
 router.post("/users", validateUser, hashPassword, usersControllers.add);
-// /login appelé dans connexion.jsx => pourquoi pas de validateLogin ?? et cookieJwtAuth appelé nulle part ??
-router.post("/login", validateLogin, authControllers.login);
+
 router.put(
   "/user/:id",
   multerSingle,
@@ -115,8 +109,8 @@ router.put(
   usersControllers.updateUser
 );
 
-// /add n'est appelé nulle part dans le front
-// router.post("/add", cookieJwtAuth, authControllers.login);
+// AUTHENTIFICATION
+router.get("/logout", authControllers.logout);
 
 module.exports = router;
 

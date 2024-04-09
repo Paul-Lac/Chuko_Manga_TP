@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import UserContext from "../context/UserContext";
 import ConnexionModal from "./ConnexionModal";
 import "./HeaderNav.css";
@@ -18,12 +19,13 @@ function HeaderNav() {
   const [userMenu, setUserMenu] = useState(false);
   const handleClickOpen = () => {
     setIsModalOpen(!isModalOpen);
-    if (!isModalOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
+    if (isModalOpen) {
       document.body.style.overflow = "auto";
+    } else {
+      document.body.style.overflow = "hidden";
     }
   };
+
   const handleUserClick = () => {
     setUserMenu(!userMenu);
   };
@@ -33,10 +35,17 @@ function HeaderNav() {
     setUserMenu(false);
   };
 
-  const handleLogout = () => {
-    navigate("/");
-    setAuth(null);
-    localStorage.removeItem("auth");
+  const handleLogout = async () => {
+    try {
+      await axios.get(`http://localhost:3310/api/logout`, {
+        withCredentials: true,
+      });
+      setAuth(null);
+      localStorage.removeItem("auth");
+      navigate("/");
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
   };
 
   return (

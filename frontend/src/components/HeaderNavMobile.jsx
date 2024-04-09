@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import UserContext from "../context/UserContext";
 
 import ConnexionModal from "./ConnexionModal";
@@ -55,19 +56,26 @@ function HeaderNavMobile() {
   };
 
   const handleClickOpen = () => {
-    setmenuMobileActive(!menuMobileActive);
     setIsModalOpen(!isModalOpen);
-    if (!isModalOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
+    if (isModalOpen) {
       document.body.style.overflow = "auto";
+    } else {
+      document.body.style.overflow = "hidden";
+      setmenuMobileActive(!menuMobileActive);
     }
   };
 
-  const handleLogout = () => {
-    navigate("/");
-    setAuth(null);
-    localStorage.removeItem("auth");
+  const handleLogout = async () => {
+    try {
+      await axios.get(`http://localhost:3310/api/logout`, {
+        withCredentials: true,
+      });
+      setAuth(null);
+      localStorage.removeItem("auth");
+      navigate("/");
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
     setmenuMobileActive(!menuMobileActive);
   };
 

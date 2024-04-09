@@ -15,7 +15,9 @@ function ProfilTab() {
   const [selectedAdvertId, setSelectedAdvertId] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:3310/api/users/${id}/adverts`)
+    fetch(`http://localhost:3310/api/users/${id}/adverts`, {
+      credentials: "include",
+    })
       .then((res) => res.json())
       .then((data) => {
         // console.info("Mes annonces dans OngletProfil:", data);
@@ -23,17 +25,40 @@ function ProfilTab() {
       });
   }, [id]);
 
+  // useEffect(() => {
+  //   fetch(`http://localhost:3310/api/users/${id}/feedbacks`, {
+  //     credentials: "include", // Ceci permet d'inclure les cookies dans la requête
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       // console.info("commentairesTableau:", data);
+  //       setEvaluations(data);
+  //     });
+  // }, [id]);
+
   useEffect(() => {
-    fetch(`http://localhost:3310/api/users/${id}/feedbacks`)
-      .then((res) => res.json())
-      .then((data) => {
-        // console.info("commentairesTableau:", data);
-        setEvaluations(data);
-      });
+    const fetchFeedbacks = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3310/api/users/${id}/feedbacks`,
+          {
+            withCredentials: true,
+          }
+        );
+        // console.info("commentairesTableau:", response.data);
+        setEvaluations(response.data);
+      } catch (error) {
+        console.error("Error fetching feedbacks:", error);
+      }
+    };
+
+    fetchFeedbacks();
   }, [id]);
 
   useEffect(() => {
-    fetch(`http://localhost:3310/api/buyers/${id}/orders`)
+    fetch(`http://localhost:3310/api/buyers/${id}/orders`, {
+      credentials: "include",
+    })
       .then((res) => res.json())
       .then((data) => {
         // console.info("Mon historique d'achat:", data);
