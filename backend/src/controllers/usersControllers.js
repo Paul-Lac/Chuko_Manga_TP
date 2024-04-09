@@ -8,7 +8,7 @@ const models = require("../modelsProviders");
 //     .catch((err) => console.error(err));
 // };
 
-const add = async (req, res, next) => {
+const add = async (req, res) => {
   // Extract the item data from the request body
   const user = req.body;
 
@@ -20,7 +20,7 @@ const add = async (req, res, next) => {
     res.status(201).json({ insertId });
   } catch (err) {
     // Pass any errors to the error-handling middleware
-    next(err);
+    console.log(err);
   }
 };
 

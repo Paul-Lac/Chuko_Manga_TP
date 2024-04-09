@@ -25,6 +25,7 @@ function Connexion({ handleContentModal, handleClickOpen }) {
         {
           method: "post",
           headers: { "Content-Type": "application/json" },
+          // credentials: "include",
           body: JSON.stringify({
             email: emailRef.current.value,
             password: passwordRef.current.value,

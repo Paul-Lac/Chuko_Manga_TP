@@ -28,6 +28,15 @@
   margin-top: 1rem;
 }
 
+.inscription-form .password-instruction {
+  font-size: var(--fs-XS);
+  padding-top: 0.3rem;
+}
+
+.inscription-form .password-error {
+  color: red;
+}
+
 .inscription-form .text-inscription {
   display: flex;
   flex-direction: column;

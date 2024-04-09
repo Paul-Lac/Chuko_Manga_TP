@@ -14,7 +14,7 @@ import ProfilUser from "./pages/ProfilUser";
 import NotFound from "./pages/NotFound";
 import Favorites from "./pages/Favorites";
 import Catalog from "./pages/Catalog";
-import AdvertSeller from "./pages/AdvertSeller";
+// import AdvertSeller from "./pages/AdvertSeller";
 import RequireAuth from "./context/RequireAuth";
 // import ProfilSeller from "./pages/ProfilSeller";
 import UpdateProfile from "./pages/UpdateProfile";
@@ -64,14 +64,14 @@ const router = createBrowserRouter([
         path: "/manga/:id",
         element: <MangaDetails />,
       },
-      {
-        path: "/advert-seller/:id",
-        element: (
-          <RequireAuth>
-            <AdvertSeller />
-          </RequireAuth>
-        ),
-      },
+      // {
+      //   path: "/advert-seller/:id",
+      //   element: (
+      //     <RequireAuth>
+      //       <AdvertSeller />
+      //     </RequireAuth>
+      //   ),
+      // },
       {
         path: "/new-advert",
         element: (

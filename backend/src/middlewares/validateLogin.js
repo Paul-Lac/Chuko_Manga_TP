@@ -1,12 +1,11 @@
 const Joi = require("joi");
 
 const schema = Joi.object({
-  pseudo: Joi.string().required(),
   email: Joi.string().email().required(),
   password: Joi.string().min(8).max(20).required(),
 }).options({ abortEarly: false });
 
-const validateUser = (req, res, next) => {
+const validateLogin = (req, res, next) => {
   const { error } = schema.validate(req.body);
 
   if (error) {
@@ -20,4 +19,4 @@ const validateUser = (req, res, next) => {
   }
 };
 
-module.exports = validateUser;
+module.exports = validateLogin;

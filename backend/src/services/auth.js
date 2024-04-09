@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 // Recommandations **minimales** de l'OWASP : https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
 const hashingOptions = {
   type: argon2.argon2id,
-  memoryCost: 19 * 2 ** 10 /* 19 Mio en kio (19 * 1024 kio) */,
+  memoryCost: 19 * 2 ** 10,
   timeCost: 2,
   parallelism: 1,
 };

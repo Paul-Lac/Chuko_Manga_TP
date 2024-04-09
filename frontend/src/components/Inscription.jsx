@@ -1,8 +1,6 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useState, useRef } from "react";
+import PropTypes from "prop-types";
 import "./Inscription.css";
 
 function Inscription({ handleContentModal }) {
@@ -12,38 +10,48 @@ function Inscription({ handleContentModal }) {
   // Référence pour le champ email
   const emailRef = useRef();
 
-  // États pour le mot de passe et la confirmation du mot de passe
+  // États et const pour le mot de passe et la confirmation du mot de passe
   const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState(false);
+  const passwordMinLength = 8;
+  const passwordMaxLength = 20;
 
   // Gestionnaire de soumission du formulaire
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (
+      password.length < passwordMinLength ||
+      password.length > passwordMaxLength
+    ) {
+      setPasswordError(true);
+    } else {
+      setPasswordError(false);
+      try {
+        // Appel à l'API pour créer un nouvel utilisateur
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/users`,
+          {
+            method: "post",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              pseudo: pseudoRef.current.value,
+              email: emailRef.current.value,
+              password,
+            }),
+          }
+        );
 
-    try {
-      // Appel à l'API pour créer un nouvel utilisateur
-      const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/api/users`,
-        {
-          method: "post",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            pseudo: pseudoRef.current.value,
-            email: emailRef.current.value,
-            password,
-          }),
+        // Redirection vers la page de connexion si la création réussit
+        if (response.status === 201) {
+          handleContentModal();
+        } else {
+          // Log des détails de la réponse en cas d'échec
+          console.info(response);
         }
-      );
-
-      // Redirection vers la page de connexion si la création réussit
-      if (response.status === 201) {
-        handleContentModal();
-      } else {
-        // Log des détails de la réponse en cas d'échec
-        console.info(response);
+      } catch (err) {
+        // Log des erreurs possibles
+        console.error(err);
       }
-    } catch (err) {
-      // Log des erreurs possibles
-      console.error(err);
     }
   };
 
@@ -99,6 +107,11 @@ function Inscription({ handleContentModal }) {
           value={password}
           onChange={handleChangeInputPassword}
         />
+        <p
+          className={`password-instruction ${password.length < passwordMinLength && "password-error"}`}
+        >
+          8 caractères minimum
+        </p>
         {/* Bouton de soumission du formulaire */}
         <button className="Button-type" type="submit">
           Continuer
@@ -118,3 +131,7 @@ function Inscription({ handleContentModal }) {
 }
 
 export default Inscription;
+
+Inscription.propTypes = {
+  handleContentModal: PropTypes.func.isRequired,
+};

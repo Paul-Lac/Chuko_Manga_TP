@@ -62,6 +62,16 @@ router.get("/mangas/:id/volumes", volumesControllers.getVolumesByMangaId);
 /* ************************************************************************* */
 // PROTECTED ROUTES
 /* ************************************************************************* */
+// Import authControllers module for handling auth-related operations
+const authControllers = require("./controllers/authControllers");
+const cookieJwtAuth = require("./middlewares/cookieJwtAuth");
+
+// /login appelé dans connexion.jsx => pourquoi pas de validateLogin ?? et cookieJwtAuth appelé nulle part ??
+router.post("/login", authControllers.login);
+// /add n'est appelé nulle part dans le front
+// router.post("/add", cookieJwtAuth, authControllers.login);
+
+// router.use(verifyToken);
 
 // ADDRESS TABLE
 router.get("/address/:id", addressControllers.getAddressbyId);
@@ -99,24 +109,13 @@ router.post("/parcel-order", ordersControllers.addOrder);
 router.get("/users/:id", usersControllers.getUserById);
 // => fetchdata for profile head
 router.get("/user-profiles/:id", usersControllers.getUserProfilById);
-router.post("/users", hashPassword, usersControllers.add);
+router.post("/users", validateUser, hashPassword, usersControllers.add);
 router.put(
   "/user/:id",
   multerSingle,
   validateUser,
   usersControllers.updateUser
 );
-
-// Import authControllers module for handling auth-related operations
-const authControllers = require("./controllers/authControllers");
-const cookieJwtAuth = require("./middlewares/cookieJwtAuth");
-
-// /login appelé dans connexion.jsx => pourquoi pas de validateLogin ?? et cookieJwtAuth appelé nulle part ??
-router.post("/login", authControllers.login);
-// /add n'est appelé nulle part dans le front
-router.post("/add", cookieJwtAuth, authControllers.login);
-
-// router.use(verifyToken);
 
 module.exports = router;
 
