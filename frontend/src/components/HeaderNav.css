@@ -63,6 +63,7 @@
 
 .inscription-login-button:hover {
   color: var(--primary-clr-accent);
+  border: 0.1rem solid var(--primary-clr-accent);
 }
 
 .icon-heart {

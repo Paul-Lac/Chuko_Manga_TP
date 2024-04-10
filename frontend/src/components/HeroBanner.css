@@ -70,6 +70,10 @@
   border-radius: 0.5rem;
 }
 
+.banner-button:hover {
+  background-color: var(--primary-clr-accent);
+}
+
 @media screen and (max-width: 768px) {
   .home-banner-section {
     height: auto;

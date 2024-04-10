@@ -141,7 +141,9 @@ function ProfilTab() {
 
   const handleDeleteAdvert = (advertId) => {
     axios
-      .delete(`http://localhost:3310/api/adverts/${advertId}`)
+      .delete(`http://localhost:3310/api/adverts/${advertId}`, {
+        withCredentials: true,
+      })
       .then((response) => {
         console.info("Success deleting advert:", response.data);
 
@@ -197,7 +199,7 @@ function ProfilTab() {
           <div className="container-adverts">
             {adverts.length > 0 ? (
               adverts.map((advert) => (
-                <div className="advert-unit">
+                <div className="advert-unit" key={advert.id}>
                   <AdvertCard
                     key={advert.id}
                     id={advert.id}
