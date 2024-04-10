@@ -2,8 +2,10 @@ const Joi = require("joi");
 
 const schema = Joi.object({
   pseudo: Joi.string().required(),
+  firstname: Joi.string().required(),
+  lastname: Joi.string().required(),
   email: Joi.string().email().required(),
-  password: Joi.string().min(8).max(20).required(),
+  phone: Joi.string().required(),
 }).options({ abortEarly: false });
 
 const validateUserUpdate = (req, res, next) => {

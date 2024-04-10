@@ -11,9 +11,9 @@ function AdvertFormReference(props) {
     setBatch,
     setVolumeId,
     volumeList,
-    volumeAnounce,
-    mangaAnounce,
-    isNewAdvertPage,
+    // volumeAnounce,
+    // mangaAnounce,
+    // isNewAdvertPage,
   } = props;
 
   const [mangaList, setMangaList] = useState([]);
@@ -39,12 +39,12 @@ function AdvertFormReference(props) {
   //   volumeAnounce
   // );
 
-  let volumeText;
-  if (isNewAdvertPage) {
-    volumeText = "Sélectionne le volume";
-  } else {
-    volumeText = batch !== 1 ? "Sélectionne le volume" : volumeAnounce;
-  }
+  // let volumeText;
+  // if (isNewAdvertPage) {
+  //   volumeText = "Sélectionne le volume";
+  // } else {
+  //   volumeText = batch !== 1 ? "Sélectionne le volume" : volumeAnounce;
+  // }
 
   return (
     <>
@@ -81,12 +81,7 @@ function AdvertFormReference(props) {
               handleSelectedManga(e);
             }}
           >
-            <option value="">
-              {isNewAdvertPage
-                ? "Sélectionne ton manga"
-                : (batch === 0 && !isNewAdvertPage && mangaAnounce) ||
-                  (batch === 1 && !isNewAdvertPage && "Sélectionne ton manga")}
-            </option>
+            <option value="">Sélectionne ton manga</option>
             {mangaList.map((manga) => (
               <option key={manga.id} value={manga.id}>
                 {manga.title}
@@ -102,7 +97,7 @@ function AdvertFormReference(props) {
             name="volume_id"
             onChange={(e) => setVolumeId(e.target.value)}
           >
-            <option value="">{volumeText}</option>
+            <option value="">Sélectionne le volume</option>
             {volumeList.map((volumeItem) => (
               <option key={volumeItem.id} value={volumeItem.id}>
                 {volumeItem.title}
@@ -123,11 +118,7 @@ function AdvertFormReference(props) {
               handleSelectedManga(e);
             }}
           >
-            <option value="">
-              {isNewAdvertPage
-                ? "Sélectionne ton manga"
-                : batch === 1 && !isNewAdvertPage && mangaAnounce}
-            </option>
+            <option value="">Sélectionne ton manga</option>
             {mangaList.map((manga) => (
               <option key={manga.id} value={manga.id}>
                 {manga.title}
@@ -152,7 +143,7 @@ AdvertFormReference.propTypes = {
       title: PropTypes.string.isRequired,
     })
   ).isRequired,
-  isNewAdvertPage: PropTypes.bool.isRequired,
-  mangaAnounce: PropTypes.string.isRequired,
-  volumeAnounce: PropTypes.string.isRequired,
+  // isNewAdvertPage: PropTypes.bool.isRequired,
+  // mangaAnounce: PropTypes.string.isRequired,
+  // volumeAnounce: PropTypes.string.isRequired,
 };

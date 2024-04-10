@@ -138,20 +138,7 @@ function UpdateAddress() {
           required
         />
       </div>
-      <div className="input_label_profil">
-        <label htmlFor="nameAdress" className="label_profil">
-          Nom de l'adresse
-        </label>
-        <input
-          type="text"
-          id="nameAdress"
-          name="nameAdress"
-          value={formData.nameAdress}
-          onChange={handleChange}
-          className="input_profil"
-          required
-        />
-      </div>
+
       <button className="button_modifier">Modifier</button>
     </form>
   );

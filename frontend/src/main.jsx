@@ -6,7 +6,7 @@ import AdminManga from "./components/AdminManga";
 import MangaDetails from "./pages/MangaDetails";
 import Explore from "./pages/Explore";
 import NewAdvert from "./pages/NewAdvert";
-import UpdateAdvert from "./pages/UpdateAdvert";
+// import UpdateAdvert from "./pages/UpdateAdvert";
 import Home from "./pages/Home";
 import PaymentPage from "./pages/Payment";
 import AdvertDetail from "./pages/AdvertDetail";
@@ -100,14 +100,14 @@ const router = createBrowserRouter([
       //   path: "/profilseller/:id",
       //   element: <ProfilSeller />,
       // },
-      {
-        path: "/update-advert/:id",
-        element: (
-          <RequireAuth>
-            <UpdateAdvert />
-          </RequireAuth>
-        ),
-      },
+      // {
+      //   path: "/update-advert/:id",
+      //   element: (
+      //     <RequireAuth>
+      //       <UpdateAdvert />
+      //     </RequireAuth>
+      //   ),
+      // },
       {
         path: "/update-profile/:id",
         element: (

@@ -16,8 +16,8 @@ function AdvertFormContent(props) {
     price,
     priceErr,
     setConditionId,
-    conditionAnounce,
-    isNewAdvertPage,
+    // conditionAnounce,
+    // isNewAdvertPage,
   } = props;
 
   // State designed to set condition list
@@ -91,11 +91,7 @@ function AdvertFormContent(props) {
         name="article_condition_id"
         onChange={(e) => setConditionId(e.target.value)}
       >
-        <option value="">
-          {isNewAdvertPage
-            ? "Sélectionne l'état de ton article"
-            : conditionAnounce}
-        </option>
+        <option value="">Sélectionne l'état de ton article</option>
         {conditionList.map((conditionItem) => (
           <option key={conditionItem.id} value={conditionItem.id}>
             {conditionItem.name_condition}
@@ -144,6 +140,6 @@ AdvertFormContent.propTypes = {
     image3: PropTypes.string,
   }).isRequired,
   setConditionId: PropTypes.func.isRequired,
-  conditionAnounce: PropTypes.string.isRequired,
-  isNewAdvertPage: PropTypes.bool.isRequired,
+  // conditionAnounce: PropTypes.string.isRequired,
+  // isNewAdvertPage: PropTypes.bool.isRequired,
 };

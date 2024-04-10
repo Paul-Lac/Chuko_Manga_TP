@@ -8,7 +8,7 @@ import AdvertForm from "../components/AdvertForm";
 
 function NewAdvert() {
   // defined if we are on the New-Advert or Update-Advert page
-  const isNewAdvertPage = true;
+  // const isNewAdvertPage = true;
   const navigate = useNavigate();
   // States designed to display options for selection and control user's input
   const [selectedManga, setSelectedManga] = useState(null);
@@ -209,7 +209,7 @@ function NewAdvert() {
         setConditionId={setConditionId}
         setVolumeId={setVolumeId}
         volumeList={volumeList}
-        isNewAdvertPage={isNewAdvertPage}
+        // isNewAdvertPage={isNewAdvertPage}
       />
     </section>
   );

@@ -25,12 +25,12 @@ function AdvertForm(props) {
     previewUrls,
     setBatch,
     setConditionId,
-    conditionAnounce,
+    // conditionAnounce,
     setVolumeId,
-    volumeAnounce,
+    // volumeAnounce,
     volumeList,
-    isNewAdvertPage,
-    mangaAnounce,
+    // isNewAdvertPage,
+    // mangaAnounce,
   } = props;
 
   return (
@@ -51,8 +51,8 @@ function AdvertForm(props) {
         price={price}
         priceErr={priceErr}
         setConditionId={setConditionId}
-        conditionAnounce={conditionAnounce}
-        isNewAdvertPage={isNewAdvertPage}
+        // conditionAnounce={conditionAnounce}
+        // isNewAdvertPage={isNewAdvertPage}
       />
       <AdvertFormReference
         batch={batch}
@@ -60,12 +60,12 @@ function AdvertForm(props) {
         setBatch={setBatch}
         setVolumeId={setVolumeId}
         volumeList={volumeList}
-        volumeAnounce={volumeAnounce}
-        mangaAnounce={mangaAnounce}
-        isNewAdvertPage={isNewAdvertPage}
+        // volumeAnounce={volumeAnounce}
+        // mangaAnounce={mangaAnounce}
+        // isNewAdvertPage={isNewAdvertPage}
       />
       <button className="add-button" type="submit">
-        {isNewAdvertPage ? "Ajouter" : "Modifier"}
+        Ajouter
       </button>
     </form>
   );
@@ -102,8 +102,8 @@ AdvertForm.propTypes = {
       title: PropTypes.string.isRequired,
     })
   ).isRequired,
-  volumeAnounce: PropTypes.string.isRequired,
-  conditionAnounce: PropTypes.string.isRequired,
-  isNewAdvertPage: PropTypes.bool.isRequired,
-  mangaAnounce: PropTypes.string.isRequired,
+  // volumeAnounce: PropTypes.string.isRequired,
+  // conditionAnounce: PropTypes.string.isRequired,
+  // isNewAdvertPage: PropTypes.bool.isRequired,
+  // mangaAnounce: PropTypes.string.isRequired,
 };
