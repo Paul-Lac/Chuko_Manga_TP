@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import { useState, useEffect } from "react";
 import axios from "axios";
-import MangaDetails from "../pages/MangaDetails";
+import MangaDetails from "../../pages/MangaDetails";
 import AdminUpdateManga from "./AdminUpdateManga";
 import "./AdminListManga.css";
 
