@@ -2,11 +2,12 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable no-plusplus */
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import girl from "../assets/girl.png";
 import Stars from "./StarsRating";
 import "./ProfilHead.css";
 
-function ProfilHead({ children }) {
+function ProfilHead({}) {
   const { id } = useParams();
   const [formData, setFormData] = useState({
     pseudo: "",
@@ -54,37 +55,45 @@ function ProfilHead({ children }) {
 
   return (
     <div className="main_container_user_profilhead">
+      <img className="profile-img" src={girl} alt="profile illustration" />
       <div className="container_user_profilhead">
-        <div className="picture_user_profilhead">
-          <img
-            className="picture_user_profilhead_img"
-            src={`http://localhost:3310${formData.picture}`}
-            alt="picture_user"
-          />
-        </div>
-        <div className="user_profilhead_info">
-          <h1 className="user_profilhead_info_name">{formData.pseudo}</h1>
-          <Stars
-            ratingValue={formData.rating}
-            starSize={screenWidth > 768 ? 34 : 15}
-          />
-          <h1 className="user_profilhead_info_country">{formData.country}</h1>
-          <div className="user_profilhead_info_verification">
-            <p className="user_profilhead_info_title">
-              Informations verifiées:
-            </p>
-            <p className="user-profilhead_mail">
-              <span style={{ fontWeight: 600 }}>Email: </span>
+        <div className="container_user_detail">
+          <div className="user_profilhead_info">
+            <h1 className="user_profilhead_info_name">{formData.pseudo}</h1>
+            <Stars
+              ratingValue={formData.rating}
+              starSize={screenWidth > 768 ? 34 : 15}
+            />
+            <p className="user-item-title">
+              <span>Email</span>
               {formData.email}
             </p>
-            <p className="user-profilhead_phone">
-              <span style={{ fontWeight: 600 }}>Téléphone:</span>{" "}
-              {formData.phone}
+            <p className="user-item-title">
+              <span>Téléphone</span> {formData.phone}
             </p>
           </div>
+          <div className="picture_user_profilhead">
+            <img
+              className="picture_user_profilhead_img"
+              src={`http://localhost:3310${formData.picture}`}
+              alt="picture_user"
+            />
+          </div>
         </div>
+        <div className="container_user_address">Address</div>
+        <button className="user-profilhead_button">
+          <Link
+            to={`/update-profile/${id}`}
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+              pointerEvents: "auto",
+            }}
+          >
+            Modifier
+          </Link>
+        </button>
       </div>
-      {children}
     </div>
   );
 }

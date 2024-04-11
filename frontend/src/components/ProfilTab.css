@@ -1,5 +1,5 @@
 .container-onglets {
-  margin-top: 10%;
+  margin-top: 3rem;
 }
 
 .container-button {
@@ -37,11 +37,11 @@
   margin: auto;
 }
 
-/* .advert-unit {
+.advert-unit {
   display: flex;
   flex-direction: column;
   align-items: center;
-} */
+}
 
 .delete-btn {
   color: var(--primary-clr);
@@ -50,7 +50,7 @@
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   width: 100%;
-  margin: 0.2rem;
+  margin: 0.2em;
 }
 
 .delete-btn:hover {
