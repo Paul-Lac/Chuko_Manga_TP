@@ -28,7 +28,7 @@
 }
 
 /********************** Utilise ces propriétées pour l'onglet "Mes annonces et Mon historique d'achat" ***********************/
-.container-adverts {
+.tab-content {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -37,11 +37,11 @@
   margin: auto;
 }
 
-.advert-unit {
+/* .advert-unit {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+} */
 
 .delete-btn {
   color: var(--primary-clr);
@@ -56,6 +56,46 @@
 .delete-btn:hover {
   color: var(--neutral-100);
   background-color: var(--primary-clr);
+}
+
+.tab-order {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.order-item {
+  box-shadow:
+    rgba(0, 0, 0, 0.12) 0px 1px 3px,
+    rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  margin: auto;
+  padding: 0.5rem;
+  justify-content: center;
+}
+
+.img-order {
+  height: 6rem;
+  width: 4rem;
+  object-fit: cover;
+  margin-left: 1rem;
+}
+
+.order-advert-info,
+.order-details {
+  margin-left: 5rem;
+  width: 15rem;
+}
+
+.order-info-title {
+  margin-top: 0.5rem;
+}
+
+.order-info-price {
+  font-weight: 600;
+  margin-top: 0.5rem;
 }
 
 /* ********************************************** */
@@ -130,9 +170,10 @@
 
 /******************************************************************************************************************************/
 
-.statusOrder {
+.order-date,
+.status-order {
   font-size: var(--fs-XS);
-  margin-top: 2%;
+  margin-top: 0.5rem;
 }
 .completed {
   color: green;
@@ -148,11 +189,6 @@
 
 .default {
   color: gray;
-}
-
-.orderDate {
-  font-size: var(--fs-XS);
-  margin-top: 2%;
 }
 
 /********************** Utilise ces propriétées pour l'onglet "Mes évaluations" ***********************************************/
@@ -287,9 +323,17 @@
     width: 5rem;
   }
 
-  .commentBuyer {
+  .comment-buyer {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+  .order-item {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .img-order {
+    margin-left: 0rem;
   }
 }

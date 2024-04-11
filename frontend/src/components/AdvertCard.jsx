@@ -3,10 +3,10 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import "./AdvertCard.css";
 import { Link } from "react-router-dom";
-import { useNotifications } from "../context/NotificationContext";
+// import { useNotifications } from "../context/NotificationContext";
 
 function AdvertCard({ advert, showUserSection, showFavorite }) {
-  const { addNotification } = useNotifications();
+  // const { addNotification } = useNotifications();
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
@@ -41,12 +41,12 @@ function AdvertCard({ advert, showUserSection, showFavorite }) {
     localStorage.setItem("favoriteAdverts", JSON.stringify(updatedFavorites));
 
     console.info("Favori cliqué");
-    if (newIsFavorite) {
-      addNotification(
-        "Article ajouté aux favoris.",
-        `http://localhost:3310${advert.image_path}`
-      );
-    }
+    // if (newIsFavorite) {
+    //   addNotification(
+    //     "Article ajouté aux favoris.",
+    //     `http://localhost:3310${advert.image_path}`
+    //   );
+    // }
   };
 
   const average = parseFloat(advert.average).toFixed(1);

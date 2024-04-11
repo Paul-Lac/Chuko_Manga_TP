@@ -11,6 +11,7 @@ const cookieJwtAuth = require("./middlewares/cookieJwtAuth");
 const validateAddress = require("./middlewares/validateAddress");
 const validateAdvert = require("./middlewares/validateAdvert");
 const validateLogin = require("./middlewares/validateLogin");
+const validateOrder = require("./middlewares/validateOrder");
 const validateUserRegistration = require("./middlewares/validateUserRegistration");
 const validateUserUpdate = require("./middlewares/validateUserUpdate");
 
@@ -37,6 +38,7 @@ const volumesControllers = require("./controllers/volumesControllers");
 // ADVERT TABLE
 router.get("/advert-cards", advertsControllers.getAdvertCards);
 router.get("/advert-cards/:id", advertsControllers.getAdvertById);
+router.get("/users/:id/adverts", advertsControllers.getAdvertsBySeller);
 
 // CONDITIONS TABLE
 router.get("/conditions", conditionsControllers.getAllConditions);
@@ -71,12 +73,6 @@ router.get("/logout", authControllers.logout);
 /* ************************************************************************* */
 
 router.use(cookieJwtAuth);
-router.post(
-  "/new-advert",
-  multerMultiple,
-  validateAdvert,
-  advertsControllers.createAdvert
-);
 
 // ADDRESS TABLE
 router.get("/address/:id", addressControllers.getAddressbyId);
@@ -88,21 +84,21 @@ router.put(
 );
 
 // ADVERT TABLE
-router.get("/users/:id/adverts", advertsControllers.getAdvertsBySeller);
+router.post(
+  "/new-advert",
+  multerMultiple,
+  validateAdvert,
+  advertsControllers.createAdvert
+);
 router.delete("/adverts/:id", advertsControllers.deleteAdvert);
 
 // FEEDBACK TABLE
 router.get("/users/:id/feedbacks", feedbacksControllers.getFeedbacksById);
 
-// MANGA TABLE
-router.post("/mangas", multerSingle, mangasControllers.createManga);
-router.put("/mangas/:id", multerSingle, mangasControllers.updateManga);
-router.delete("/mangas/:id", mangasControllers.deleteManga);
-
 // ORDER TABLE
 // Route to get all orders by buyer (page Profil/onglet my purchase history)
 router.get("/buyers/:id/orders", ordersControllers.getHistoryOrderByBuyer);
-router.post("/parcel-order", ordersControllers.addOrder);
+router.post("/orders", validateOrder, ordersControllers.addOrder);
 
 // USER TABLE AND AUTHENTIFICATION
 // => fetchdata for update detail
@@ -117,3 +113,8 @@ router.put(
 );
 
 module.exports = router;
+
+// MANGA TABLE
+// router.post("/mangas", multerSingle, mangasControllers.createManga);
+// router.put("/mangas/:id", multerSingle, mangasControllers.updateManga);
+// router.delete("/mangas/:id", mangasControllers.deleteManga);

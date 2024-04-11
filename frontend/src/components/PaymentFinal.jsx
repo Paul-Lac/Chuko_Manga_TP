@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import "./PaymentFinal.css";
 
-import { useNotifications } from "../context/NotificationContext";
+// import { useNotifications } from "../context/NotificationContext";
 import UserContext from "../context/UserContext";
 
 function PaymentFinal({ price, articleData }) {
@@ -11,7 +11,7 @@ function PaymentFinal({ price, articleData }) {
   const cost = parseFloat(price);
   const fraisDePort = (cost * 5) / 100;
   const total = cost + fraisDePort;
-  const { addNotification } = useNotifications();
+  // const { addNotification } = useNotifications();
   const { auth } = useContext(UserContext);
 
   const orderDetails = {
@@ -23,16 +23,37 @@ function PaymentFinal({ price, articleData }) {
     advert_id: articleData.advert_id,
     user_id: articleData.user_id,
   };
-  const handlePayment = () => {
-    const imageUrl = `http://localhost:3310${articleData?.image_paths[0]}`;
 
-    fetch("http://localhost:3310/api/parcel-order", {
+  const handlePayment = () => {
+    console.info("Order details:", orderDetails);
+    // const imageUrl = `http://localhost:3310${articleData?.image_paths[0]}`;
+
+    //   axios
+    //     .post("http://localhost:3310/api/parcel-order", orderDetails)
+    //     .then((response) => {
+    //       if (response.ok) {
+    //         return response.json();
+    //       }
+    //       throw new Error("Network response was not ok");
+    //     })
+    //     .then((data) => {
+    //       console.info(data.message);
+    //       // addNotification("La vente a été réalisée avec succès !", imageUrl);
+    //       navigate("/");
+    //     })
+    //     .catch((error) => {
+    //       console.error("Erreur lors de l'enregistrement de la commande:", error);
+    //     });
+    // };
+
+    fetch("http://localhost:3310/api/orders", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${auth.token}`,
       },
       body: JSON.stringify(orderDetails),
+      credentials: "include",
     })
       .then((response) => {
         if (response.ok) {
@@ -42,8 +63,8 @@ function PaymentFinal({ price, articleData }) {
       })
       .then((data) => {
         console.info(data.message);
-        addNotification("La vente a été réalisée avec succès !", imageUrl);
-        navigate("/");
+        // addNotification("La vente a été réalisée avec succès !", imageUrl);
+        navigate(`/profile/${auth.user.id}`);
       })
       .catch((error) => {
         console.error("Erreur lors de l'enregistrement de la commande:", error);

@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import AdvertCard from "../components/AdvertCard";
-import { useNotifications } from "../context/NotificationContext";
+// import { useNotifications } from "../context/NotificationContext";
 import "./Favorites.css";
 import FavGaara from "../assets/favGaara.png";
 
 function Favorites() {
   const [favoriteAdverts, setFavoriteAdverts] = useState([]);
-  const { addNotification } = useNotifications();
+  // const { addNotification } = useNotifications();
 
   useEffect(() => {
     const storedFavorites = localStorage.getItem("favoriteAdverts");
@@ -40,7 +40,7 @@ function Favorites() {
               advert={advert}
               favoriteAdverts={favoriteAdverts}
               setFavoriteAdverts={setFavoriteAdverts}
-              addNotification={addNotification}
+              // addNotification={addNotification}
             />
           ))
         )}

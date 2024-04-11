@@ -15,9 +15,7 @@ function ProfilTab() {
   const [selectedAdvertId, setSelectedAdvertId] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:3310/api/users/${id}/adverts`, {
-      credentials: "include",
-    })
+    fetch(`http://localhost:3310/api/users/${id}/adverts`)
       .then((res) => res.json())
       .then((data) => {
         // console.info("Mes annonces dans OngletProfil:", data);
@@ -61,7 +59,7 @@ function ProfilTab() {
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.info("Mon historique d'achat:", data);
+        console.info("Mon historique d'achat:", data);
         setHistoryOrders(data);
       });
   }, [id]);
@@ -196,13 +194,12 @@ function ProfilTab() {
 
       <div className="container-information">
         {ongletActif === "Annonces" && (
-          <div className="container-adverts">
+          <div className="tab-content">
             {adverts.length > 0 ? (
               adverts.map((advert) => (
                 <div className="advert-unit" key={advert.id}>
                   <AdvertCard
                     key={advert.id}
-                    id={advert.id}
                     advert={advert}
                     showUserSection={false}
                     showFavorite={false}
@@ -281,7 +278,7 @@ function ProfilTab() {
                       />
                     </Link>
                   </div>
-                  <div className="commentBuyer">
+                  <div className="comment-buyer">
                     <div className="speudoBuyer">
                       <Link to={`/profilseller/${evaluation.user_buyer}`}>
                         {`${evaluation.pseudo}`}{" "}
@@ -302,27 +299,28 @@ function ProfilTab() {
         )}
 
         {ongletActif === "Achat" && (
-          <div className="containerAnnonces">
+          <div className="tab-order">
             {historyOrders?.map((order) => (
               <div key={order.id}>
-                <li className="cardAnnonces">
-                  <div>
-                    <img
-                      className="imagePathAnnonces"
-                      src={`http://localhost:3310${order.image_path}`}
-                      alt="image_article_seller"
-                    />
-                    <div className="titleSearchMangaAnnonces">{`${order.title_search_manga}`}</div>
-                    <div className="priceAnnonces">
+                <li className="order-item">
+                  <img
+                    className="img-order"
+                    src={`http://localhost:3310${order.image_path}`}
+                    alt="image_article_seller"
+                  />
+                  <div className="order-advert-info">
+                    <div className="order-info-title">{`${order.title_search_manga}`}</div>
+                    <div className="order-info-price">
                       {`${order.total_price}`} €
                     </div>
-                    <div className="name_condition">{`${order.name_condition}`}</div>
-                    <div className="orderDate">
+                  </div>
+                  <div className="order-details">
+                    <div className="order-date">
                       Acheté le :{" "}
                       {`${order.order_date ? new Date(order.order_date).toLocaleDateString("fr-FR").split("/").join("-") : ""}`}
                     </div>
-                    <div className="statusOrder">
-                      Status :{" "}
+                    <div className="status-order">
+                      Statut :{" "}
                       <span className={orderStatusClass(order.status_order)}>
                         {order.status_order}
                       </span>

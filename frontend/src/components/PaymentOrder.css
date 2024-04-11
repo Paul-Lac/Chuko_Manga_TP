@@ -13,6 +13,7 @@
 
 .img-command-annonce {
   width: 40%;
+  object-fit: cover;
 }
 
 .information-card {
