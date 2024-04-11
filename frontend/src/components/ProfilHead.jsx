@@ -7,7 +7,7 @@ import girl from "../assets/girl.png";
 import Stars from "./StarsRating";
 import "./ProfilHead.css";
 
-function ProfilHead({}) {
+function ProfilHead() {
   const { id } = useParams();
   const [formData, setFormData] = useState({
     pseudo: "",
