@@ -209,7 +209,6 @@ function NewAdvert() {
         setConditionId={setConditionId}
         setVolumeId={setVolumeId}
         volumeList={volumeList}
-        // isNewAdvertPage={isNewAdvertPage}
       />
     </section>
   );
