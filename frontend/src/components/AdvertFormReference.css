@@ -21,13 +21,23 @@
   border-bottom: 2px solid var(--neutral-600);
 }
 
-.advert-ref {
+/* .advert-ref {
   font-size: var(--fs-M);
   margin-bottom: 0.6rem;
   font-weight: 500;
-}
+} */
 
 .advert-instruction {
   color: var(--neutral-700);
   font-size: var(--fs-S);
+}
+
+@media screen and (max-width: 768px) {
+  .advert-tab-container button {
+    font-size: var(--fs-S);
+  }
+
+  .advert-instruction {
+    font-size: var(--fs-XS);
+  }
 }

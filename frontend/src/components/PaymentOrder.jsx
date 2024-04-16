@@ -9,10 +9,10 @@ function PaymentOrder({ articleInfo }) {
           <img
             className="img-command-annonce"
             src={`http://localhost:3310${articleInfo.image_paths[0]}`}
-            alt={articleInfo.title_search_manga}
+            alt={articleInfo.title_advert}
           />
           <div className="information-card">
-            <h3>{articleInfo.title_search_manga}</h3>
+            <h3>{articleInfo.title_advert}</h3>
             <div className="user-section">
               <img
                 src={`http://localhost:3310${articleInfo.user_picture}`}

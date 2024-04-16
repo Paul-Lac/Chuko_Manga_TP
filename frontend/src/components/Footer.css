@@ -52,12 +52,11 @@
 
 .lastBlock-link {
   background-color: var(--neutral-100);
-
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   block-size: 4rem;
-  writing-mode: horizontal-tb;
+  /* writing-mode: horizontal-tb; */
 }
 
 .lastBlock {

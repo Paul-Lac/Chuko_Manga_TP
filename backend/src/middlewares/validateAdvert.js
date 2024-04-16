@@ -8,43 +8,16 @@ const advertSchema = Joi.object({
   mangaId: Joi.number(),
   volumeId: Joi.number(),
   batch: Joi.number().required(),
-  alert: Joi.number().required(),
   publicationDate: Joi.date().required(),
   userId: Joi.number().required(),
-});
+}).options({ abortEarly: false });
 
 const validateAdvert = (req, res, next) => {
-  const {
-    titleSearchManga,
-    description,
-    price,
-    articleConditionId,
-    mangaId,
-    volumeId,
-    batch,
-    alert,
-    publicationDate,
-    userId,
-  } = req.body;
-  const { error } = advertSchema.validate(
-    {
-      titleSearchManga,
-      description,
-      price,
-      articleConditionId,
-      mangaId,
-      volumeId,
-      batch,
-      alert,
-      publicationDate,
-      userId,
-    },
-    { abortEarly: false }
-  );
+  const validationResult = advertSchema.validate(req.body);
 
-  if (error) {
-    res.status(422).json({ validationErrors: error.details });
-    error.details.forEach((errorItem) => {
+  if (validationResult.error) {
+    res.status(422).json({ validationErrors: validationResult.error.details });
+    validationResult.error.details.forEach((errorItem) => {
       console.info("Error list :", errorItem.message);
     });
   } else {

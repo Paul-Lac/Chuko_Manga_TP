@@ -16,8 +16,6 @@ function AdvertFormContent(props) {
     price,
     priceErr,
     setConditionId,
-    // conditionAnounce,
-    // isNewAdvertPage,
   } = props;
 
   // State designed to set condition list
@@ -45,7 +43,7 @@ function AdvertFormContent(props) {
         className={`advert-input ${maxTitleReached && "advert-wrong-input"}`}
         type="text"
         id="title"
-        name="title_search_manga"
+        name="title_advert"
         value={advertTitle}
         onChange={handleTitleChange}
         placeholder="ex: Naruto, tome 44"
@@ -140,6 +138,4 @@ AdvertFormContent.propTypes = {
     image3: PropTypes.string,
   }).isRequired,
   setConditionId: PropTypes.func.isRequired,
-  // conditionAnounce: PropTypes.string.isRequired,
-  // isNewAdvertPage: PropTypes.bool.isRequired,
 };

@@ -1,17 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-// import UserContext from "../context/UserContext";
+import UserContext from "../context/UserContext";
 
 import "./NewAdvert.css";
 import AdvertForm from "../components/AdvertForm";
 
 function NewAdvert() {
-  // defined if we are on the New-Advert or Update-Advert page
-  // const isNewAdvertPage = true;
   const navigate = useNavigate();
+  const { auth } = useContext(UserContext);
   // States designed to display options for selection and control user's input
-  const [selectedManga, setSelectedManga] = useState(null);
+  const [selectedMangaId, setSelectedMangaId] = useState(null);
   const [volumeList, setVolumeList] = useState([]);
   const [priceErr, setPriceErr] = useState(false);
 
@@ -24,21 +23,13 @@ function NewAdvert() {
   const [conditionId, setConditionId] = useState(null);
   const [price, setPrice] = useState("");
   const [volumeId, setVolumeId] = useState(null);
-  const alert = 0;
   const publicationDate = new Date().toISOString().split("T")[0];
 
-  // States designed to preview images
-  const [previewUrls, setPreviewUrls] = useState({
-    image1: null,
-    image2: null,
-    image3: null,
-  });
-
-  // States designed transfer images
+  // State designed to transfer images and preview images
   const [files, setFiles] = useState({
-    image1: null,
-    image2: null,
-    image3: null,
+    image1: { file: null, preview: null },
+    image2: { file: null, preview: null },
+    image3: { file: null, preview: null },
   });
 
   // Variables designed to control user's input
@@ -50,37 +41,39 @@ function NewAdvert() {
   // Set manga selection
   const handleSelectedManga = (e) => {
     setVolumeList([]);
-    setSelectedManga(e.target.value);
-    // console.info("Manga selected:", selectedManga);
+    setSelectedMangaId(e.target.value);
+    // console.info("Manga selected:", selectedMangaId);
   };
 
-  // Handle image selection
+  // Handle image selection and image preview
   const handleImageChange = (e) => {
-    setFiles({ ...files, [e.target.name]: e.target.files[0] });
+    const { name } = e.target;
+    const file = e.target.files[0];
+    const preview = URL.createObjectURL(file);
+
+    setFiles((prevFiles) => ({
+      ...prevFiles,
+      [name]: { file, preview },
+    }));
   };
 
-  // Create image preview
-  useEffect(() => {
-    for (const key in files) {
-      if (files[key]) {
-        const url = URL.createObjectURL(files[key]);
-        setPreviewUrls((prevUrls) => ({ ...prevUrls, [key]: url }));
+  // Delete selected image and corresponding preview
+  const deleteFile = (key) => {
+    setFiles((prevFiles) => {
+      const updatedFiles = { ...prevFiles };
+      delete updatedFiles[key];
+      if (updatedFiles[key] && updatedFiles[key].preview) {
+        URL.revokeObjectURL(updatedFiles[key].preview);
       }
-    }
-    return () => {
-      for (const key in files) {
-        if (files[key]) {
-          URL.revokeObjectURL(previewUrls[key]);
-        }
-      }
-    };
-  }, [files]);
+      return updatedFiles;
+    });
+  };
 
   // Fetch manga's list
   useEffect(() => {
-    if (selectedManga !== null) {
+    if (selectedMangaId !== null) {
       axios
-        .get(`http://localhost:3310/api/mangas/${selectedManga}/volumes`)
+        .get(`http://localhost:3310/api/mangas/${selectedMangaId}/volumes`)
         .then((res) => {
           // console.info("Volumes are", res.data);
           setVolumeList(res.data);
@@ -89,19 +82,7 @@ function NewAdvert() {
           console.error("Error fetching volumes:", error);
         });
     }
-  }, [selectedManga]);
-
-  // Delete selected image and corresponding preview
-  const deleteFile = (key) => {
-    const updatedFiles = { ...files };
-    updatedFiles[key] = null;
-    setFiles(updatedFiles);
-    if (previewUrls[key]) {
-      const updatedPreviewUrls = { ...previewUrls };
-      updatedPreviewUrls[key] = null;
-      setPreviewUrls(updatedPreviewUrls);
-    }
-  };
+  }, [selectedMangaId]);
 
   // Manage and control user's inputs
   const handleTitleChange = (e) => {
@@ -130,56 +111,36 @@ function NewAdvert() {
     }
   };
 
-  // Set user id value
-  let userId;
-
-  try {
-    const storedAuth = localStorage.getItem("auth");
-    if (storedAuth) {
-      const authObj = JSON.parse(storedAuth);
-      userId = authObj.user.id;
-      // console.info("this is user id:", userId);
-    }
-  } catch (error) {
-    console.error(
-      "Erreur lors de la récupération de l'id utilisateur depuis localStorage",
-      error
-    );
-  }
-
   // Submit form and redirect to user's profile
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.info("upload files", files);
     const formData = new FormData();
     formData.append("titleSearchManga", advertTitle);
     formData.append("description", description);
     formData.append("articleConditionId", conditionId);
     formData.append("price", price);
-    if (selectedManga !== null) {
-      formData.append("mangaId", selectedManga);
+    if (selectedMangaId !== null) {
+      formData.append("mangaId", selectedMangaId);
     }
     if (volumeId !== null) {
       formData.append("volumeId", volumeId);
     }
     formData.append("batch", batch);
-    formData.append("alert", alert);
-    formData.append("userId", userId);
+    formData.append("userId", auth.user.id);
     formData.append("publicationDate", publicationDate);
     for (const key in files) {
-      if (files[key]) {
-        console.info(key, files[key]);
-        formData.append(key, files[key]);
+      if (files[key] && files[key].file) {
+        formData.append(key, files[key].file);
       }
     }
     console.info("Data to send:", formData);
     axios
-      .post("http://localhost:3310/api/new-advert", formData, {
+      .post("http://localhost:3310/api/adverts", formData, {
         withCredentials: true,
       })
       .then((res) => {
         console.info("Advert created successfully", res.data);
-        navigate(`/profile/${userId}`);
+        navigate(`/profile/${auth.user.id}`);
       })
       .catch((error) => {
         console.error("Error creating advert", error);
@@ -194,6 +155,7 @@ function NewAdvert() {
         batch={batch}
         deleteFile={deleteFile}
         description={description}
+        files={files}
         handleDescChange={handleDescChange}
         handleImageChange={handleImageChange}
         handlePriceChange={handlePriceChange}
@@ -204,7 +166,6 @@ function NewAdvert() {
         maxTitleReached={maxTitleReached}
         price={price}
         priceErr={priceErr}
-        previewUrls={previewUrls}
         setBatch={setBatch}
         setConditionId={setConditionId}
         setVolumeId={setVolumeId}

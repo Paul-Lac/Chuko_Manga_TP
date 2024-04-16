@@ -117,7 +117,7 @@
 //                           src={`http://localhost:3310${annonce.image_path}`}
 //                           alt="image_article_seller"
 //                         />
-//                         <h2 className="titleSearchMangaAnnonces">{`${annonce.title_search_manga}`}</h2>
+//                         <h2 className="titleSearchMangaAnnonces">{`${annonce.title_advert}`}</h2>
 //                         <p className="priceAnnonces">{`${annonce.price}`} €</p>
 //                         <p className="name_condition">{`${annonce.name_condition}`}</p>
 //                       </div>

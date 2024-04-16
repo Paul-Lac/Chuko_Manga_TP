@@ -12,6 +12,7 @@ function AdvertForm(props) {
     batch,
     deleteFile,
     description,
+    files,
     handleDescChange,
     handleImageChange,
     handlePriceChange,
@@ -22,23 +23,18 @@ function AdvertForm(props) {
     maxTitleReached,
     price,
     priceErr,
-    previewUrls,
     setBatch,
     setConditionId,
-    // conditionAnounce,
     setVolumeId,
-    // volumeAnounce,
     volumeList,
-    // isNewAdvertPage,
-    // mangaAnounce,
   } = props;
 
   return (
     <form className="advert-form" onSubmit={handleSubmit}>
       <AdvertFormPicture
         deleteFile={deleteFile}
+        files={files}
         handleImageChange={handleImageChange}
-        previewUrls={previewUrls}
       />
       <AdvertFormContent
         advertTitle={advertTitle}
@@ -51,8 +47,6 @@ function AdvertForm(props) {
         price={price}
         priceErr={priceErr}
         setConditionId={setConditionId}
-        // conditionAnounce={conditionAnounce}
-        // isNewAdvertPage={isNewAdvertPage}
       />
       <AdvertFormReference
         batch={batch}
@@ -60,9 +54,6 @@ function AdvertForm(props) {
         setBatch={setBatch}
         setVolumeId={setVolumeId}
         volumeList={volumeList}
-        // volumeAnounce={volumeAnounce}
-        // mangaAnounce={mangaAnounce}
-        // isNewAdvertPage={isNewAdvertPage}
       />
       <button className="add-button" type="submit">
         Ajouter
@@ -88,11 +79,6 @@ AdvertForm.propTypes = {
   maxTitleReached: PropTypes.bool.isRequired,
   price: PropTypes.string.isRequired,
   priceErr: PropTypes.bool.isRequired,
-  previewUrls: PropTypes.shape({
-    image1: PropTypes.string,
-    image2: PropTypes.string,
-    image3: PropTypes.string,
-  }).isRequired,
   setBatch: PropTypes.func.isRequired,
   setConditionId: PropTypes.func.isRequired,
   setVolumeId: PropTypes.func.isRequired,
@@ -102,8 +88,22 @@ AdvertForm.propTypes = {
       title: PropTypes.string.isRequired,
     })
   ).isRequired,
-  // volumeAnounce: PropTypes.string.isRequired,
-  // conditionAnounce: PropTypes.string.isRequired,
-  // isNewAdvertPage: PropTypes.bool.isRequired,
-  // mangaAnounce: PropTypes.string.isRequired,
+  files: PropTypes.shape({
+    image1: PropTypes.shape({
+      file: PropTypes.instanceOf(File),
+      preview: PropTypes.string,
+    }),
+    image2: PropTypes.shape({
+      file: PropTypes.instanceOf(File),
+      preview: PropTypes.string,
+    }),
+    image3: PropTypes.shape({
+      file: PropTypes.instanceOf(File),
+      preview: PropTypes.string,
+    }),
+  }),
+};
+
+AdvertForm.defaultProps = {
+  files: null,
 };

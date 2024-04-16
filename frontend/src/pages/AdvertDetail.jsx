@@ -59,7 +59,7 @@ function AdvertDetail() {
             <img
               className="picture"
               src={`http://localhost:3310${detailAdvert[0].image_paths[0]}`}
-              alt={detailAdvert[0].title_search_manga}
+              alt={detailAdvert[0].title_advert}
             />
           </div>
         )}
@@ -68,12 +68,12 @@ function AdvertDetail() {
             <img
               className="picture"
               src={`http://localhost:3310${detailAdvert[0].image_paths[0]}`}
-              alt={detailAdvert[0].title_search_manga}
+              alt={detailAdvert[0].title_advert}
             />
             <img
               className="picture"
               src={`http://localhost:3310${detailAdvert[0].image_paths[1]}`}
-              alt={detailAdvert[0].title_search_manga}
+              alt={detailAdvert[0].title_advert}
             />
           </div>
         )}
@@ -82,18 +82,18 @@ function AdvertDetail() {
             <img
               className="picture"
               src={`http://localhost:3310${detailAdvert[0].image_paths[0]}`}
-              alt={detailAdvert[0].title_search_manga}
+              alt={detailAdvert[0].title_advert}
             />
             <div className="small-picture-container">
               <img
                 className="picture small-picture"
                 src={`http://localhost:3310${detailAdvert[0].image_paths[1]}`}
-                alt={detailAdvert[0].title_search_manga}
+                alt={detailAdvert[0].title_advert}
               />
               <img
                 className="picture small-picture"
                 src={`http://localhost:3310${detailAdvert[0].image_paths[2]}`}
-                alt={detailAdvert[0].title_search_manga}
+                alt={detailAdvert[0].title_advert}
               />
             </div>
           </div>
@@ -102,9 +102,7 @@ function AdvertDetail() {
           <p className="content-price">{detailAdvert[0].price}€</p>
           <div className="description-box">
             <h2>Titre</h2>
-            <p className="content-value">
-              {detailAdvert[0].title_search_manga}
-            </p>
+            <p className="content-value">{detailAdvert[0].title_advert}</p>
           </div>
           <div className="description-box">
             <h2>Description</h2>

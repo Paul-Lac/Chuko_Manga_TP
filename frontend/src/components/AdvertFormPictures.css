@@ -1,3 +1,14 @@
+.advert-picture h2 {
+  font-size: var(--fs-M);
+  font-weight: 500;
+}
+
+.advert-picture p {
+  color: var(--neutral-700);
+  font-size: var(--fs-S);
+  margin-bottom: 1rem;
+}
+
 .advert-picture-container {
   display: flex;
   justify-content: space-around;
@@ -55,6 +66,14 @@
 }
 
 @media screen and (max-width: 768px) {
+  .advert-picture h2 {
+    font-size: var(--fs-S);
+  }
+
+  .advert-picture p {
+    font-size: var(--fs-XS);
+  }
+
   .advert-picture-container {
     flex-direction: column;
     align-items: center;

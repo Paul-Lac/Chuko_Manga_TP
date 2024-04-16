@@ -72,7 +72,7 @@
 //           <div className="information-manga-sell">
 //             <p className="information-price">{detailManga[0].price} €</p>
 //             <p style={{ fontWeight: "bold", fontSize: "1.3rem" }}>
-//               {detailManga[0].title_search_manga}
+//               {detailManga[0].title_advert}
 //             </p>
 //             <p className="description-annonce">{detailManga[0].description}</p>
 //             <div className="information-etat">

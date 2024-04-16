@@ -4,10 +4,9 @@ const router = express.Router();
 
 const { hashPassword } = require("./services/auth");
 
+const cookieJwtAuth = require("./middlewares/cookieJwtAuth");
 const multerMultiple = require("./middlewares/multerConfigMultiple");
 const multerSingle = require("./middlewares/multerConfigSingle");
-const cookieJwtAuth = require("./middlewares/cookieJwtAuth");
-
 const validateAddress = require("./middlewares/validateAddress");
 const validateAdvert = require("./middlewares/validateAdvert");
 const validateLogin = require("./middlewares/validateLogin");
@@ -85,7 +84,7 @@ router.put(
 
 // ADVERT TABLE
 router.post(
-  "/new-advert",
+  "/adverts",
   multerMultiple,
   validateAdvert,
   advertsControllers.createAdvert

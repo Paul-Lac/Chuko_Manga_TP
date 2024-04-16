@@ -114,7 +114,7 @@ function AdminUpdateManga({ id }) {
         className=""
         type="text"
         id="title"
-        name="title_search_manga"
+        name="title_advert"
         value={mangaTitle}
         onChange={(e) => setMangaTitle(e.target.value)}
         placeholder="ex: Naruto"

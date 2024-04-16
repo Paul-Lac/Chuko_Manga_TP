@@ -114,7 +114,7 @@
 //           <div className="ContainerInformationSell">
 //             <p className="informationPrice">{anounce.price} €</p>
 //             <div className="informationTitle">
-//               <p>Titre :</p> <p> {anounce.title_search_manga}</p>
+//               <p>Titre :</p> <p> {anounce.title_advert}</p>
 //             </div>
 //             <div className="informationDescription">
 //               <p>Description :</p> <p>{anounce.description}</p>

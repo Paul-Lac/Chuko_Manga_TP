@@ -309,7 +309,7 @@ function ProfilTab() {
                     alt="image_article_seller"
                   />
                   <div className="order-advert-info">
-                    <div className="order-info-title">{`${order.title_search_manga}`}</div>
+                    <div className="order-info-title">{`${order.title_advert}`}</div>
                     <div className="order-info-price">
                       {`${order.total_price}`} €
                     </div>

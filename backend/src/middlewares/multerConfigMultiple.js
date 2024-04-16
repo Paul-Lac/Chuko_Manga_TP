@@ -17,8 +17,15 @@ const storage = multer.diskStorage({
   },
 });
 
-module.exports = multer({ storage }).fields([
-  { name: "image1" },
-  { name: "image2" },
-  { name: "image3" },
-]);
+const upload = multer({
+  storage,
+  limits: { fileSize: 5 * 1024 * 1024 }, // Limit file size to 5MB
+}).fields([{ name: "image1" }, { name: "image2" }, { name: "image3" }]);
+
+module.exports = upload;
+
+// module.exports = multer({ storage }).fields([
+//   { name: "image1" },
+//   { name: "image2" },
+//   { name: "image3" },
+// ]);

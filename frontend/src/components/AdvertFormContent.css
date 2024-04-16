@@ -34,3 +34,9 @@
 .advert-hide-warning {
   visibility: hidden;
 }
+
+@media screen and (max-width: 768px) {
+  .advert-warning {
+    margin-bottom: 1rem;
+  }
+}

@@ -61,13 +61,13 @@ function AdvertCard({ advert, showUserSection, showFavorite }) {
         <div className="card-image-frame">
           <img
             src={`http://localhost:3310${advert.image_path}`}
-            alt={advert.title_search_manga}
+            alt={advert.title_advert}
             className="card-image"
           />
         </div>
       </Link>
       <div className="card-description-container">
-        <h2 className="card-title">{advert.title_search_manga}</h2>
+        <h2 className="card-title">{advert.title_advert}</h2>
         <div className="card-price-section">
           <p className="card-price">{advert.price}€</p>
           {showFavorite && (
@@ -122,7 +122,7 @@ export default AdvertCard;
 AdvertCard.propTypes = {
   advert: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    title_search_manga: PropTypes.string.isRequired,
+    title_advert: PropTypes.string.isRequired,
     image_path: PropTypes.string,
     price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     is_collector: PropTypes.bool,

@@ -7,7 +7,7 @@ class OrdersManager extends AbstractManager {
 
   async getHistoryOrderByBuyer(id) {
     const [rows] = await this.database.query(
-      `SELECT total_price, order_date, status_order, title_search_manga, advert_image.image_path, article_condition.name_condition 
+      `SELECT total_price, order_date, status_order, title_advert, advert_image.image_path, article_condition.name_condition 
       FROM \`order\` as o
       JOIN advert on advert.id = o.advert_id
       LEFT JOIN advert_image ON advert.id=advert_image.advert_id AND advert_image.is_primary=1

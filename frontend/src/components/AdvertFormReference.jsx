@@ -5,16 +5,8 @@ import PropTypes from "prop-types";
 import "./AdvertFormReference.css";
 
 function AdvertFormReference(props) {
-  const {
-    batch,
-    handleSelectedManga,
-    setBatch,
-    setVolumeId,
-    volumeList,
-    // volumeAnounce,
-    // mangaAnounce,
-    // isNewAdvertPage,
-  } = props;
+  const { batch, handleSelectedManga, setBatch, setVolumeId, volumeList } =
+    props;
 
   const [mangaList, setMangaList] = useState([]);
 
@@ -29,22 +21,6 @@ function AdvertFormReference(props) {
         console.error("Error fetching conditions and mangas:", error);
       });
   }, []);
-
-  // console.info(
-  //   "récupération du batch de l'annonce dans advertformreference :",
-  //   batch
-  // );
-  // console.info(
-  //   "récupération du volume de l'annonce dans advertformreference :",
-  //   volumeAnounce
-  // );
-
-  // let volumeText;
-  // if (isNewAdvertPage) {
-  //   volumeText = "Sélectionne le volume";
-  // } else {
-  //   volumeText = batch !== 1 ? "Sélectionne le volume" : volumeAnounce;
-  // }
 
   return (
     <>
@@ -66,7 +42,7 @@ function AdvertFormReference(props) {
           Vends un lot
         </button>
       </div>
-      <div className="advert-ref">Référencement</div>
+      {/* <div className="advert-ref">Référencement</div> */}
 
       {batch === 0 ? (
         <>
@@ -143,7 +119,4 @@ AdvertFormReference.propTypes = {
       title: PropTypes.string.isRequired,
     })
   ).isRequired,
-  // isNewAdvertPage: PropTypes.bool.isRequired,
-  // mangaAnounce: PropTypes.string.isRequired,
-  // volumeAnounce: PropTypes.string.isRequired,
 };

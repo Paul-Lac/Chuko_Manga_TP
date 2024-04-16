@@ -7,35 +7,6 @@ import "./Footer.css";
 export default function FooterDesk() {
   return (
     <div className="footer container_limit">
-      <div className="footer-links-container">
-        <div className="footer-links-block">
-          <h3 className="footer-title">Chuko Manga</h3>
-          <a href="youtube.com" target="_blank" rel="noreferrer">
-            A propos
-          </a>
-        </div>
-        <div className="footer-links-block">
-          <h3 className="footer-title">Découvrir</h3>
-          <a href="youtube.com" target="_blank" rel="noreferrer">
-            Comment ça marche ?
-          </a>
-          {/* <a href="youtube.com" target="_blank" rel="noreferrer">
-            Tableau de bord
-          </a> */}
-        </div>
-        <div className="footer-links-block">
-          <h3 className="footer-title">Aide</h3>
-          <a href="youtube.com" target="_blank" rel="noreferrer">
-            Centre d'aide
-          </a>
-          {/* <a href="youtube.com" target="_blank" rel="noreferrer">
-            Vendre
-          </a>
-          <a href="youtube.com" target="_blank" rel="noreferrer">
-            Acheter
-          </a> */}
-        </div>
-      </div>
       <div className="socialMedia">
         <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
           <img
@@ -70,9 +41,38 @@ export default function FooterDesk() {
           />
         </a>
       </div>
+      <div className="footer-links-container">
+        <div className="footer-links-block">
+          <h3 className="footer-title">Chuko Manga</h3>
+          <a href="youtube.com" target="_blank" rel="noreferrer">
+            A propos
+          </a>
+        </div>
+        <div className="footer-links-block">
+          <h3 className="footer-title">Découvrir</h3>
+          <a href="youtube.com" target="_blank" rel="noreferrer">
+            Comment ça marche ?
+          </a>
+          {/* <a href="youtube.com" target="_blank" rel="noreferrer">
+            Tableau de bord
+          </a> */}
+        </div>
+        <div className="footer-links-block">
+          <h3 className="footer-title">Aide</h3>
+          <a href="youtube.com" target="_blank" rel="noreferrer">
+            Centre d'aide
+          </a>
+          {/* <a href="youtube.com" target="_blank" rel="noreferrer">
+            Vendre
+          </a>
+          <a href="youtube.com" target="_blank" rel="noreferrer">
+            Acheter
+          </a> */}
+        </div>
+      </div>
 
       <div className="lastBlock">
-        <div className="lastBlock-link">
+        {/* <div className="lastBlock-link">
           <a href="youtube.com" target="_blank" rel="noreferrer">
             Politique de confidentialité
           </a>
@@ -85,10 +85,10 @@ export default function FooterDesk() {
           <a href="youtube.com" target="_blank" rel="noreferrer">
             Termes et conditions
           </a>
-          {/* <a href="youtube.com" target="_blank" rel="noreferrer">
+          <a href="youtube.com" target="_blank" rel="noreferrer">
             Notre plateforme
-          </a> */}
-        </div>
+          </a>
+        </div> */}
         <div className="copyright">©2024 CHUKO MANGA</div>
       </div>
     </div>

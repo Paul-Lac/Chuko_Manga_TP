@@ -52,7 +52,7 @@
 //       })
 //       .then((data) => {
 //         console.info("récupération de l'annonce :", data);
-//         setAdvertTitle(data[0].title_search_manga);
+//         setAdvertTitle(data[0].title_advert);
 //         setDescription(data[0].description);
 //         setConditionAnounce(data[0].name_condition);
 //         setPrice(data[0].price);

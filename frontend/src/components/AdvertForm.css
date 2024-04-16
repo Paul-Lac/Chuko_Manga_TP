@@ -28,3 +28,13 @@
 .advert-form .add-button:hover {
   background-color: var(--primary-clr-accent);
 }
+
+@media screen and (max-width: 768px) {
+  .advert-label {
+    font-size: var(--fs-S);
+  }
+
+  .advert-select {
+    margin-bottom: 2rem;
+  }
+}
