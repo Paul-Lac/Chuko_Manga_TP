@@ -18,6 +18,7 @@ function HeaderNav() {
     useContext(UserContext);
   const [userMenu, setUserMenu] = useState(false);
   const handleClickOpen = () => {
+    setUserMenu(false);
     setIsModalOpen(!isModalOpen);
     if (isModalOpen) {
       document.body.style.overflow = "auto";

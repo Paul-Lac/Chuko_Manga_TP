@@ -23,8 +23,8 @@
 }
 
 .mobile-socialMediaIcon {
-  width: 3rem;
-  height: 3rem;
+  width: 2rem;
+  height: 2rem;
   filter: grayscale(1);
   transition: filter 0.3s ease-in-out;
   margin: 1rem;

@@ -8,13 +8,14 @@ function AdvertFormReference(props) {
   const { batch, handleSelectedManga, setBatch, setVolumeId, volumeList } =
     props;
 
+  // State designed to set manga's list
   const [mangaList, setMangaList] = useState([]);
 
+  // Fetch manga's list
   useEffect(() => {
     axios
       .get("http://localhost:3310/api/mangas")
       .then((response) => {
-        // console.info("Mangas are", response.data);
         setMangaList(response.data);
       })
       .catch((error) => {
@@ -42,28 +43,26 @@ function AdvertFormReference(props) {
           Vends un lot
         </button>
       </div>
-      {/* <div className="advert-ref">Référencement</div> */}
-
-      {batch === 0 ? (
+      <label htmlFor="manga" className="advert-instruction">
+        Associe ton annonce au manga correspondant dans la liste
+      </label>
+      <select
+        id="manga"
+        className="advert-select"
+        name="manga_id"
+        onChange={(e) => {
+          handleSelectedManga(e);
+        }}
+      >
+        <option>Sélectionne ton manga</option>
+        {mangaList.map((manga) => (
+          <option key={manga.id} value={manga.id}>
+            {manga.title}
+          </option>
+        ))}
+      </select>
+      {batch === 0 && (
         <>
-          <label htmlFor="manga" className="advert-instruction">
-            Associe ton annonce au manga correspondant dans la liste
-          </label>
-          <select
-            id="manga"
-            className="advert-select"
-            name="manga_id"
-            onChange={(e) => {
-              handleSelectedManga(e);
-            }}
-          >
-            <option value="">Sélectionne ton manga</option>
-            {mangaList.map((manga) => (
-              <option key={manga.id} value={manga.id}>
-                {manga.title}
-              </option>
-            ))}
-          </select>
           <label htmlFor="volume" className="advert-instruction">
             Associe ton annonce au volume correspondant dans la liste
           </label>
@@ -73,31 +72,10 @@ function AdvertFormReference(props) {
             name="volume_id"
             onChange={(e) => setVolumeId(e.target.value)}
           >
-            <option value="">Sélectionne le volume</option>
+            <option>Sélectionne le volume</option>
             {volumeList.map((volumeItem) => (
               <option key={volumeItem.id} value={volumeItem.id}>
                 {volumeItem.title}
-              </option>
-            ))}
-          </select>
-        </>
-      ) : (
-        <>
-          <label htmlFor="manga" className="advert-instruction">
-            Associe ton annonce au manga correspondant dans la liste
-          </label>
-          <select
-            id="manga"
-            className="advert-select"
-            name="manga_id"
-            onChange={(e) => {
-              handleSelectedManga(e);
-            }}
-          >
-            <option value="">Sélectionne ton manga</option>
-            {mangaList.map((manga) => (
-              <option key={manga.id} value={manga.id}>
-                {manga.title}
               </option>
             ))}
           </select>

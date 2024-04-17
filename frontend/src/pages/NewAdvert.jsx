@@ -9,21 +9,28 @@ import AdvertForm from "../components/AdvertForm";
 function NewAdvert() {
   const navigate = useNavigate();
   const { auth } = useContext(UserContext);
-  // States designed to display options for selection and control user's input
-  const [selectedMangaId, setSelectedMangaId] = useState(null);
-  const [volumeList, setVolumeList] = useState([]);
-  const [priceErr, setPriceErr] = useState(false);
-
-  // State designed to switch tab : selling a tome or a batch
-  const [batch, setBatch] = useState(0);
 
   // States designed to handle values provided by user
   const [advertTitle, setAdvertTitle] = useState("");
   const [description, setDescription] = useState("");
   const [conditionId, setConditionId] = useState(null);
   const [price, setPrice] = useState("");
+  const [selectedMangaId, setSelectedMangaId] = useState(null);
   const [volumeId, setVolumeId] = useState(null);
   const publicationDate = new Date().toISOString().split("T")[0];
+
+  // States designed to display options for selection and control user's input
+  const [volumeList, setVolumeList] = useState([]);
+  const [priceErr, setPriceErr] = useState(false);
+
+  // State designed to switch tab : selling a tome or a batch
+  const [batch, setBatch] = useState(0);
+
+  // Const designed to control user's input
+  const MAX_LENGTH_TITLE = 40;
+  const MAX_LENGTH_DESC = 255;
+  const maxTitleReached = advertTitle.length >= MAX_LENGTH_TITLE;
+  const maxDescReached = description.length >= MAX_LENGTH_DESC;
 
   // State designed to transfer images and preview images
   const [files, setFiles] = useState({
@@ -31,19 +38,6 @@ function NewAdvert() {
     image2: { file: null, preview: null },
     image3: { file: null, preview: null },
   });
-
-  // Variables designed to control user's input
-  const MAX_LENGTH_TITLE = 40;
-  const MAX_LENGTH_DESC = 255;
-  const maxTitleReached = advertTitle.length >= MAX_LENGTH_TITLE;
-  const maxDescReached = description.length >= MAX_LENGTH_DESC;
-
-  // Set manga selection
-  const handleSelectedManga = (e) => {
-    setVolumeList([]);
-    setSelectedMangaId(e.target.value);
-    // console.info("Manga selected:", selectedMangaId);
-  };
 
   // Handle image selection and image preview
   const handleImageChange = (e) => {
@@ -69,21 +63,6 @@ function NewAdvert() {
     });
   };
 
-  // Fetch manga's list
-  useEffect(() => {
-    if (selectedMangaId !== null) {
-      axios
-        .get(`http://localhost:3310/api/mangas/${selectedMangaId}/volumes`)
-        .then((res) => {
-          // console.info("Volumes are", res.data);
-          setVolumeList(res.data);
-        })
-        .catch((error) => {
-          console.error("Error fetching volumes:", error);
-        });
-    }
-  }, [selectedMangaId]);
-
   // Manage and control user's inputs
   const handleTitleChange = (e) => {
     if (e.target.value.length <= MAX_LENGTH_TITLE) {
@@ -103,13 +82,31 @@ function NewAdvert() {
     const regex = /^\d*\.?\d{0,2}$/;
     if (regex.test(inputValue)) {
       setPrice(inputValue);
-      // console.info("regex.test:", regex.test(inputValue));
     }
     if (!regex.test(inputValue)) {
       setPriceErr(true);
-      // console.info("regex.test:", regex.test(inputValue));
     }
   };
+
+  // Set manga selection
+  const handleSelectedManga = (e) => {
+    setVolumeList([]);
+    setSelectedMangaId(e.target.value);
+  };
+
+  // Fetch manga's list
+  useEffect(() => {
+    if (selectedMangaId !== null) {
+      axios
+        .get(`http://localhost:3310/api/mangas/${selectedMangaId}/volumes`)
+        .then((res) => {
+          setVolumeList(res.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching volumes:", error);
+        });
+    }
+  }, [selectedMangaId]);
 
   // Submit form and redirect to user's profile
   const handleSubmit = (e) => {

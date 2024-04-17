@@ -6,6 +6,11 @@ import "./AdvertFormPictures.css";
 
 function AdvertFormPicture(props) {
   const { deleteFile, files, handleImageChange } = props;
+
+  // Define  types of files and maximum size accepted
+  const acceptedFileTypes = "image/jpeg, image/png, image/png";
+  const maxFileSize = 5 * 1024 * 1024;
+
   return (
     <section className="advert-picture">
       <h2>Photos *</h2>
@@ -22,6 +27,8 @@ function AdvertFormPicture(props) {
               name={key}
               onChange={handleImageChange}
               required={key === "image1"}
+              accept={acceptedFileTypes}
+              size={maxFileSize}
             />
             {files[key] && files[key].preview && (
               <div className="preview-container">

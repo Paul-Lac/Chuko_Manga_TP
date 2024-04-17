@@ -26,7 +26,6 @@ function AdvertFormContent(props) {
     axios
       .get("http://localhost:3310/api/conditions")
       .then((response) => {
-        // console.info("Condition are", response.data);
         setConditionList(response.data);
       })
       .catch((error) => {
@@ -50,11 +49,7 @@ function AdvertFormContent(props) {
         required="required"
       />
       <div
-        className={
-          maxTitleReached
-            ? "advert-warning"
-            : "advert-warning advert-hide-warning"
-        }
+        className={`advert-warning ${!maxTitleReached && "advert-hide-warning"}`}
       >
         40 caractères maximum
       </div>
@@ -72,11 +67,7 @@ function AdvertFormContent(props) {
         required="required"
       />
       <div
-        className={
-          maxDescReached
-            ? "advert-warning"
-            : "advert-warning advert-hide-warning"
-        }
+        className={`advert-warning ${!maxDescReached && "advert-hide-warning"}`}
       >
         255 caractères maximum
       </div>
@@ -89,7 +80,7 @@ function AdvertFormContent(props) {
         name="article_condition_id"
         onChange={(e) => setConditionId(e.target.value)}
       >
-        <option value="">Sélectionne l'état de ton article</option>
+        <option>Sélectionne l'état de ton article</option>
         {conditionList.map((conditionItem) => (
           <option key={conditionItem.id} value={conditionItem.id}>
             {conditionItem.name_condition}
@@ -109,11 +100,7 @@ function AdvertFormContent(props) {
         placeholder="0.00€"
         required="required"
       />
-      <div
-        className={
-          priceErr ? "advert-warning" : "advert-warning advert-hide-warning"
-        }
-      >
+      <div className={`advert-warning ${!priceErr && "advert-hide-warning"}`}>
         Format incorrect
       </div>
     </>
@@ -132,10 +119,5 @@ AdvertFormContent.propTypes = {
   maxTitleReached: PropTypes.bool.isRequired,
   price: PropTypes.string.isRequired,
   priceErr: PropTypes.bool.isRequired,
-  previewUrls: PropTypes.shape({
-    image1: PropTypes.string,
-    image2: PropTypes.string,
-    image3: PropTypes.string,
-  }).isRequired,
   setConditionId: PropTypes.func.isRequired,
 };
