@@ -144,15 +144,14 @@ const getAdvertCards = async (req, res) => {
 
 const deleteAdvert = async (req, res) => {
   try {
-    const advert = await models.advert.deleteAdvert(req.params.id);
-    if (advert === 0) {
-      res.sendStatus(404);
-    } else {
-      res.sendStatus(204);
+    const advert = await models.advert.removeAdvert(req.params.id);
+    if (!advert) {
+      return res.status(404).send({ error: "Advert not found" });
     }
+    return res.status(204).send();
   } catch (err) {
     console.error(err);
-    res.sendStatus(500);
+    return res.status(500).send({ error: "Internal servor error" });
   }
 };
 

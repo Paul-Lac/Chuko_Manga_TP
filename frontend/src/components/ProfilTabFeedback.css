@@ -1,0 +1,119 @@
+.containerEvaluations {
+  height: auto;
+}
+
+.containerNote {
+  border-bottom: solid 0.1rem var(--neutral-700);
+  height: 70px;
+  display: flex;
+  align-items: center;
+  /* background-color: yellow; */
+  width: 20rem;
+  margin: auto;
+}
+
+.average_rating {
+  padding: 0 2rem 0 4.5rem;
+  font-size: var(--fs-L);
+  font-weight: bold;
+}
+
+.Number_comment {
+  font-size: var(--fs-S);
+}
+
+.containerCom {
+  display: flex;
+  align-items: center;
+  border-bottom: solid 0.1rem var(--neutral-300);
+  width: 40rem;
+  margin: auto;
+}
+
+.picture_buyer {
+  height: 5rem;
+  width: 5rem;
+  clip-path: circle(50%);
+  object-fit: cover;
+  margin: 2rem;
+}
+
+.commentBuyer {
+  height: auto;
+}
+
+.speudoBuyer {
+  color: var(--primary-clr-accent);
+  font-size: var(--fs-S);
+}
+
+.createdOn {
+  color: var(--neutral-600);
+  font-size: var(--fs-XS);
+  margin-top: 2%;
+}
+
+.comment {
+  /* margin-top: 2%; */
+  font-size: var(--fs-S);
+  text-align: center;
+}
+
+.starcontainer {
+  display: flex;
+  font-size: var(--fs-M);
+}
+
+.rating {
+  display: flex;
+}
+/* -----------------------------------CSS pour les couleurs des étoiles----------------------------------- */
+/* CSS pour les demi-étoiles */
+.half-star {
+  color: #a6a6a6;
+  position: relative;
+}
+
+.half-star::after {
+  content: "★";
+  position: absolute;
+  left: 0;
+  overflow: hidden;
+  width: 50%;
+  color: #ffd700;
+}
+
+/* CSS pour les étoiles vides */
+.empty-star {
+  color: #a6a6a6;
+}
+
+/* CSS pour les étoiles pleines */
+.full-star {
+  color: #ffd700;
+}
+
+@media screen and (max-width: 768px) {
+  .containerCom {
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 1rem;
+    width: 20rem;
+  }
+
+  .average_rating {
+    padding-left: 1.5rem;
+  }
+
+  .picture_buyer {
+    margin: 1rem auto 0rem;
+    height: 5rem;
+    width: 5rem;
+  }
+
+  .comment-buyer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

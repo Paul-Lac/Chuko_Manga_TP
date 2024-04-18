@@ -140,21 +140,40 @@ class AdvertsManager extends AbstractManager {
     return rows;
   }
 
-  async deleteAdvert(id) {
-    await this.database.query(
-      `DELETE advert_image FROM advert
-        LEFT JOIN advert_image ON advert.id = advert_image.advert_id
-        WHERE advert.id = ?`,
-      [id]
-    );
-
-    const [result] = await this.database.query(
-      `DELETE FROM ${this.table} 
-      WHERE id = ?`,
-      [id]
-    );
-    return result.affectedRows > 0 ? id : null;
+  async removeAdvert(id) {
+    try {
+      // Delete images from advert_image table
+      await this.database.query(
+        `DELETE FROM advert_image WHERE advert_id = ?`,
+        [id]
+      );
+      // Delete advert form advert table
+      const [result] = await this.database.query(
+        `DELETE FROM ${this.table} WHERE id = ?`,
+        [id]
+      );
+      return result.affectedRows > 0 ? id : null;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
   }
+
+  // async removeAdvert(id) {
+  //   await this.database.query(
+  //     `DELETE advert_image FROM advert
+  //       LEFT JOIN advert_image ON advert.id = advert_image.advert_id
+  //       WHERE advert.id = ?`,
+  //     [id]
+  //   );
+
+  //   const [result] = await this.database.query(
+  //     `DELETE FROM ${this.table}
+  //     WHERE id = ?`,
+  //     [id]
+  //   );
+  //   return result.affectedRows > 0 ? id : null;
+  // }
 }
 
 module.exports = AdvertsManager;
