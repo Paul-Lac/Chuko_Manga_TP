@@ -67,8 +67,8 @@ class AdvertsManager extends AbstractManager {
 
   async findAdvertCards({
     batch,
-    genreId,
-    conditionId,
+    genreIds,
+    conditionIds,
     minPrice,
     maxPrice,
     searchQuery,
@@ -81,27 +81,20 @@ class AdvertsManager extends AbstractManager {
       whereConditions += batch ? " AND a.batch = 1" : " AND a.batch = 0";
     }
 
-    // if (batch === "true") {
-    //   whereConditions += " AND a.batch=1";
-    // } else if (batch === "false") {
-    //   whereConditions += " AND a.batch=0";
-    // } else {
-    //   whereConditions += " AND a.batch=0 OR a.batch=1";
-    // }
-
     if (searchQuery) {
       whereConditions += " AND a.title_advert LIKE ?";
       queryParams.push(`%${searchQuery}%`);
     }
 
-    if (genreId) {
-      whereConditions += " AND m.genre_id = ?";
-      queryParams.push(genreId);
+    if (genreIds && genreIds.length > 0) {
+      whereConditions += " AND m.genre_id IN (?)";
+      queryParams.push(genreIds);
     }
 
-    if (conditionId) {
-      whereConditions += " AND a.article_condition_id = ?";
-      queryParams.push(conditionId);
+    if (conditionIds && conditionIds.length > 0) {
+      // vérifier si conditionId est un tableau non vide
+      whereConditions += " AND a.article_condition_id IN (?)";
+      queryParams.push(conditionIds); // ajouter le tableau conditionId aux paramètres de requête
     }
 
     if (minPrice !== undefined && minPrice !== null) {

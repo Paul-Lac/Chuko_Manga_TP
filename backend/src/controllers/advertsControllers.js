@@ -107,13 +107,14 @@ const createAdvert = async (req, res) => {
 const getAdvertCards = async (req, res) => {
   const {
     batch,
-    genreId,
-    conditionId,
+    genreIds,
+    conditionIds,
     minPrice,
     maxPrice,
     searchQuery,
     searchVolume,
   } = req.query;
+  console.info("req.query !!!!", req.query);
 
   let isBatch = null;
   if (batch !== undefined) {
@@ -127,8 +128,8 @@ const getAdvertCards = async (req, res) => {
   try {
     const adverts = await models.advert.findAdvertCards({
       batch: isBatch,
-      genreId,
-      conditionId,
+      genreIds,
+      conditionIds,
       minPrice,
       maxPrice,
       searchQuery,
