@@ -29,7 +29,7 @@ const login = async (req, res, next) => {
         { sub: user.id, role: user.role },
         process.env.APP_SECRET,
         {
-          expiresIn: "1h",
+          expiresIn: "10h",
         }
       );
       res.cookie("token", token, {

@@ -158,22 +158,6 @@ class AdvertsManager extends AbstractManager {
       throw error;
     }
   }
-
-  // async removeAdvert(id) {
-  //   await this.database.query(
-  //     `DELETE advert_image FROM advert
-  //       LEFT JOIN advert_image ON advert.id = advert_image.advert_id
-  //       WHERE advert.id = ?`,
-  //     [id]
-  //   );
-
-  //   const [result] = await this.database.query(
-  //     `DELETE FROM ${this.table}
-  //     WHERE id = ?`,
-  //     [id]
-  //   );
-  //   return result.affectedRows > 0 ? id : null;
-  // }
 }
 
 module.exports = AdvertsManager;

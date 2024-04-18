@@ -78,3 +78,11 @@ a:hover {
   text-underline-offset: 5px;
   text-decoration-thickness: 1px;
 }
+
+.modal-open {
+  overflow: hidden;
+}
+
+.modal-closed {
+  overflow: auto;
+}

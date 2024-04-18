@@ -30,15 +30,15 @@ function ProfilTabAdvert() {
   const toggleModalDelete = (advertId) => {
     setModalDelete(!modalDelete);
     setSelectedAdvertId(advertId);
-    if (!modalDelete) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
+    // if (!modalDelete) {
+    //   document.body.style.overflow = "hidden";
+    // } else {
+    //   document.body.style.overflow = "auto";
+    // }
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === "Esc") {
+    if (e.key === "Escape") {
       toggleModalDelete();
     }
   };
