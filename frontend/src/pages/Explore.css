@@ -27,8 +27,10 @@
   padding: 0.2rem 0rem 0.2rem 0.6rem;
   border: 1px solid var(--primary-clr);
   border-radius: 0.5rem;
-  background-color: var(--neutral-100);
-  color: var(--neutral-800);
+  /* background-color: var(--neutral-100); */
+  background-color: var(--primary-clr);
+  /* color: var(--neutral-800); */
+  color: var(--neutral-100);
   font-size: var(--fs-S);
 }
 

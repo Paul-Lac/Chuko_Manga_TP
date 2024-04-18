@@ -28,11 +28,11 @@ function HeaderNavMobile() {
 
   const handleMobileMenuOpen = () => {
     setmenuMobileActive(!menuMobileActive);
-    if (menuMobileActive) {
-      document.body.style.overflow = "auto";
-    } else {
-      document.body.style.overflow = "hidden";
-    }
+    // if (!menuMobileActive) {
+    //   document.body.style.overflow = "hidden";
+    // } else {
+    //   document.body.style.overflow = "auto";
+    // }
   };
 
   const handleAddClick = () => {

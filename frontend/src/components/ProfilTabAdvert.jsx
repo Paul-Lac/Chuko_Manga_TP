@@ -52,7 +52,7 @@ function ProfilTabAdvert() {
           withCredentials: true,
         }
       );
-      console.info("Success deleting advert:", response.data);
+      console.info("Advert deleted successfully", response.data);
       const updateAdvertList = adverts.filter(
         (advert) => advert.id !== advertId
       );

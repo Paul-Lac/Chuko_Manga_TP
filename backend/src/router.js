@@ -35,8 +35,8 @@ const volumesControllers = require("./controllers/volumesControllers");
 /* ************************************************************************* */
 
 // ADVERT TABLE
-router.get("/advert-cards", advertsControllers.getAdvertCards);
-router.get("/advert-cards/:id", advertsControllers.getAdvertById);
+router.get("/adverts", advertsControllers.getAdvertCards);
+router.get("/adverts/:id", advertsControllers.getAdvertById);
 router.get("/users/:id/adverts", advertsControllers.getAdvertsBySeller);
 
 // CONDITIONS TABLE

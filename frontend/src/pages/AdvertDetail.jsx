@@ -14,7 +14,7 @@ function AdvertDetail() {
   const [userId, setUserId] = useState(null);
   const { setIsModalOpen } = useContext(UserContext);
   useEffect(() => {
-    fetch(`http://localhost:3310/api/advert-cards/${id}`)
+    fetch(`http://localhost:3310/api/adverts/${id}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);

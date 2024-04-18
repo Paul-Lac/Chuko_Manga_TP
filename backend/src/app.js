@@ -90,7 +90,7 @@ app.use(
 
 // Comment PL : la ligne suivante permet de remplir le req.body
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 
 // app.use(express.text());
 // app.use(express.raw());

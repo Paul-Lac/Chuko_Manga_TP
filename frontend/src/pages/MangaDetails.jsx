@@ -1,12 +1,10 @@
 import PropTypes from "prop-types";
-
 import { useEffect, useState } from "react";
-
+import { useParams } from "react-router-dom";
 import axios from "axios";
+import MangaVolume from "../components/MangaVolume";
 
 import "./MangaDetails.css";
-import { useParams } from "react-router-dom";
-import MangaVolume from "../components/MangaVolume";
 
 function MangaDetails({ id: propId, showVolumes = true }) {
   const [manga, setManga] = useState({});

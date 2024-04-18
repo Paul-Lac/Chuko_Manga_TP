@@ -17,7 +17,7 @@ function PrefilterBatch() {
   const [showRightButton, setShowRightButton] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3310/api/advert-cards?batch=true")
+    fetch("http://localhost:3310/api/adverts?batch=true")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Error HTTP, status: ${response.status}`);
