@@ -18,10 +18,10 @@ const validateAdvert = (req, res, next) => {
   if (validationResult.error) {
     res.status(422).json({ validationErrors: validationResult.error.details });
     validationResult.error.details.forEach((errorItem) => {
-      console.info("Error list :", errorItem.message);
+      console.error("Error list :", errorItem.message);
     });
   } else {
-    console.info("Data validated successfully:", req.body);
+    console.info("Data validated successfully", req.body);
     next();
   }
 };

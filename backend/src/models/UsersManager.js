@@ -37,10 +37,10 @@ class UsersManager extends AbstractManager {
     return result;
   }
 
-  async create(user) {
+  async createUser(user) {
     // Execute the SQL INSERT query to add a new user to the "user" table
     const [result] = await this.database.query(
-      `insert into user (pseudo, email, hashed_password) values (?, ?, ?)`,
+      `INSERT INTO ${this.table} (pseudo, email, hashed_password) values (?, ?, ?)`,
       [user.pseudo, user.email, user.hashedPassword]
     );
 
@@ -48,7 +48,7 @@ class UsersManager extends AbstractManager {
     return result.insertId;
   }
 
-  async readByEmailWithPassword(email) {
+  async readByEmail(email) {
     // Execute the SQL SELECT query to retrieve a specific user by its email
     const [rows] = await this.database.query(
       `select * from user where email = ?`,

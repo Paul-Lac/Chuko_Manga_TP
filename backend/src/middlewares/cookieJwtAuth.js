@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken");
-// correspond au auth du repo -> dossier middleware
+
 const cookieJwtAuth = (req, res, next) => {
-  // console.info("req de cookieJwtAuth", req);
   const { token } = req.cookies;
 
   if (!token) {
@@ -19,3 +18,5 @@ const cookieJwtAuth = (req, res, next) => {
 };
 
 module.exports = cookieJwtAuth;
+
+// correspond au auth du repo -> dossier middleware

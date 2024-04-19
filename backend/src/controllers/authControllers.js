@@ -5,31 +5,28 @@ const jwt = require("jsonwebtoken");
 // Import access to database tables
 const models = require("../modelsProviders");
 
-const login = async (req, res, next) => {
+const login = async (req, res) => {
   try {
-    // Fetch a specific user from the database based on the provided email
-    // PL : Rename with : findByEmail
-    const user = await models.user.readByEmailWithPassword(req.body.email);
+    // Fetch a specific user from the database based on the email provided
+    const user = await models.user.readByEmail(req.body.email);
 
-    if (user == null) {
-      res.sendStatus(422);
+    if (!user) {
+      res.status(404).json({ error: "User not found" });
       return;
     }
 
-    const verified = await argon2.verify(
+    const verifyPassword = await argon2.verify(
       user.hashed_password,
       req.body.password
     );
 
-    if (verified) {
-      // Respond with the user and a signed token in JSON format (but without the hashed password)
+    if (verifyPassword) {
       delete user.hashed_password;
       const token = await jwt.sign(
-        // equivalent du payload
         { sub: user.id, role: user.role },
         process.env.APP_SECRET,
         {
-          expiresIn: "10h",
+          expiresIn: "1h",
         }
       );
       res.cookie("token", token, {
@@ -43,11 +40,11 @@ const login = async (req, res, next) => {
         },
       });
     } else {
-      res.sendStatus(422);
+      res.status(401).json({ error: "Invalid credentials" });
     }
   } catch (err) {
-    // Pass any errors to the error-handling middleware
-    next(err);
+    console.error(err);
+    res.status(500).json({ error: "Internal server error" });
   }
 };
 

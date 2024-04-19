@@ -62,7 +62,7 @@ router.post(
   "/users",
   validateUserRegistration,
   hashPassword,
-  usersControllers.add
+  usersControllers.addUser
 );
 router.post("/login", validateLogin, authControllers.login);
 router.get("/logout", authControllers.logout);

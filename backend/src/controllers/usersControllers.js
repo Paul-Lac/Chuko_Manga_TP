@@ -8,19 +8,17 @@ const models = require("../modelsProviders");
 //     .catch((err) => console.error(err));
 // };
 
-const add = async (req, res) => {
-  // Extract the item data from the request body
+const addUser = async (req, res) => {
   const user = req.body;
 
   try {
     // Insert the item into the database
-    const insertId = await models.user.create(user);
-
+    const insertId = await models.user.createUser(user);
     // Respond with HTTP 201 (Created) and the ID of the newly inserted item
     res.status(201).json({ insertId });
   } catch (err) {
-    // Pass any errors to the error-handling middleware
     console.log(err);
+    res.status(500).json({ error: "Internal server Error" });
   }
 };
 
@@ -71,11 +69,8 @@ const updateUser = async (req, res) => {
 };
 
 module.exports = {
-  // pictureUpdate,
-  // getAllUsers,
-  add,
+  addUser,
   getUserById,
   getUserProfilById,
-  // getUserProfilComById,
   updateUser,
 };
