@@ -1,12 +1,19 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 import Select from "react-select";
 import AdvertCard from "../components/AdvertCard";
 import "./Explore.css";
 
 function Explore() {
-  const { searchQuery, volumeId } = useParams();
+  // Extracting query parameters from the current URL
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const batch = searchParams.get("batch");
+  const volumeId = searchParams.get("searchVolume");
+  const searchQuery = searchParams.get("searchQuery");
+
+  // Initialize state variables to store data
   const [genreList, setGenreList] = useState([]);
   const [conditionList, setConditionList] = useState([]);
   const [adverts, setAdverts] = useState([]);
@@ -32,18 +39,27 @@ function Explore() {
     fetchFilters();
   }, []);
 
+  // Clear filters when decided by user
+  const handleClearFilters = () => {
+    setSelectedGenres([]);
+    setSelectedConditions([]);
+    setMinPrice(undefined);
+    setMaxPrice(undefined);
+  };
+
   // Retrieve adverts from API
   useEffect(() => {
     const fetchAdverts = async () => {
       try {
         const response = await axios.get("http://localhost:3310/api/adverts", {
           params: {
-            genreIds: selectedGenres,
+            batch,
             conditionIds: selectedConditions,
-            minPrice,
+            genreIds: selectedGenres,
             maxPrice,
-            searchVolume: volumeId,
+            minPrice,
             searchQuery,
+            searchVolume: volumeId,
           },
         });
         setAdverts(response.data);
@@ -52,21 +68,7 @@ function Explore() {
       }
     };
     fetchAdverts();
-  }, [
-    selectedGenres,
-    selectedConditions,
-    minPrice,
-    maxPrice,
-    volumeId,
-    searchQuery,
-  ]);
-
-  const handleClearFilters = () => {
-    setSelectedGenres([]);
-    setSelectedConditions([]);
-    setMinPrice(undefined);
-    setMaxPrice(undefined);
-  };
+  }, [maxPrice, minPrice, selectedConditions, selectedGenres]);
 
   return (
     <section className="explore-container">

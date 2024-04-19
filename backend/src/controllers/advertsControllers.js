@@ -56,54 +56,6 @@ const createAdvert = async (req, res) => {
   }
 };
 
-// const createAdvert = async (req, res) => {
-//   // console.info("image1 uploaded:", req.files["image1"][0]);
-//   // console.info("image2 uploaded:", req.files["image2"][0]);
-//   // console.info("image3 uploaded:", req.files["image3"][0]);
-//   console.info("req.body is:", req.body);
-//   const advert = req.body;
-//   const imageId = [];
-//   let imageId1 = null;
-//   let imageId2 = null;
-//   let imageId3 = null;
-//   try {
-//     const advertId = await models.advert.addAdvert(advert);
-//     if (advertId !== null) {
-//       if (req.files.image1) {
-//         imageId1 = await models.advert_image.addImage({
-//           advert_id: advertId,
-//           image_path: `/static/${req.files.image1[0].filename}`,
-//           is_primary: 1,
-//         });
-//         imageId.push(imageId1);
-//       }
-//       if (req.files.image2) {
-//         imageId2 = await models.advert_image.addImage({
-//           advert_id: advertId,
-//           image_path: `/static/${req.files.image2[0].filename}`,
-//           is_primary: 0,
-//         });
-//         imageId.push(imageId2);
-//       }
-//       if (req.files.image3) {
-//         imageId3 = await models.advert_image.addImage({
-//           advert_id: advertId,
-//           image_path: `/static/${req.files.image3[0].filename}`,
-//           is_primary: 0,
-//         });
-//         imageId.push(imageId3);
-//       }
-//     } else {
-//       res.status(500).json({ error: "Failed to create advert" });
-//     }
-//     if (advertId !== null || imageId !== null) {
-//       res.status(201).json({ advertId, imageId });
-//     }
-//   } catch (err) {
-//     console.error(err);
-//   }
-// };
-
 const getAdvertCards = async (req, res) => {
   const {
     batch,
@@ -114,7 +66,6 @@ const getAdvertCards = async (req, res) => {
     searchQuery,
     searchVolume,
   } = req.query;
-  console.info("req.query !!!!", req.query);
 
   let isBatch = null;
   if (batch !== undefined) {

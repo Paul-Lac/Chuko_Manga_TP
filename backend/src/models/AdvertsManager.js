@@ -92,9 +92,8 @@ class AdvertsManager extends AbstractManager {
     }
 
     if (conditionIds && conditionIds.length > 0) {
-      // vérifier si conditionId est un tableau non vide
       whereConditions += " AND a.article_condition_id IN (?)";
-      queryParams.push(conditionIds); // ajouter le tableau conditionId aux paramètres de requête
+      queryParams.push(conditionIds);
     }
 
     if (minPrice !== undefined && minPrice !== null) {
@@ -112,22 +111,19 @@ class AdvertsManager extends AbstractManager {
       queryParams.push(searchVolume);
     }
 
-    const query = `
-    SELECT a.id, a.title_advert, a.batch, a.price, a.volume_id,  c.name_condition, 
-    i.image_path, u.pseudo, u.picture as user_picture, m.genre_id,
-    ROUND(joint_table.average, 1) as average, joint_table.feedback_nber, a.publication_date_advert
+    const query = `SELECT a.id, a.title_advert, a.batch, a.price, a.volume_id, a.publication_date_advert, ai.image_path, ac.name_condition, 
+    u.pseudo, u.picture as user_picture, m.genre_id, joint_table.average as average, joint_table.feedback_nber 
     FROM ${this.table} as a
-    LEFT JOIN advert_image as i ON a.id=i.advert_id AND i.is_primary=1
-    JOIN article_condition as c ON a.article_condition_id=c.id
+    JOIN advert_image as ai ON a.id=ai.advert_id AND ai.is_primary=1
+    JOIN article_condition as ac ON a.article_condition_id=ac.id
     JOIN user as u ON a.user_id=u.id 
-   LEFT JOIN manga as m ON a.manga_id = m.id 
+    LEFT JOIN manga as m ON a.manga_id = m.id 
     JOIN (SELECT u.pseudo as rated_pseudo, ROUND(AVG(f.rating), 1) as average, COUNT(f.rating) as feedback_nber
           FROM user as u
           LEFT JOIN feedback as f ON u.id = f.user_id
           GROUP BY u.pseudo) as joint_table ON u.pseudo=joint_table.rated_pseudo
     ${whereConditions}
-    ORDER BY a.publication_date_advert DESC;
-  `;
+    ORDER BY a.publication_date_advert DESC;`;
 
     const [rows] = await this.database.query(query, queryParams);
     return rows;

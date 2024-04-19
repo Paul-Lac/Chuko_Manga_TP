@@ -36,7 +36,7 @@ function MangaVolume() {
         {volumes.map((volume) =>
           hasAdvert(volume.id) ? (
             <Link
-              to={`/explore/volume/${volume.id}`}
+              to={`/explore?searchVolume=${volume.id}`}
               key={volume.id}
               className="volume clickable-volume"
             >

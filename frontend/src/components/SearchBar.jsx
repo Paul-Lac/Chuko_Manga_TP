@@ -38,19 +38,19 @@ function SearchBar({ searchBarClass }) {
   const handleSuggestion = async (selectedManga) => {
     console.info("Selected Manga:", selectedManga);
     setSearchQuery("");
-    navigate(`/explore/search/${selectedManga.title}`, { replace: true });
+    navigate(`/explore?searchQuery=${selectedManga.title}`, { replace: true });
   };
 
   const handleKeyPress = async (e) => {
     if (e.key === "Enter") {
-      const searchUrl = `http://localhost:3310/api/explore/search/${searchQuery}`;
+      const searchUrl = `http://localhost:3310/api/explore?searchQuery=${searchQuery}`;
       try {
         await axios.get(searchUrl);
       } catch (error) {
         console.error("Error while posting search query:", error);
       }
       setSearchQuery("");
-      navigate(`/explore/search/${searchQuery}`, { replace: true });
+      navigate(`/explore?searchQuery=${searchQuery}`, { replace: true });
     }
   };
   return (
