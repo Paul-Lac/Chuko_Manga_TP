@@ -12,7 +12,7 @@ function Connexion({ handleContentModal, handleClickOpen }) {
   const [errorMessage, setErrorMessage] = useState("");
   const { setAuth } = useContext(UserContext);
 
-  // Gestionnaire de soumission du formulaire
+  // Handle connexion form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
 
