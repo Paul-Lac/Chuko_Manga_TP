@@ -11,7 +11,7 @@ import NewAdvert from "./pages/NewAdvert";
 import NotFound from "./pages/NotFound";
 import PaymentPage from "./pages/Payment";
 import ProfilUser from "./pages/ProfilUser";
-import RequireAuth from "./context/RequireAuth";
+import RequireAuth from "./helper/RequireAuth";
 import UpdateProfile from "./pages/UpdateProfile";
 
 const router = createBrowserRouter([

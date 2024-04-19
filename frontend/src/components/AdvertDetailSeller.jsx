@@ -90,7 +90,7 @@ function AdvertDetailSeller({ userId, id }) {
 
 AdvertDetailSeller.propTypes = {
   userId: PropTypes.number.isRequired,
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default AdvertDetailSeller;

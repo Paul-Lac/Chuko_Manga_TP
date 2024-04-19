@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import UserContext from "../context/UserContext";
+import { UserContext } from "../context/UserContext";
 
 import "./NewAdvert.css";
 import AdvertForm from "../components/AdvertForm";

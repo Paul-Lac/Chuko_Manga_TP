@@ -1,9 +1,7 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useRef, useState, useContext } from "react";
-
-import UserContext from "../context/UserContext";
+import PropTypes from "prop-types";
+import axios from "axios";
+import { UserContext } from "../context/UserContext";
 
 import "./Connexion.css";
 
@@ -19,34 +17,27 @@ function Connexion({ handleContentModal, handleClickOpen }) {
     event.preventDefault();
 
     try {
-      // Appel à l'API pour demander une connexion
-      const response = await fetch(
+      const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/login`,
         {
-          method: "post",
-          headers: { "Content-Type": "application/json" },
-          // In order to include the cookie I have in my navigator :
-          credentials: "include",
-          body: JSON.stringify({
-            email: emailRef.current.value,
-            password: passwordRef.current.value,
-          }),
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
+        },
+        {
+          withCredentials: true,
         }
       );
 
-      // Teste si la reponse a un statut 200 : la connexion a reussi
+      // Check if response status is 200 : connexion is a success
       if (response.status === 200) {
-        const auth = await response.json();
-
+        const auth = response.data;
         setAuth(auth);
         localStorage.setItem("auth", JSON.stringify(auth));
         handleClickOpen();
       } else {
-        // Log des détails de la réponse en cas d'échec
         setErrorMessage("Email ou mot de passe incorrect.");
       }
     } catch (err) {
-      // Log des erreurs possibles
       console.error(err);
       setErrorMessage("Une erreur s'est produite. Veuillez réessayer.");
     }
@@ -100,9 +91,13 @@ function Connexion({ handleContentModal, handleClickOpen }) {
         <p className="to-click">Mot de passe oublié ?</p>
         <p className="text-info">
           Tu n'as pas de compte ?{" "}
-          <span className="to-click" onClick={handleContentModal}>
+          <button
+            className="to-click"
+            onClick={handleContentModal}
+            type="button"
+          >
             Inscris-toi
-          </span>
+          </button>
         </p>
       </div>
     </div>
@@ -110,3 +105,8 @@ function Connexion({ handleContentModal, handleClickOpen }) {
 }
 
 export default Connexion;
+
+Connexion.propTypes = {
+  handleContentModal: PropTypes.func.isRequired,
+  handleClickOpen: PropTypes.func.isRequired,
+};

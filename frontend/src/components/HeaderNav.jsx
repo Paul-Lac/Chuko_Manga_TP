@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import UserContext from "../context/UserContext";
+import { UserContext } from "../context/UserContext";
 import ConnexionModal from "./ConnexionModal";
 import "./HeaderNav.css";
 import SearchBar from "./SearchBar";

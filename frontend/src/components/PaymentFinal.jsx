@@ -4,7 +4,7 @@ import { useContext } from "react";
 import "./PaymentFinal.css";
 
 // import { useNotifications } from "../context/NotificationContext";
-import UserContext from "../context/UserContext";
+import { UserContext } from "../context/UserContext";
 
 function PaymentFinal({ price, articleData }) {
   const navigate = useNavigate();

@@ -4,7 +4,7 @@ import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import AdvertDetailSeller from "../components/AdvertDetailSeller";
 import MangaDetails from "./MangaDetails";
-import UserContext from "../context/UserContext";
+import { UserContext } from "../context/UserContext";
 
 function AdvertDetail() {
   const navigate = useNavigate();
