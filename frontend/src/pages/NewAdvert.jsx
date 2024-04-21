@@ -1,10 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 import { UserContext } from "../context/UserContext";
+import AdvertForm from "../components/AdvertForm";
 
 import "./NewAdvert.css";
-import AdvertForm from "../components/AdvertForm";
+import "react-toastify/dist/ReactToastify.css";
 
 function NewAdvert() {
   const navigate = useNavigate();
@@ -27,10 +29,11 @@ function NewAdvert() {
   const [batch, setBatch] = useState(0);
 
   // Const designed to control user's input
-  const MAX_LENGTH_TITLE = 40;
-  const MAX_LENGTH_DESC = 255;
-  const maxTitleReached = advertTitle.length >= MAX_LENGTH_TITLE;
-  const maxDescReached = description.length >= MAX_LENGTH_DESC;
+  const maxLengthTitle = 40;
+  const maxLengthDesc = 255;
+  const maxFileSize = 5 * 1024 * 1024;
+  const maxTitleReached = advertTitle.length >= maxLengthTitle;
+  const maxDescReached = description.length >= maxLengthDesc;
 
   // State designed to transfer images and preview images
   const [files, setFiles] = useState({
@@ -44,6 +47,15 @@ function NewAdvert() {
     const { name } = e.target;
     const file = e.target.files[0];
     const preview = URL.createObjectURL(file);
+
+    // Check file size, toast error and reinitialise input value to allow user to
+    if (file.size > maxFileSize) {
+      toast.error(
+        "La taille de l'image dépasse la limite de 5Mo. Veuillez sélectionner un autre fichier."
+      );
+      e.target.value = null;
+      return;
+    }
 
     setFiles((prevFiles) => ({
       ...prevFiles,
@@ -65,13 +77,13 @@ function NewAdvert() {
 
   // Manage and control user's inputs
   const handleTitleChange = (e) => {
-    if (e.target.value.length <= MAX_LENGTH_TITLE) {
+    if (e.target.value.length <= maxLengthTitle) {
       setAdvertTitle(e.target.value);
     }
   };
 
   const handleDescChange = (e) => {
-    if (e.target.value.length <= MAX_LENGTH_DESC) {
+    if (e.target.value.length <= maxLengthDesc) {
       setDescription(e.target.value);
     }
   };
@@ -130,14 +142,15 @@ function NewAdvert() {
         formData.append(key, files[key].file);
       }
     }
-    console.info("Data to send:", formData);
     axios
       .post("http://localhost:3310/api/adverts", formData, {
         withCredentials: true,
       })
       .then((res) => {
         console.info("Advert created successfully", res.data);
-        navigate(`/profile/${auth.user.id}`);
+        navigate(`/profile/${auth.user.id}`, {
+          state: { message: "Annonce ajoutée !" },
+        });
       })
       .catch((error) => {
         console.error("Error creating advert", error);
@@ -168,6 +181,7 @@ function NewAdvert() {
         setVolumeId={setVolumeId}
         volumeList={volumeList}
       />
+      <ToastContainer />
     </section>
   );
 }

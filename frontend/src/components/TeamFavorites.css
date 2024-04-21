@@ -34,7 +34,7 @@
 
 @media (max-width: 768px) {
   .section-coup-de-coeur {
-    font-size: var(--fs-M);
+    font-size: var(--fs-S);
   }
 
   .section-logo {

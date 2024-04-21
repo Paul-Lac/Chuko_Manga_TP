@@ -46,7 +46,7 @@ function AdvertFormContent(props) {
         value={advertTitle}
         onChange={handleTitleChange}
         placeholder="ex: Naruto, tome 44"
-        required="required"
+        required
       />
       <div
         className={`advert-warning ${!maxTitleReached && "advert-hide-warning"}`}
@@ -64,7 +64,7 @@ function AdvertFormContent(props) {
         value={description}
         onChange={handleDescChange}
         placeholder="ex: Pages intactes, mais couverture légèrement usée"
-        required="required"
+        required
       />
       <div
         className={`advert-warning ${!maxDescReached && "advert-hide-warning"}`}
@@ -79,8 +79,9 @@ function AdvertFormContent(props) {
         className="advert-select"
         name="article_condition_id"
         onChange={(e) => setConditionId(e.target.value)}
+        required
       >
-        <option>Sélectionne l'état de ton article</option>
+        <option value="">Sélectionne l'état de ton article</option>
         {conditionList.map((conditionItem) => (
           <option key={conditionItem.id} value={conditionItem.id}>
             {conditionItem.name_condition}
@@ -98,7 +99,7 @@ function AdvertFormContent(props) {
         value={price}
         onChange={handlePriceChange}
         placeholder="0.00€"
-        required="required"
+        required
       />
       <div className={`advert-warning ${!priceErr && "advert-hide-warning"}`}>
         Format incorrect

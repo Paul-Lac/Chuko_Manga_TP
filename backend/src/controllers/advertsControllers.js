@@ -28,7 +28,6 @@ const getAdvertsBySeller = async (req, res) => {
 };
 
 const createAdvert = async (req, res) => {
-  // console.info("req.body is:", req.body);
   try {
     const advert = req.body;
     const advertId = await models.advert.addAdvert(advert);
