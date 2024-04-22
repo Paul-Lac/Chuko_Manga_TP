@@ -1,34 +1,14 @@
 // Load the express module to create a web application
 
 const express = require("express");
-// eslint-disable-next-line import/no-extraneous-dependencies
-const cookieParser = require("cookie-parser");
-const cors = require("cors");
-
-// const multer = require("multer");
-
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     return cb(null, "./public/images");
-//   },
-//   filename: (req, file, cb) => {
-//     return cb(null, `${Date.now()}_${file.originalname}`);
-//   },
-// });
-// const upload = multer({ storage });
 
 const app = express();
 
-// Configure it
-
 /* ************************************************************************* */
 
-// CORS Handling: Why is the current code commented out and do I need to define specific allowed origins for my project?
-
 // CORS (Cross-Origin Resource Sharing) is a security mechanism in web browsers that blocks requests from a different domain than the server.
-// You may find the following magic line in forums:
+const cors = require("cors");
 
-// donne l'accès à certaines URL
 app.use(
   cors({
     origin: [
@@ -40,38 +20,11 @@ app.use(
   })
 );
 
-app.use("/static", express.static(`${__dirname}/assets`));
+/* ************************************************************************* */
 
+app.use("/static", express.static(`${__dirname}/assets`));
 app.use("/static", express.static("public/images"));
 app.use("/static", express.static("public/upload"));
-
-// app.use("/uploads", express.static(`${__dirname}/uploads`));
-
-// app.use("/static", express.static(`${__dirname}/src/assets`));
-
-// You should NOT do that: such code uses the `cors` module to allow all origins, which can pose security issues.
-// For this pedagogical template, the CORS code is commented out to show the need for defining specific allowed origins.
-
-// To enable CORS and define allowed origins:
-// 1. Install the `cors` module in the backend directory
-// 2. Uncomment the line `const cors = require("cors");`
-// 3. Uncomment the section `app.use(cors({ origin: [...] }))`
-// 4. Be sure to only have URLs in the array with domains from which you want to allow requests.
-// For example: ["http://mysite.com", "http://another-domain.com"]
-
-/*
-const cors = require("cors");
-
-app.use(
-  cors({
-    origin: [
-      process.env.FRONTEND_URL, // keep this one, after checking the value in `backend/.env`
-      "http://mysite.com",
-      "http://another-domain.com",
-    ]
-  })
-);
-*/
 
 /* ************************************************************************* */
 
@@ -86,43 +39,33 @@ app.use(
 // 3. `express.text()`: Parses requests with raw text data.
 // 4. `express.raw()`: Parses requests with raw binary data.
 
-// Uncomment one or more of these options depending on the format of the data sent by your client:
-
-// Comment PL : la ligne suivante permet de remplir le req.body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// app.use(express.text());
-// app.use(express.raw());
 
 /* ************************************************************************* */
 
 // Cookies: Why and how to use the `cookie-parser` module?
 
 // Cookies are small pieces of data stored in the client's browser. They are often used to store user-specific information or session data.
-
 // The `cookie-parser` module allows us to parse and manage cookies in our Express application. It parses the `Cookie` header in incoming requests and populates `req.cookies` with an object containing the cookies.
-
 // To use `cookie-parser`, make sure it is installed in `backend/package.json` (you may need to install it separately):
 // npm install cookie-parser
-
-// Then, require the module and use it as middleware in your Express application:
-
-// const cookieParser = require("cookie-parser");
-app.use(cookieParser());
-
+// Then, require the module and use it as middleware in your Express application
 // Once `cookie-parser` is set up, you can read and set cookies in your routes.
 // For example, to set a cookie named "username" with the value "john":
 // res.cookie("username", "john");
-
 // To read the value of a cookie named "username":
 // const username = req.cookies.username;
+
+const cookieParser = require("cookie-parser");
+
+app.use(cookieParser());
 
 /* ************************************************************************* */
 
 // Import the API routes from the router module
 const router = require("./router");
-// http://localhost:4242/api
+
 // Mount the API routes under the "/api" endpoint
 app.use("/api", router);
 

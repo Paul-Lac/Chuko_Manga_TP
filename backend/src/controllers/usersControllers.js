@@ -17,7 +17,7 @@ const addUser = async (req, res) => {
     // Respond with HTTP 201 (Created) and the ID of the newly inserted item
     res.status(201).json({ insertId });
   } catch (err) {
-    console.log(err);
+    console.error(err);
     res.status(500).json({ error: "Internal server Error" });
   }
 };

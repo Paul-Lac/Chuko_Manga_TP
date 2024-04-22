@@ -5,12 +5,7 @@ export const UserContext = createContext();
 export function UserProvider({ children }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const getInitialAuthState = () => {
-    const storedAuth = localStorage.getItem("auth");
-    return storedAuth ? JSON.parse(storedAuth) : { token: "", userId: "" };
-  };
-
-  const [auth, setAuth] = useState(getInitialAuthState);
+  const [auth, setAuth] = useState(localStorage.getItem("auth"));
 
   const userContextValue = useMemo(
     () => ({ auth, setAuth, isModalOpen, setIsModalOpen }),
@@ -27,6 +22,11 @@ export function UserProvider({ children }) {
 UserProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
+
+// const getInitialAuthState = () => {
+//   const storedAuth = localStorage.getItem("auth");
+//   return storedAuth ? JSON.parse(storedAuth) : { token: "", userId: "" };
+// };
 
 // const getInitialAuthState = () => {
 //   const storedAuth = localStorage.getItem("auth");

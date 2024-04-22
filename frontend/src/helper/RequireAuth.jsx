@@ -22,5 +22,3 @@ export default RequireAuth;
 RequireAuth.propTypes = {
   children: PropTypes.node.isRequired,
 };
-
-// return auth ? children : null;

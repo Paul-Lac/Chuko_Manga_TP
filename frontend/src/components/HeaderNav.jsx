@@ -8,7 +8,6 @@ import SearchBar from "./SearchBar";
 import HeaderNavMobile from "./HeaderNavMobile";
 import logo from "../assets/logo.png";
 import iconHeart from "../assets/icon-heart.png";
-// import iconNotification from "../assets/icon-notification.png";
 import iconUser from "../assets/icon-user.png";
 import iconUserActive from "../assets/icon-user-active.png";
 
@@ -81,11 +80,6 @@ function HeaderNav() {
             </button>
           ) : (
             <>
-              {/* <img
-                className="iconNotification"
-                src={iconNotification}
-                alt="Notifications"
-              /> */}
               <Link to="/favorites">
                 <img className="icon-heart" src={iconHeart} alt="Favoris" />
               </Link>
@@ -109,12 +103,6 @@ function HeaderNav() {
                   >
                     Profil
                   </button>
-                  {/* <Link
-                    to={`/profilUser/${auth.user.id}`}
-                    className="user-menu-link"
-                  >
-                    Profil
-                  </Link> */}
                   <button
                     className="user-menu-logout"
                     type="button"
@@ -124,13 +112,6 @@ function HeaderNav() {
                   </button>
                 </div>
               )}
-              {/* <button
-                className="inscription-login-button"
-                type="button"
-                onClick={handleLogout}
-              >
-                Se déconnecter
-              </button> */}
             </>
           )}
           {isModalOpen && <ConnexionModal handleClickOpen={handleClickOpen} />}
