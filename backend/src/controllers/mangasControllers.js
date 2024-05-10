@@ -16,7 +16,7 @@ const getMangas = async (req, res) => {
       // get Manga without any search input
       const allMangas = await models.manga.getMangaData();
       res.json(allMangas);
-      console.info("pas d'entrée");
+      // console.info("pas d'entrée");
     }
   } catch (err) {
     console.error(err);

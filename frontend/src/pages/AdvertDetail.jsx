@@ -40,6 +40,11 @@ function AdvertDetail() {
   if (!detailAdvert) {
     return <p>Chargement des détails...</p>;
   }
+  // const navigateToPaymentPage = () => {
+  //   navigate(`/payment/${id}`, {
+  //     state: { articleData: detailAdvert[0] },
+  //   });
+  // };
   const navigateToPaymentPage = () => {
     const token = localStorage.getItem("auth");
     if (token) {
@@ -48,6 +53,7 @@ function AdvertDetail() {
       });
     } else {
       setIsModalOpen(true);
+      navigate("/");
     }
   };
 

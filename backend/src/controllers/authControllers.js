@@ -32,8 +32,7 @@ const login = async (req, res) => {
       res.cookie("token", token, {
         httpOnly: true,
       });
-      res.json({
-        token,
+      res.status(200).json({
         user: {
           id: user.id,
           pseudo: user.pseudo,

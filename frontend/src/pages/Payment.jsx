@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import "./Payment.css";
 import PaymentAddress from "../components/PaymentAddress";
 import PaymentDeliveryOption from "../components/PaymentDeliveryOption";
 import PaymentFinal from "../components/PaymentFinal";
 import PaymentOrder from "../components/PaymentOrder";
+import { UserContext } from "../context/UserContext";
 
 function PaymentPage() {
   const location = useLocation();
+  const { auth } = useContext(UserContext);
   const { articleData } = location.state || {};
   // console.info("info paymentPage", articleData);
   const [showModal, setShowModal] = useState(false);
@@ -110,7 +112,11 @@ function PaymentPage() {
           </div>
         </div>
         <div className="right-column">
-          <PaymentFinal price={articleData.price} articleData={articleData} />
+          <PaymentFinal
+            price={articleData.price}
+            articleData={articleData}
+            auth={auth}
+          />
         </div>
       </div>
     </section>

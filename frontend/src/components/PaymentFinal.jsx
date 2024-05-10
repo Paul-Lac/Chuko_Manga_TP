@@ -1,18 +1,18 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+// import { useContext } from "react";
 import "./PaymentFinal.css";
 
 // import { useNotifications } from "../context/NotificationContext";
-import { UserContext } from "../context/UserContext";
+// import { UserContext } from "../context/UserContext";
 
-function PaymentFinal({ price, articleData }) {
+function PaymentFinal({ price, articleData, auth }) {
   const navigate = useNavigate();
   const cost = parseFloat(price);
   const fraisDePort = (cost * 5) / 100;
   const total = cost + fraisDePort;
   // const { addNotification } = useNotifications();
-  const { auth } = useContext(UserContext);
+  // const { auth } = useContext(UserContext);
 
   const orderDetails = {
     id_user_buy: auth.user.id,

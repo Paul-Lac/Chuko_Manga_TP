@@ -4,7 +4,7 @@ const cookieJwtAuth = (req, res, next) => {
   const { token } = req.cookies;
 
   if (!token) {
-    return res.redirect("/");
+    return res.sendStatus(401);
   }
 
   try {
@@ -13,7 +13,7 @@ const cookieJwtAuth = (req, res, next) => {
     return next();
   } catch (err) {
     res.clearCookie("token");
-    return res.redirect("/");
+    return res.sendStatus(401);
   }
 };
 

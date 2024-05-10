@@ -70,7 +70,7 @@ function HeaderNav() {
           </button>
         </Link> */}
         <div className="buttonHeader-container">
-          {!auth?.token ? (
+          {!auth ? (
             <button
               className="inscription-login-button"
               type="button"
