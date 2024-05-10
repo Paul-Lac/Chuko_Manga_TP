@@ -4,7 +4,7 @@ const cookieJwtAuth = (req, res, next) => {
   const { token } = req.cookies;
 
   if (!token) {
-    return res.sendStatus(401);
+    return res.status(401).json({ message: "Unauthorized" });
   }
 
   try {
@@ -13,7 +13,7 @@ const cookieJwtAuth = (req, res, next) => {
     return next();
   } catch (err) {
     res.clearCookie("token");
-    return res.sendStatus(401);
+    return res.status(401).json({ message: "Unauthorized" });
   }
 };
 

@@ -66,6 +66,10 @@ router.post(
 );
 router.post("/login", validateLogin, authControllers.login);
 router.get("/logout", authControllers.logout);
+// Check if token is valid
+router.get("/api/verify", cookieJwtAuth, (req, res) => {
+  res.sendStatus(200);
+});
 
 /* ************************************************************************* */
 // PROTECTED ROUTES

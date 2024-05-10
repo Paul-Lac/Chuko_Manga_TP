@@ -14,7 +14,6 @@ const validateLogin = (req, res, next) => {
       console.info("Error list :", errorItem.message);
     });
   } else {
-    console.info("Data validated successfully:", req.body);
     next();
   }
 };
