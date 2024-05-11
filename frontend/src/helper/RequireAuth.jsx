@@ -7,13 +7,13 @@ function RequireAuth({ children }) {
   const { auth, setAuth, setIsModalOpen } = useContext(UserContext);
   const navigate = useNavigate();
 
-  function isTokenExpired() {
-    const expiresAt = JSON.parse(localStorage.getItem("expiresAt"));
-    return new Date().getTime() > expiresAt;
+  function isRefreshTokenExpired() {
+    const expiresAt = localStorage.getItem("expiresAt");
+    return new Date().getTime() > Number(expiresAt);
   }
 
   useEffect(() => {
-    if (!auth || isTokenExpired()) {
+    if (!auth || isRefreshTokenExpired()) {
       localStorage.removeItem("auth");
       localStorage.removeItem("expiresAt");
       setAuth(null);

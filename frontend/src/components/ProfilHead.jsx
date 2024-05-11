@@ -6,6 +6,7 @@ import { useParams, Link } from "react-router-dom";
 import girl from "../assets/girl.png";
 import Stars from "./StarsRating";
 import "./ProfilHead.css";
+import axiosInstance from "../services/axiosInstance";
 
 function ProfilHead() {
   const { id } = useParams();
@@ -33,20 +34,13 @@ function ProfilHead() {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:3310/api/user-profiles/${id}`, {
-      credentials: "include",
-    })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Network response was not ok");
-        }
-
-        return res.json();
+    axiosInstance
+      .get(`/user-profiles/${id}`, {
+        withCredentials: true,
       })
-      .then((data) => {
-        // console.info("Mes donnees user :", data);
-        const rating = parseFloat(data[0].average_rating);
-        setFormData({ ...data[0], rating });
+      .then((res) => {
+        const rating = parseFloat(res.data[0].average_rating);
+        setFormData({ ...res.data[0], rating });
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);

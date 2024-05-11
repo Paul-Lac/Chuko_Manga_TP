@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./ProfilTabOrder.css";
+import axiosInstance from "../services/axiosInstance";
 
 function ProfilTabOrder() {
   const { id } = useParams();
   const [historyOrders, setHistoryOrders] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:3310/api/buyers/${id}/orders`, {
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.info("Mon historique d'achat:", data);
-        setHistoryOrders(data);
+    axiosInstance
+      .get(`/buyers/${id}/orders`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.info("Mon historique d'achat:", res.data);
+        setHistoryOrders(res.data);
       });
   }, [id]);
 

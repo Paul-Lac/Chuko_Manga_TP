@@ -33,7 +33,7 @@ function Connexion({ handleContentModal, handleClickOpen }) {
         const auth = response.data;
         setAuth(auth);
         localStorage.setItem("auth", JSON.stringify(auth));
-        const expiresAt = new Date().getTime() + response.data.expiresIn * 1000;
+        const expiresAt = new Date().getTime() + response.data.expiresIn;
         localStorage.setItem("expiresAt", expiresAt);
         handleClickOpen();
       } else {

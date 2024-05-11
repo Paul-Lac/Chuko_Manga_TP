@@ -4,9 +4,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
+import axiosInstance from "../services/axiosInstance";
 import "./UpdateDetails.css";
-import axios from "axios";
 
 function UpdateAddress() {
   const { id } = useParams();
@@ -18,16 +17,11 @@ function UpdateAddress() {
     nameAdress: "",
   });
   useEffect(() => {
-    fetch(`http://localhost:3310/api/address/${id}`, {
-      credentials: "include",
-    })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return res.json();
+    axiosInstance
+      .get(`/address/${id}`, {
+        withCredentials: true,
       })
-      .then((data) => {
+      .then(({ data }) => {
         console.info("Mes adresse user :", data);
         setFormData({
           id: data[0].id,
@@ -47,14 +41,10 @@ function UpdateAddress() {
     e.preventDefault();
     if (formData.id) {
       // Si l'adresse existe déjà, effectuer une requête PUT pour la mettre à jour
-      axios
-        .put(
-          `http://localhost:3310/api/users/${id}/address/${formData.id}`,
-          formData,
-          {
-            withCredentials: true,
-          }
-        )
+      axiosInstance
+        .put(`/users/${id}/address/${formData.id}`, formData, {
+          withCredentials: true,
+        })
         .then((response) => {
           console.warn("Success updating user:", response.data);
         })
@@ -62,8 +52,8 @@ function UpdateAddress() {
           console.error("Error updating user:", error);
         });
     } else {
-      axios /*id ou formData.id*/
-        .post(`http://localhost:3310/api/address/${id}`, formData)
+      axiosInstance
+        .post(`/address/${id}`, formData)
         .then((response) => {
           console.warn("Success creating user:", response.data);
         })

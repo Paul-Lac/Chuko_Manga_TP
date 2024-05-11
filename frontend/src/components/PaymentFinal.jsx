@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../services/axiosInstance";
 // import { useContext } from "react";
 import "./PaymentFinal.css";
 
@@ -28,41 +29,10 @@ function PaymentFinal({ price, articleData, auth }) {
     console.info("Order details:", orderDetails);
     // const imageUrl = `http://localhost:3310${articleData?.image_paths[0]}`;
 
-    //   axios
-    //     .post("http://localhost:3310/api/parcel-order", orderDetails)
-    //     .then((response) => {
-    //       if (response.ok) {
-    //         return response.json();
-    //       }
-    //       throw new Error("Network response was not ok");
-    //     })
-    //     .then((data) => {
-    //       console.info(data.message);
-    //       // addNotification("La vente a été réalisée avec succès !", imageUrl);
-    //       navigate("/");
-    //     })
-    //     .catch((error) => {
-    //       console.error("Erreur lors de l'enregistrement de la commande:", error);
-    //     });
-    // };
-
-    fetch("http://localhost:3310/api/orders", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${auth.token}`,
-      },
-      body: JSON.stringify(orderDetails),
-      credentials: "include",
-    })
+    axiosInstance
+      .post("/orders", orderDetails, { withCredentials: true })
       .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Network response was not ok");
-      })
-      .then((data) => {
-        console.info(data.message);
+        console.info(response.data.message);
         // addNotification("La vente a été réalisée avec succès !", imageUrl);
         navigate(`/profile/${auth.user.id}`);
       })

@@ -5,8 +5,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
+import axiosInstance from "../services/axiosInstance";
 import "./UpdateDetails.css";
-import axios from "axios";
 
 function UpdateDetails() {
   const { id } = useParams();
@@ -24,25 +24,20 @@ function UpdateDetails() {
   const fileInputRef = useRef();
 
   useEffect(() => {
-    fetch(`http://localhost:3310/api/users/${id}`, {
-      credentials: "include",
-    })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return res.json();
+    axiosInstance
+      .get(`/users/${id}`, {
+        withCredentials: true,
       })
-      .then((data) => {
+      .then((res) => {
         setFormData({
-          pseudo: data.pseudo,
-          firstname: data.firstname,
-          lastname: data.lastname,
-          email: data.email,
-          phone: data.phone,
-          picture: data.picture,
+          pseudo: res.data.pseudo,
+          firstname: res.data.firstname,
+          lastname: res.data.lastname,
+          email: res.data.email,
+          phone: res.data.phone,
+          picture: res.data.picture,
         });
-        setFile(data.picture);
+        setFile(res.data.picture);
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
@@ -77,8 +72,8 @@ function UpdateDetails() {
     } else {
       data.append("picture", file);
     }
-    axios
-      .put(`http://localhost:3310/api/user/${id}`, data, {
+    axiosInstance
+      .put(`/user/${id}`, data, {
         withCredentials: true,
       })
       .then((response) => {

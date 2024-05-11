@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import axiosInstance from "../services/axiosInstance";
 import AdvertCard from "./AdvertCard";
 import "./ProfilTabAdvert.css";
 
@@ -46,12 +47,9 @@ function ProfilTabAdvert() {
   // Fonction handling advert deletion
   const handleDeleteAdvert = async (advertId) => {
     try {
-      const response = await axios.delete(
-        `http://localhost:3310/api/adverts/${advertId}`,
-        {
-          withCredentials: true,
-        }
-      );
+      const response = await axiosInstance.delete(`/adverts/${advertId}`, {
+        withCredentials: true,
+      });
       console.info("Advert deleted successfully", response.data);
       const updateAdvertList = adverts.filter(
         (advert) => advert.id !== advertId

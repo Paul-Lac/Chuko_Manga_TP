@@ -1,18 +1,18 @@
 const jwt = require("jsonwebtoken");
 
 const cookieJwtAuth = (req, res, next) => {
-  const { token } = req.cookies;
+  const { accessToken } = req.cookies;
 
-  if (!token) {
+  if (!accessToken) {
     return res.status(401).json({ message: "Unauthorized" });
   }
 
   try {
-    const user = jwt.verify(token, process.env.APP_SECRET);
+    const user = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
     req.user = user;
     return next();
   } catch (err) {
-    res.clearCookie("token", { httpOnly: true, path: "/" });
+    res.clearCookie("accessToken", { httpOnly: true, path: "/" });
     return res.status(401).json({ message: "Unauthorized" });
   }
 };

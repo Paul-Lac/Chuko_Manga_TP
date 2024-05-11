@@ -6,6 +6,7 @@ const schema = Joi.object({
   lastname: Joi.string().required(),
   email: Joi.string().email().required(),
   phone: Joi.string().required(),
+  picture: Joi.string().optional(),
 }).options({ abortEarly: false });
 
 const validateUserUpdate = (req, res, next) => {

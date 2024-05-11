@@ -21,24 +21,3 @@ export function UserProvider({ children }) {
 UserProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
-
-// const getInitialAuthState = () => {
-//   const storedAuth = localStorage.getItem("auth");
-//   return storedAuth ? JSON.parse(storedAuth) : { token: "", userId: "" };
-// };
-
-// const getInitialAuthState = () => {
-//   const storedAuth = localStorage.getItem("auth");
-//   if (storedAuth) {
-//     try {
-//       const authData = JSON.parse(storedAuth);
-//       return authData.token && authData.user.id
-//         ? authData
-//         : { token: "", userId: "" };
-//     } catch (error) {
-//       console.error("Error parsing auth from localStorage", error);
-//       return { token: "", userId: "" };
-//     }
-//   }
-//   return { token: "", userId: "" };
-// };

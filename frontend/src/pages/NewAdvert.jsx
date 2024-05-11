@@ -7,6 +7,7 @@ import AdvertForm from "../components/AdvertForm";
 
 import "./NewAdvert.css";
 import "react-toastify/dist/ReactToastify.css";
+import axiosInstance from "../services/axiosInstance";
 
 function NewAdvert() {
   const navigate = useNavigate();
@@ -142,8 +143,8 @@ function NewAdvert() {
         formData.append(key, files[key].file);
       }
     }
-    axios
-      .post("http://localhost:3310/api/adverts", formData, {
+    axiosInstance
+      .post("/adverts", formData, {
         withCredentials: true,
       })
       .then((res) => {
