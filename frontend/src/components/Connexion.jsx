@@ -33,6 +33,8 @@ function Connexion({ handleContentModal, handleClickOpen }) {
         const auth = response.data;
         setAuth(auth);
         localStorage.setItem("auth", JSON.stringify(auth));
+        const expiresAt = new Date().getTime() + response.data.expiresIn * 1000;
+        localStorage.setItem("expiresAt", expiresAt);
         handleClickOpen();
       } else {
         setErrorMessage("Email ou mot de passe incorrect.");

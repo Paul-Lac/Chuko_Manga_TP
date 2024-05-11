@@ -42,6 +42,7 @@ function HeaderNav() {
       });
       setAuth(null);
       localStorage.removeItem("auth");
+      localStorage.removeItem("expiresAt");
       navigate("/");
     } catch (error) {
       console.error("Error during logout:", error);

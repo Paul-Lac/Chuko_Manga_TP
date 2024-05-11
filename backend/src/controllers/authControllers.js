@@ -37,6 +37,7 @@ const login = async (req, res) => {
           id: user.id,
           pseudo: user.pseudo,
         },
+        expiresIn: 3600,
       });
     } else {
       res.status(401).json({ error: "Invalid credentials" });
@@ -48,7 +49,7 @@ const login = async (req, res) => {
 };
 
 const logout = async (req, res) => {
-  res.clearCookie("token").sendStatus(200);
+  res.clearCookie("token", { httpOnly: true, path: "/" }).sendStatus(200);
 };
 
 module.exports = {

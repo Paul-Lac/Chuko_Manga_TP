@@ -12,7 +12,7 @@ const cookieJwtAuth = (req, res, next) => {
     req.user = user;
     return next();
   } catch (err) {
-    res.clearCookie("token");
+    res.clearCookie("token", { httpOnly: true, path: "/" });
     return res.status(401).json({ message: "Unauthorized" });
   }
 };
