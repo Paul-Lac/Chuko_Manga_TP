@@ -1,56 +1,56 @@
-.main_container_user_profilhead {
-  display: flex;
-  /* padding-top: 20px; */
-  justify-content: space-between;
-  /* background-color: yellow; */
-  gap: 2rem;
-  width: 100%;
-  max-width: 1200px;
-}
-
-.profile-img {
-  height: 25rem;
-  /* background-color: green; */
-}
-.container_user_profilhead {
-  width: 70%;
+.main_container_user {
   display: flex;
   flex-direction: column;
-  border: 2px solid red;
+  width: 50%;
+  max-width: 1200px;
+  margin: auto;
   gap: 1rem;
-  height: 100%;
-  align-items: space-between;
-}
-
-.container_user_detail {
-  background-color: aqua;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
   padding: 1rem;
-  box-shadow:
-    rgba(0, 0, 0, 0.12) 0px 1px 3px,
-    rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 5px;
+}
+.container_profilhead {
+  display: flex;
+  margin: auto;
+  gap: 3rem;
 }
 
-.user_profilhead_info {
-  /* margin-top: 20px; */
-  border: 1px solid blue;
+.picture_user_profilhead {
+  display: flex;
+  justify-content: center;
+  align-items: start;
 }
 
 .picture_user_profilhead_img {
   object-fit: cover;
   border-radius: 50%;
-  width: 8rem;
-  height: 8rem;
-  /* margin-right: 50px; */
-}
-.user_profilhead_info_name {
-  font-size: var(--fs-XL);
+  width: 7rem;
+  height: 7rem;
 }
 
-.user-profilhead_button {
+.container_user_profilhead {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+}
+
+.user_profilhead_info_name {
+  font-size: var(--fs-XL);
+  margin-bottom: 1rem;
+}
+
+.user-item {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.user-item-title {
+  font-weight: 600;
+  width: 6rem;
+}
+
+.profilhead_button {
   background-color: var(--primary-clr);
   color: white;
   padding: 10px;
@@ -60,14 +60,34 @@
   margin-bottom: auto;
   margin-right: auto;
   width: 6rem;
-  align-self: center;
+  margin: auto;
 }
-.user-profilhead_button:hover {
+.profilhead_button:hover {
   background-color: var(--primary-clr-accent);
 }
 
-.container_user_address {
-  box-shadow:
-    rgba(0, 0, 0, 0.12) 0px 1px 3px,
-    rgba(0, 0, 0, 0.24) 0px 1px 2px;
+@media screen and (max-width: 768px) {
+  .main_container_user {
+    box-shadow: none;
+    width: 90%;
+  }
+
+  .container_profilhead {
+    flex-direction: column;
+
+    gap: 1rem;
+  }
+
+  .user_profilhead_info_name {
+    font-size: var(--fs-L);
+    text-align: center;
+  }
+
+  .picture_user_profilhead {
+    width: 100%;
+  }
+
+  .container_user_profilhead {
+    width: 100%;
+  }
 }

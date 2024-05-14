@@ -89,7 +89,7 @@ function UpdateDetails() {
     <form className="personal_details_form">
       <div className="input_label_profil">
         <label htmlFor="picture" className="label_profil">
-          Choisis ta photo
+          Ta photo
         </label>
         <input
           type="file"

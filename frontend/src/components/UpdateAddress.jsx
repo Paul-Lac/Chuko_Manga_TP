@@ -73,28 +73,14 @@ function UpdateAddress() {
   return (
     <form className="personal_details_form" onSubmit={handleUpdateAdresseUser}>
       <div className="input_label_profil">
-        <label htmlFor="country" className="label_profil">
-          Pays
+        <label htmlFor="numberStreet" className="label_profil">
+          Rue
         </label>
         <input
           type="text"
-          id="country"
-          name="country"
-          value={formData.country}
-          onChange={handleChange}
-          className="input_profil"
-          required
-        />
-      </div>
-      <div className="input_label_profil">
-        <label htmlFor="city" className="label_profil">
-          Ville
-        </label>
-        <input
-          type="text"
-          id="city"
-          name="city"
-          value={formData.city}
+          id="numberStreet"
+          name="numberStreet"
+          value={formData.numberStreet}
           onChange={handleChange}
           className="input_profil"
           required
@@ -115,14 +101,28 @@ function UpdateAddress() {
         />
       </div>
       <div className="input_label_profil">
-        <label htmlFor="numberStreet" className="label_profil">
-          Rue
+        <label htmlFor="city" className="label_profil">
+          Ville
         </label>
         <input
           type="text"
-          id="numberStreet"
-          name="numberStreet"
-          value={formData.numberStreet}
+          id="city"
+          name="city"
+          value={formData.city}
+          onChange={handleChange}
+          className="input_profil"
+          required
+        />
+      </div>
+      <div className="input_label_profil">
+        <label htmlFor="country" className="label_profil">
+          Pays
+        </label>
+        <input
+          type="text"
+          id="country"
+          name="country"
+          value={formData.country}
           onChange={handleChange}
           className="input_profil"
           required

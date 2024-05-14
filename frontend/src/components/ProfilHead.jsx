@@ -3,35 +3,12 @@
 /* eslint-disable no-plusplus */
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import girl from "../assets/girl.png";
-import Stars from "./StarsRating";
 import "./ProfilHead.css";
 import axiosInstance from "../services/axiosInstance";
 
 function ProfilHead() {
   const { id } = useParams();
-  const [formData, setFormData] = useState({
-    pseudo: "",
-    country: "",
-    picture: "",
-    phone: "",
-    email: "",
-    rating: 0,
-  });
-
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenWidth(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  const [profile, setProfile] = useState({});
 
   useEffect(() => {
     axiosInstance
@@ -39,8 +16,8 @@ function ProfilHead() {
         withCredentials: true,
       })
       .then((res) => {
-        const rating = parseFloat(res.data[0].average_rating);
-        setFormData({ ...res.data[0], rating });
+        console.info(res);
+        setProfile(res.data[0]);
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
@@ -48,46 +25,42 @@ function ProfilHead() {
   }, [id]);
 
   return (
-    <div className="main_container_user_profilhead">
-      <img className="profile-img" src={girl} alt="profile illustration" />
-      <div className="container_user_profilhead">
-        <div className="container_user_detail">
+    <div className="main_container_user">
+      <div className="container_profilhead">
+        <div className="picture_user_profilhead">
+          <img
+            className="picture_user_profilhead_img"
+            src={`http://localhost:3310${profile.picture}`}
+            alt="picture_user"
+          />
+        </div>
+        <div className="container_user_profilhead">
           <div className="user_profilhead_info">
-            <h1 className="user_profilhead_info_name">{formData.pseudo}</h1>
-            <Stars
-              ratingValue={formData.rating}
-              starSize={screenWidth > 768 ? 34 : 15}
-            />
-            <p className="user-item-title">
-              <span>Email</span>
-              {formData.email}
-            </p>
-            <p className="user-item-title">
-              <span>Téléphone</span> {formData.phone}
-            </p>
-          </div>
-          <div className="picture_user_profilhead">
-            <img
-              className="picture_user_profilhead_img"
-              src={`http://localhost:3310${formData.picture}`}
-              alt="picture_user"
-            />
+            <h1 className="user_profilhead_info_name">{profile.pseudo}</h1>
+            <div className="user-item">
+              <p className="user-item-title">Email</p>
+              <p className="user-item-info">{profile.email}</p>
+            </div>
+            <div className="user-item">
+              <p className="user-item-title">Téléphone </p>
+              <p className="user-item-info"> {profile.phone}</p>
+            </div>
+            <div className="user-item">
+              <p className="user-item-title">Adresse </p>
+              <div className="user-item-info-address">
+                <p className="user-item-info"> {profile.number_street}</p>
+                <p className="user-item-info">
+                  {profile.zip_code} {profile.city}
+                </p>
+                <p className="user-item-info"> {profile.country}</p>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="container_user_address">Address</div>
-        <button className="user-profilhead_button">
-          <Link
-            to={`/update-profile/${id}`}
-            style={{
-              textDecoration: "none",
-              color: "inherit",
-              pointerEvents: "auto",
-            }}
-          >
-            Modifier
-          </Link>
-        </button>
       </div>
+      <button className="profilhead_button">
+        <Link to={`/update-profile/${id}`}>Modifier</Link>
+      </button>
     </div>
   );
 }
