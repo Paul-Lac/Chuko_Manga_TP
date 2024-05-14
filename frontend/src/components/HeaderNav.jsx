@@ -31,8 +31,13 @@ function HeaderNav() {
   };
 
   const handleProfileClick = () => {
-    navigate(`/profile/${auth.user.id}`);
-    setUserMenu(false);
+    console.info("auth is:", auth);
+    if (auth && auth.user) {
+      navigate(`/profile/${auth.user.id}`);
+      setUserMenu(false);
+    } else {
+      console.warn("auth or auth.user is undefined");
+    }
   };
 
   const handleLogout = async () => {

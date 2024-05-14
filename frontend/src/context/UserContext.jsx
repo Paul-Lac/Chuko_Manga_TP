@@ -4,7 +4,10 @@ import PropTypes from "prop-types";
 export const UserContext = createContext();
 export function UserProvider({ children }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [auth, setAuth] = useState(localStorage.getItem("auth"));
+  const [auth, setAuth] = useState(() => {
+    const authFromLocalStorage = localStorage.getItem("auth");
+    return authFromLocalStorage ? JSON.parse(authFromLocalStorage) : null;
+  });
 
   const userContextValue = useMemo(
     () => ({ auth, setAuth, isModalOpen, setIsModalOpen }),

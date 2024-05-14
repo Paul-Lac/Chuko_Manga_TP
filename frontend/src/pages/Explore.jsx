@@ -68,7 +68,7 @@ function Explore() {
       }
     };
     fetchAdverts();
-  }, [maxPrice, minPrice, selectedConditions, selectedGenres]);
+  }, [maxPrice, minPrice, selectedConditions, selectedGenres, searchQuery]);
 
   return (
     <section className="explore-container">

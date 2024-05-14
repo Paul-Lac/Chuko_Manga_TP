@@ -43,7 +43,7 @@ function SearchBar({ searchBarClass }) {
 
   const handleKeyPress = async (e) => {
     if (e.key === "Enter") {
-      const searchUrl = `http://localhost:3310/api/explore?searchQuery=${searchQuery}`;
+      const searchUrl = `http://localhost:3310/api/adverts?searchQuery=${searchQuery}`;
       try {
         await axios.get(searchUrl);
       } catch (error) {
