@@ -2,6 +2,14 @@
   height: auto;
 }
 
+.no-feedback-msg {
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+  font-weight: 600;
+  color: var(--primary-clr);
+  text-align: center;
+}
+
 .containerNote {
   border-bottom: solid 0.1rem var(--neutral-700);
   height: 70px;

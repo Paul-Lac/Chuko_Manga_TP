@@ -82,7 +82,7 @@ function ProfilTabAdvert() {
             </div>
           ))
         ) : (
-          <p>Vous n'avez aucune annonce en vente.</p>
+          <p className="no-adverts-msg">Vous n'avez aucune annonce en vente.</p>
         )}
       </div>
       {modalDelete && (

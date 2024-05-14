@@ -7,6 +7,13 @@
   margin: auto;
 }
 
+.no-adverts-msg {
+  margin-top: 2rem;
+  font-weight: 600;
+  color: var(--primary-clr);
+  margin-bottom: 3rem;
+}
+
 .advert-unit {
   display: flex;
   flex-direction: column;

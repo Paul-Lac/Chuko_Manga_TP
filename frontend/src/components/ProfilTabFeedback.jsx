@@ -83,7 +83,7 @@ function ProfilTabFeedback() {
 
   return (
     <div className="containerEvaluations">
-      {evaluations?.length > 0 && (
+      {evaluations?.length > 0 ? (
         <div className="containerNote">
           {console.info(evaluations)}
           <p className="average_rating">{`${(Math.round(averageRating * 100) / 100).toFixed(2)}`}</p>
@@ -94,6 +94,8 @@ function ProfilTabFeedback() {
             <p className="Number_comment">({evaluations.length})</p>
           </div>
         </div>
+      ) : (
+        <p className="no-feedback-msg">Aucune évaluation pour le moment.</p>
       )}
       {evaluations?.map((evaluation) => (
         <div key={evaluation.id} className="cardCom">

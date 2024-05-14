@@ -3,6 +3,7 @@
 /* eslint-disable no-plusplus */
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import NoImage from "../assets/No-image.png";
 import "./ProfilHead.css";
 import axiosInstance from "../services/axiosInstance";
 
@@ -28,11 +29,19 @@ function ProfilHead() {
     <div className="main_container_user">
       <div className="container_profilhead">
         <div className="picture_user_profilhead">
-          <img
-            className="picture_user_profilhead_img"
-            src={`http://localhost:3310${profile.picture}`}
-            alt="picture_user"
-          />
+          {profile.picture ? (
+            <img
+              className="picture_user_profilhead_img"
+              src={`http://localhost:3310${profile.picture}`}
+              alt="picture_user"
+            />
+          ) : (
+            <img
+              className="picture_user_profilhead_img"
+              src={NoImage}
+              alt="picture_user"
+            />
+          )}
         </div>
         <div className="container_user_profilhead">
           <div className="user_profilhead_info">
@@ -43,17 +52,25 @@ function ProfilHead() {
             </div>
             <div className="user-item">
               <p className="user-item-title">Téléphone </p>
-              <p className="user-item-info"> {profile.phone}</p>
+              {profile.phone ? (
+                <p className="user-item-info"> {profile.phone}</p>
+              ) : (
+                <p className="user-item-info">Non renseigné</p>
+              )}
             </div>
             <div className="user-item">
               <p className="user-item-title">Adresse </p>
-              <div className="user-item-info-address">
-                <p className="user-item-info"> {profile.number_street}</p>
-                <p className="user-item-info">
-                  {profile.zip_code} {profile.city}
-                </p>
-                <p className="user-item-info"> {profile.country}</p>
-              </div>
+              {profile.number_street ? (
+                <div className="user-item-info-address">
+                  <p className="user-item-info"> {profile.number_street}</p>
+                  <p className="user-item-info">
+                    {profile.zip_code} {profile.city}
+                  </p>
+                  <p className="user-item-info"> {profile.country}</p>
+                </div>
+              ) : (
+                <p className="user-item-info">Non renseigné</p>
+              )}
             </div>
           </div>
         </div>

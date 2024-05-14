@@ -1,8 +1,9 @@
 /* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import "./AdvertCard.css";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import NoImage from "../assets/No-image.png";
+import "./AdvertCard.css";
 // import { useNotifications } from "../context/NotificationContext";
 
 function AdvertCard({ advert, showUserSection, showFavorite }) {
@@ -88,28 +89,34 @@ function AdvertCard({ advert, showUserSection, showFavorite }) {
         {showUserSection && (
           <div className="card-user-section">
             <div className="user">
-              <img
-                src={`http://localhost:3310${advert.user_picture}`}
-                alt="user"
-                className="card-user-photo"
-              />
+              {advert.user_picture ? (
+                <img
+                  src={`http://localhost:3310${advert.user_picture}`}
+                  alt="user"
+                  className="card-user-photo"
+                />
+              ) : (
+                <img src={NoImage} alt="user" className="card-user-photo" />
+              )}
               <p className="card-user-name">{advert.pseudo}</p>
             </div>
-            <div className="note">
-              <img
-                src="http://localhost:3310/static/star.png"
-                alt="logo star"
-                className="card-star"
-              />
-              <div className="note-text">
-                <p className="card-evaluation">
-                  {average}
-                  <span className="card-number-feedback">
-                    ({advert.feedback_nber})
-                  </span>
-                </p>
+            {advert.feedback_nber > 0 && (
+              <div className="note">
+                <img
+                  src="http://localhost:3310/static/star.png"
+                  alt="logo star"
+                  className="card-star"
+                />
+                <div className="note-text">
+                  <p className="card-evaluation">
+                    {average}
+                    <span className="card-number-feedback">
+                      ({advert.feedback_nber})
+                    </span>
+                  </p>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         )}
       </div>
