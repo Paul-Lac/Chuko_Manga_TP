@@ -70,11 +70,6 @@ function HeaderNav() {
             <SearchBar />
           </div>
         </div>
-        {/* <Link to="/cma">
-          <button type="button" className="admin-btn">
-            Admin
-          </button>
-        </Link> */}
         <div className="buttonHeader-container">
           {!auth ? (
             <button

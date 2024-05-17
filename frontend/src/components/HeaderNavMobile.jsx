@@ -102,9 +102,8 @@ function HeaderNavMobile() {
         )}
       </div>
 
-      {/* <container className="mobile-menu-container"> */}
       {/* Mobile Menu when user is not connected */}
-      {menuMobileActive && !auth?.token && (
+      {menuMobileActive && !auth && (
         <section className="mobile-menu">
           <button
             className="menu-button-close"
@@ -140,7 +139,7 @@ function HeaderNavMobile() {
         </section>
       )}
       {/* Mobile Menu when user is connected */}
-      {menuMobileActive && auth?.token && (
+      {menuMobileActive && auth && (
         <section className="mobile-menu">
           <button
             className="menu-button-close"
