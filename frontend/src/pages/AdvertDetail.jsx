@@ -151,9 +151,6 @@ function AdvertDetail() {
             Manga
           </button>
         </div>
-        {/* <div
-          className={`content ${activeTab === "seller" ? "content-seller" : "content-manga"}`}
-        > */}
         {activeTab === "seller" && (
           <div className="seller-tab">
             <AdvertDetailSeller userId={userId} id={id} />
@@ -162,14 +159,11 @@ function AdvertDetail() {
         {activeTab === "manga" && (
           <div className="manga-tab">
             {detailAdvert[0] && (
-              // <div className="manga-details-container">
               <MangaDetails id={detailAdvert[0].manga_id} showVolumes={false} />
-              // </div>
             )}
           </div>
         )}
       </div>
-      {/* </div> */}
     </section>
   );
 }

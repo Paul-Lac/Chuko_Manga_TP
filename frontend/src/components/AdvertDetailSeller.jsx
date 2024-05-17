@@ -1,8 +1,7 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
-
+import NoPicture from "../assets/No-image.png";
 import Stars from "./StarsRating";
-// import FilteredadvertsCard from "../PrefilterAdvertByDesc";
 import AdvertCard from "./AdvertCard";
 
 import "./AdvertDetailSeller.css";
@@ -65,7 +64,14 @@ function AdvertDetailSeller({ userId, id }) {
     <>
       <div className="detail-seller-top">
         <div className="seller-information">
-          <img src={`http://localhost:3310${sellerInfo.user_picture}`} alt="" />
+          {sellerInfo.user_picture ? (
+            <img
+              src={`http://localhost:3310${sellerInfo.user_picture}`}
+              alt="seller"
+            />
+          ) : (
+            <img src={NoPicture} alt="seller" />
+          )}
           <div className="information-from-card">
             <p>{sellerInfo.pseudo}</p>
             <div className="feedback-stars">
