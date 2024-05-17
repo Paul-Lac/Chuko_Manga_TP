@@ -10,7 +10,8 @@ class MangasManager extends AbstractManager {
       .query(`SELECT m.title, m.description, m.id, m.image, p.name_publishing_house, g.genre, m.author, m.script_writer, m. illustrator, m.release_date 
       FROM manga m
       LEFT JOIN publishing_house p ON m.publishing_house_id = p.id
-      LEFT JOIN genre g ON m.genre_id = g.id;`);
+      LEFT JOIN genre g ON m.genre_id = g.id
+      ORDER BY m.title;`);
     return rows;
   }
 
@@ -47,7 +48,7 @@ class MangasManager extends AbstractManager {
     const [rows] = await this.database
       .query(`SELECT manga.id, manga.title, manga.image
     FROM ${this.table}
-    ORDER BY manga.id;`);
+    ORDER BY manga.title;`);
     // console.info("Result of findOverview:", rows);
     return rows;
   }

@@ -27,6 +27,7 @@
 
 .explore-select {
   font-size: var(--fs-S);
+  min-width: 7rem;
 }
 
 .price-inputs {

@@ -49,7 +49,7 @@ router.get("/genres", genresControllers.getAllGenres);
 router.get("/mangas", mangasControllers.getMangas);
 router.get("/mangas/:id", mangasControllers.getMangaById);
 router.get("/mangas-catalog", mangasControllers.getCatalogMangas);
-router.get("/mangas-fk", mangasControllers.getMangasWithFK);
+// router.get("/mangas-fk", mangasControllers.getMangasWithFK);
 
 // PUBLISHING_HOUSE TABLE
 router.get("/publishers", publishersControllers.getAllPublishers);
