@@ -13,6 +13,7 @@
 
 .img-command-annonce {
   width: 40%;
+  min-width: 6rem;
   object-fit: cover;
 }
 
@@ -21,6 +22,7 @@
   margin-left: 25px;
   width: 100%;
 }
+
 .titleOrder {
   font-size: 1.5em;
   padding-bottom: 20px;
@@ -33,6 +35,10 @@
   align-items: center;
   margin-bottom: 20px;
   font-size: 1.3em;
+}
+
+.user-section p {
+  font-size: var(--fs-S);
 }
 
 .conditionOrder {
@@ -58,5 +64,11 @@
   .img-command-annonce {
     width: 25%;
     object-fit: cover;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .card-Payment {
+    width: 100%;
   }
 }

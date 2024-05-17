@@ -44,7 +44,7 @@ function PaymentFinal({ price, articleData, auth }) {
   return (
     <div className="resume-payment">
       <div className="calcul-payment">
-        <p>Résumé de ta commande</p>
+        <p className="resume-title">Résumé de ta commande</p>
         <div className="final-price">
           <div className="commande-label">
             Commande <div className="price-value">{price} €</div>

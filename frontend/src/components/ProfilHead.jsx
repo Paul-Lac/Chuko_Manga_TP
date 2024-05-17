@@ -17,7 +17,6 @@ function ProfilHead() {
         withCredentials: true,
       })
       .then((res) => {
-        console.info(res);
         setProfile(res.data[0]);
       })
       .catch((error) => {

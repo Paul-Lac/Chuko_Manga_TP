@@ -1,3 +1,7 @@
+.resume-title {
+  font-weight: bold;
+}
+
 .final-price {
   border-top: 1px solid black;
   border-bottom: 1px solid black;
@@ -18,7 +22,6 @@
 }
 .resume-payment {
   background: #f8f8f8;
-  margin-top: 27px;
   height: 397px;
   padding: 0px 5px;
   border-radius: 4px;
@@ -79,7 +82,7 @@
   width: 100%;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1200px) {
+/* @media only screen and (min-width: 768px) and (max-width: 1200px) {
   .main-content {
     flex-direction: column-reverse;
     align-items: center;
@@ -102,5 +105,23 @@
   }
   .information-security-payment-desktop {
     display: none;
+  }
+} */
+
+@media only screen and (max-width: 768px) {
+  .logo-card-payment-desktop img {
+    width: 60%;
+  }
+
+  .information-security-payment-desktop {
+    justify-content: center;
+  }
+
+  .information-security-payment-desktop img {
+    width: 1.5rem;
+  }
+
+  .information-security-payment-desktop p {
+    font-size: var(--fs-XS);
   }
 }
