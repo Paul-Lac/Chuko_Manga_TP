@@ -3,12 +3,13 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axiosInstance from "../services/axiosInstance";
 import "./UpdateDetails.css";
 
 function UpdateAddress() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     city: "",
     country: "",
@@ -47,6 +48,7 @@ function UpdateAddress() {
         })
         .then((response) => {
           console.warn("Success updating user:", response.data);
+          navigate(`/profile/${id}`);
         })
         .catch((error) => {
           console.error("Error updating user:", error);
@@ -56,6 +58,7 @@ function UpdateAddress() {
         .post(`/address/${id}`, formData)
         .then((response) => {
           console.warn("Success creating user:", response.data);
+          navigate(`/profile/${id}`);
         })
         .catch((error) => {
           console.error("Error creating user:", error);

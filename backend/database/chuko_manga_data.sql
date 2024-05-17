@@ -105,9 +105,9 @@ VALUES ('Bordeaux', '33000', '18 Boulevard de la Paix', 'France', 'maison'),
 
 INSERT INTO address_has_user (address_id, user_id)
 VALUES ('1','1'),
-('2','1'),
-('3','2'),
-('4','2');
+('2','2'),
+('3','3'),
+('4','4');
 
 INSERT INTO `advert` VALUES (1,3.00,'Vends manga Naruto en bon état. Seul défaut : la couverture est un peu cornée.',0,'Naruto tome 1 en bon état','2024-02-19',0,1,1,2,1),
 (2,4.00,'Je mets en vente ce tome 2 de Naruto, comme neuf.',0,'Naruto tome 2 comme neuf','2024-02-20',0,2,2,3,1),

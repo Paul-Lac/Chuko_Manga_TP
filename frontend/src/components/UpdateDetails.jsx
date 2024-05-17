@@ -4,12 +4,13 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axiosInstance from "../services/axiosInstance";
 import "./UpdateDetails.css";
 
 function UpdateDetails() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [file, setFile] = useState(null);
   const [success, setSuccess] = useState(false);
   const [formData, setFormData] = useState({
@@ -78,6 +79,7 @@ function UpdateDetails() {
       })
       .then((response) => {
         setSuccess(!success);
+        navigate(`/profile/${id}`);
         console.warn("Success updating user:", response.data);
       })
       .catch((error) => {
@@ -89,7 +91,7 @@ function UpdateDetails() {
     <form className="personal_details_form">
       <div className="input_label_profil">
         <label htmlFor="picture" className="label_profil">
-          Ta photo
+          Photo
         </label>
         <input
           type="file"
@@ -121,7 +123,7 @@ function UpdateDetails() {
       </div>
       <div className="input_label_profil">
         <label htmlFor="pseudo" className="label_profil">
-          Ton pseudo
+          Pseudo
         </label>
         <input
           type="text"
@@ -136,7 +138,7 @@ function UpdateDetails() {
       </div>
       <div className="input_label_profil">
         <label htmlFor="firstname" className="label_profil">
-          Ton prénom
+          Prénom
         </label>
         <input
           type="text"
@@ -151,7 +153,7 @@ function UpdateDetails() {
       </div>
       <div className="input_label_profil">
         <label htmlFor="lastname" className="label_profil">
-          Ton nom
+          Nom
         </label>
         <input
           type="text"

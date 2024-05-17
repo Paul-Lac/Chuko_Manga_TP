@@ -75,15 +75,16 @@
     width: 5rem;
   }
   .personal_details_form {
-    padding: 10px;
+    padding: 0;
     margin: 10px;
     margin-bottom: 20px;
+    box-shadow: none;
   }
   .label_profil {
-    font-size: var(--fs-XS);
+    font-size: var(--fs-S);
   }
   .button_modifier {
-    font-size: var(--fs-XS);
+    font-size: var(--fs-S);
     padding: 5px;
     margin-right: 20px;
     width: 30%;

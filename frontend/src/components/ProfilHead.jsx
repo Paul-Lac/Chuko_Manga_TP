@@ -18,6 +18,7 @@ function ProfilHead() {
       })
       .then((res) => {
         setProfile(res.data[0]);
+        // console.log("profile", res.data[0]);
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
@@ -45,6 +46,14 @@ function ProfilHead() {
         <div className="container_user_profilhead">
           <div className="user_profilhead_info">
             <h1 className="user_profilhead_info_name">{profile.pseudo}</h1>
+            <div className="user-item">
+              <p className="user-item-title">Prénom</p>
+              <p className="user-item-info">{profile.firstname}</p>
+            </div>
+            <div className="user-item">
+              <p className="user-item-title">Nom</p>
+              <p className="user-item-info">{profile.lastname}</p>
+            </div>
             <div className="user-item">
               <p className="user-item-title">Email</p>
               <p className="user-item-info">{profile.email}</p>
