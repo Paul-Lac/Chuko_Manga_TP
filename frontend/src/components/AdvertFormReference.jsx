@@ -14,7 +14,7 @@ function AdvertFormReference(props) {
   // Fetch manga's list
   useEffect(() => {
     axios
-      .get("http://localhost:3310/api/mangas")
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/mangas`)
       .then((response) => {
         setMangaList(response.data);
       })
@@ -48,7 +48,7 @@ function AdvertFormReference(props) {
       </label>
       <select
         id="manga"
-        className="advert-select"
+        className="advert-select-reference"
         name="manga_id"
         onChange={(e) => {
           handleSelectedManga(e);
@@ -68,7 +68,7 @@ function AdvertFormReference(props) {
           </label>
           <select
             id="volume"
-            className="advert-select"
+            className="advert-select-reference"
             name="volume_id"
             onChange={(e) => setVolumeId(e.target.value)}
           >

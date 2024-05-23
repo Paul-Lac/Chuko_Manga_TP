@@ -13,7 +13,7 @@ const hashPassword = async (req, res, next) => {
     const { password } = req.body;
     // Hash password with defined options
     const hashedPassword = await argon2.hash(password, hashingOptions);
-    // Add hashed password to req.body
+    // Add hashed password and delete plainpassword from req.body
     req.body.hashedPassword = hashedPassword;
     // Delete plainpassword
     delete req.body.password;

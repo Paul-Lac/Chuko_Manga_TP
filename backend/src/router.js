@@ -101,9 +101,7 @@ router.get("/buyers/:id/orders", ordersControllers.getHistoryOrderByBuyer);
 router.post("/orders", validateOrder, ordersControllers.addOrder);
 
 // USER TABLE AND AUTHENTIFICATION
-// => fetchdata for update detail
 router.get("/users/:id", usersControllers.getUserById);
-// => fetchdata for profile head
 router.get("/user-profiles/:id", usersControllers.getUserProfilById);
 router.put(
   "/user/:id",

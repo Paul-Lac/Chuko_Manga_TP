@@ -27,8 +27,8 @@ function Explore() {
     const fetchFilters = async () => {
       try {
         const [conditionsResponse, genresResponse] = await Promise.all([
-          axios.get("http://localhost:3310/api/conditions"),
-          axios.get("http://localhost:3310/api/genres"),
+          axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/conditions`),
+          axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/genres`),
         ]);
         setConditionList(conditionsResponse.data);
         setGenreList(genresResponse.data);
@@ -51,17 +51,20 @@ function Explore() {
   useEffect(() => {
     const fetchAdverts = async () => {
       try {
-        const response = await axios.get("http://localhost:3310/api/adverts", {
-          params: {
-            batch,
-            conditionIds: selectedConditions,
-            genreIds: selectedGenres,
-            maxPrice,
-            minPrice,
-            searchQuery,
-            searchVolume: volumeId,
-          },
-        });
+        const response = await axios.get(
+          `${import.meta.env.VITE_BACKEND_URL}/api/adverts`,
+          {
+            params: {
+              batch,
+              conditionIds: selectedConditions,
+              genreIds: selectedGenres,
+              maxPrice,
+              minPrice,
+              searchQuery,
+              searchVolume: volumeId,
+            },
+          }
+        );
         setAdverts(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);

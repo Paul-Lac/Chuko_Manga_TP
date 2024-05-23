@@ -49,7 +49,7 @@ function NewAdvert() {
     const file = e.target.files[0];
     const preview = URL.createObjectURL(file);
 
-    // Check file size, toast error and reinitialise input value to allow user to
+    // Check file size, toast error and reinitialise input value
     if (file.size > maxFileSize) {
       toast.error(
         "La taille de l'image dépasse la limite de 5Mo. Veuillez sélectionner un autre fichier."
@@ -107,11 +107,13 @@ function NewAdvert() {
     setSelectedMangaId(e.target.value);
   };
 
-  // Fetch manga's list
+  // Fetch volume's list
   useEffect(() => {
     if (selectedMangaId !== null) {
       axios
-        .get(`http://localhost:3310/api/mangas/${selectedMangaId}/volumes`)
+        .get(
+          `${import.meta.env.VITE_BACKEND_URL}/api/mangas/${selectedMangaId}/volumes`
+        )
         .then((res) => {
           setVolumeList(res.data);
         })
@@ -124,7 +126,9 @@ function NewAdvert() {
   // Submit form and redirect to user's profile
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Create a new FormData object
     const formData = new FormData();
+    // Append data to the FormData object
     formData.append("titleSearchManga", advertTitle);
     formData.append("description", description);
     formData.append("articleConditionId", conditionId);
@@ -143,6 +147,7 @@ function NewAdvert() {
         formData.append(key, files[key].file);
       }
     }
+    // Send the FormData object to the server
     axiosInstance
       .post("/adverts", formData, {
         withCredentials: true,

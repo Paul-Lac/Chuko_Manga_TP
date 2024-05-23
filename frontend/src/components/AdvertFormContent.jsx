@@ -18,13 +18,13 @@ function AdvertFormContent(props) {
     setConditionId,
   } = props;
 
-  // State designed to set condition list
+  // State designed to set condition's list
   const [conditionList, setConditionList] = useState([]);
 
   // Fetch condition's list
   useEffect(() => {
     axios
-      .get("http://localhost:3310/api/conditions")
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/conditions`)
       .then((response) => {
         setConditionList(response.data);
       })
@@ -76,7 +76,7 @@ function AdvertFormContent(props) {
       </label>
       <select
         id="condition"
-        className="advert-select"
+        className="advert-select-condition"
         name="article_condition_id"
         onChange={(e) => setConditionId(e.target.value)}
         required

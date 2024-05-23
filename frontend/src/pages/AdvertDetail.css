@@ -142,4 +142,8 @@
     height: 18rem;
     width: 20rem;
   }
+
+  .tabs button {
+    font-size: var(--fs-S);
+  }
 }

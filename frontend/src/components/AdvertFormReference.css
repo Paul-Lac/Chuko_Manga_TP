@@ -21,15 +21,19 @@
   border-bottom: 2px solid var(--neutral-600);
 }
 
-/* .advert-ref {
-  font-size: var(--fs-M);
-  margin-bottom: 0.6rem;
-  font-weight: 500;
-} */
-
 .advert-instruction {
   color: var(--neutral-700);
   font-size: var(--fs-S);
+}
+
+.advert-select-reference {
+  width: 100%;
+  margin-top: 0.5rem;
+  margin-bottom: 2.5rem;
+  padding: 0.3rem;
+  background-color: var(--neutral-200);
+  border: 1px solid var(--neutral-700);
+  border-radius: 3px;
 }
 
 @media screen and (max-width: 768px) {
@@ -39,5 +43,9 @@
 
   .advert-instruction {
     font-size: var(--fs-XS);
+  }
+
+  .advert-select-reference {
+    margin-bottom: 2rem;
   }
 }

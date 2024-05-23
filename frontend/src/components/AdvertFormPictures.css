@@ -12,12 +12,14 @@
 .advert-picture-container {
   display: flex;
   justify-content: space-around;
+  align-items: center;
   gap: 1rem;
   margin-bottom: 3rem;
   width: 100%;
+  /* border: 1px solid green; */
 }
 
-.advert-picture-container .picture-box {
+.advert-picture .picture-box {
   background-color: var(--neutral-300);
   width: 12rem;
   height: 12rem;
@@ -26,16 +28,15 @@
   align-items: center;
 }
 
-.picture-box .label-picture {
+.advert-picture .label-picture {
   position: absolute;
-  margin-bottom: 0;
 }
 
-.picture-box input {
+.advert-picture input {
   opacity: 0;
   height: 100%;
   width: 100%;
-  padding: 0;
+  /* padding: 0; */
 }
 
 .advert-picture-container .preview-container {
@@ -76,6 +77,5 @@
 
   .advert-picture-container {
     flex-direction: column;
-    align-items: center;
   }
 }

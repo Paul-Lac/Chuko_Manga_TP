@@ -15,7 +15,6 @@ const validateUserRegistration = (req, res, next) => {
       console.error("Error list :", errorItem.message);
     });
   } else {
-    console.info("Data validated successfully");
     next();
   }
 };

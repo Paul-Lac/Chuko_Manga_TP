@@ -23,9 +23,3 @@ const upload = multer({
 }).fields([{ name: "image1" }, { name: "image2" }, { name: "image3" }]);
 
 module.exports = upload;
-
-// module.exports = multer({ storage }).fields([
-//   { name: "image1" },
-//   { name: "image2" },
-//   { name: "image3" },
-// ]);
