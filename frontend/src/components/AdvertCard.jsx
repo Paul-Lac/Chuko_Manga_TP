@@ -42,12 +42,6 @@ function AdvertCard({ advert, showUserSection, showFavorite }) {
     localStorage.setItem("favoriteAdverts", JSON.stringify(updatedFavorites));
 
     console.info("Favori cliqué");
-    // if (newIsFavorite) {
-    //   addNotification(
-    //     "Article ajouté aux favoris.",
-    //     `http://localhost:3310${advert.image_path}`
-    //   );
-    // }
   };
 
   const average = parseFloat(advert.average).toFixed(1);

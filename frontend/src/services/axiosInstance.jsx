@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Create an axios instance
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:3310/api",
+  baseURL: `${import.meta.env.VITE_BACKEND_URL}/api`,
 });
 
 // Add a response interceptor
@@ -18,7 +18,7 @@ axiosInstance.interceptors.response.use(
 
       try {
         await axios.post(
-          "http://localhost:3310/api/refresh",
+          `${import.meta.env.VITE_BACKEND_URL}/api/refresh`,
           {},
           {
             withCredentials: true,

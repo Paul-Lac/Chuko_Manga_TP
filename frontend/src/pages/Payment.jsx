@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import "./Payment.css";
-import PaymentAddress from "../components/PaymentAddress";
+// import PaymentAddress from "../components/PaymentAddress";
 import PaymentDeliveryOption from "../components/PaymentDeliveryOption";
 import PaymentFinal from "../components/PaymentFinal";
 import PaymentOrder from "../components/PaymentOrder";
@@ -13,25 +13,25 @@ function PaymentPage() {
   const { auth } = useContext(UserContext);
   const { articleData } = location.state || {};
   // console.info("info paymentPage", articleData);
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
   const [profile, setProfile] = useState([]);
-  const [adresse, setAdresse] = useState({
-    adresse: "",
-    ville: "",
-    codePostal: "",
-  });
+  // const [adresse, setAdresse] = useState({
+  //   adresse: "",
+  //   ville: "",
+  //   codePostal: "",
+  // });
 
   // const openModal = () => {
   //   setShowModal(true);
   // };
 
-  const closeModal = () => {
-    setShowModal(false);
-  };
+  // const closeModal = () => {
+  //   setShowModal(false);
+  // };
 
-  const handleAddressChange = (newAddress) => {
-    setAdresse(newAddress);
-  };
+  // const handleAddressChange = (newAddress) => {
+  //   setAdresse(newAddress);
+  // };
 
   useEffect(() => {
     axiosInstance
@@ -99,7 +99,7 @@ function PaymentPage() {
               </div>
             )} */}
 
-          {showModal && (
+          {/* {showModal && (
             <div className="modal">
               <div className="modal-content-adress">
                 <button
@@ -117,7 +117,7 @@ function PaymentPage() {
                 />
               </div>
             </div>
-          )}
+          )} */}
           <PaymentDeliveryOption />
           <div className="payment-section">
             <h3>Paiement</h3>

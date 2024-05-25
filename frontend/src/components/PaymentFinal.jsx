@@ -1,19 +1,13 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../services/axiosInstance";
-// import { useContext } from "react";
 import "./PaymentFinal.css";
-
-// import { useNotifications } from "../context/NotificationContext";
-// import { UserContext } from "../context/UserContext";
 
 function PaymentFinal({ price, articleData, auth }) {
   const navigate = useNavigate();
   const cost = parseFloat(price);
   const fraisDePort = (cost * 5) / 100;
   const total = cost + fraisDePort;
-  // const { addNotification } = useNotifications();
-  // const { auth } = useContext(UserContext);
 
   const orderDetails = {
     id_user_buy: auth.user.id,
@@ -27,14 +21,27 @@ function PaymentFinal({ price, articleData, auth }) {
 
   const handlePayment = () => {
     console.info("Order details:", orderDetails);
-    // const imageUrl = `http://localhost:3310${articleData?.image_paths[0]}`;
 
     axiosInstance
       .post("/orders", orderDetails, { withCredentials: true })
       .then((response) => {
+        // Supprimer l'annonce achetée de la liste des favoris du local storage
+        const storedFavorites = localStorage.getItem("favoriteAdverts");
+        if (storedFavorites) {
+          const favorites = JSON.parse(storedFavorites);
+          const updatedFavorites = favorites.filter(
+            (favAdvert) => favAdvert.id !== articleData.advert_id
+          );
+          localStorage.setItem(
+            "favoriteAdverts",
+            JSON.stringify(updatedFavorites)
+          );
+        }
         console.info(response.data.message);
-        // addNotification("La vente a été réalisée avec succès !", imageUrl);
-        navigate(`/profile/${auth.user.id}`);
+        // Rediriger l'utilisateur vers son profil avec un message de succès
+        navigate(`/profile/${auth.user.id}`, {
+          state: { message: "La vente a été réalisée avec succès !" },
+        });
       })
       .catch((error) => {
         console.error("Erreur lors de l'enregistrement de la commande:", error);

@@ -142,7 +142,7 @@ INSERT INTO `advert` VALUES (1,3.00,'Vends manga Naruto en bon état. Seul défa
 (31,7.00,'Coffret contenant les trois premiers volumes des carnets de l apothicaire',1,'Carnets de l apothicaire tome 1 à 3','2024-03-20',0,7,NULL,3,35),
 (32,5.00,'Tome 1 de solo leveling à vendre',0,'Solo leveling tome 1','2024-03-20',0,7,NULL,3,11),
 (33,10.00,'Je vends mes tomes 1 à 4 de Doubt',1,'Doubt tome 1 à 4','2024-03-20',0,8,NULL,2,36),
-(34,80.00,'Edition deluxe tome 1 à 12 de 20th century boys',1,'20th century boys tome 1 à 12','2024-04-10',0,8,NULL,2,15),
+(34,80.00,'Edition deluxe tome 1 à 12 de 20th century boys',1,'20th century boys tome 1 à 12','2024-05-10',0,8,NULL,2,15),
 (35,2.50,'Tome 1 de cowboy bebop',0,'Cowboy Bebop tome 1','2024-03-20',0,8,NULL,2,37),
 (36,3.50,'Vends le tome 1 de banana fish bon état!',0,'Banana Fish tome 1','2024-03-27',0,8,NULL,3,18),
 (37,3.00,'A vendre : tome 3 de Akame ga kill',0,'Akame ga kill tome 3','2024-03-20',0,5,NULL,2,38),
