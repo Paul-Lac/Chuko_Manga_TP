@@ -42,8 +42,8 @@ const login = async (req, res) => {
       );
 
       // Send tokens in cookies
-      res.cookie("accessToken", accessToken, { httpOnly: true });
-      res.cookie("refreshToken", refreshToken, { httpOnly: true });
+      res.cookie("accessToken", accessToken, { httpOnly: true }); // Should add SameSite attribute
+      res.cookie("refreshToken", refreshToken, { httpOnly: true }); // Should add SameSite attribute
 
       res.status(200).json({
         user: {
