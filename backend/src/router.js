@@ -49,7 +49,6 @@ router.get("/genres", genresControllers.getAllGenres);
 router.get("/mangas", mangasControllers.getMangas);
 router.get("/mangas/:id", mangasControllers.getMangaById);
 router.get("/mangas-catalog", mangasControllers.getCatalogMangas);
-// router.get("/mangas-fk", mangasControllers.getMangasWithFK);
 
 // PUBLISHING_HOUSE TABLE
 router.get("/publishers", publishersControllers.getAllPublishers);
@@ -96,7 +95,6 @@ router.delete("/adverts/:id", advertsControllers.deleteAdvert);
 router.get("/users/:id/feedbacks", feedbacksControllers.getFeedbacksById);
 
 // ORDER TABLE
-// Route to get all orders by buyer (page Profil/onglet my purchase history)
 router.get("/buyers/:id/orders", ordersControllers.getHistoryOrderByBuyer);
 router.post("/orders", validateOrder, ordersControllers.addOrder);
 
@@ -113,6 +111,7 @@ router.put(
 module.exports = router;
 
 // MANGA TABLE
+// router.get("/mangas-fk", mangasControllers.getMangasWithFK);
 // router.post("/mangas", multerSingle, mangasControllers.createManga);
 // router.put("/mangas/:id", multerSingle, mangasControllers.updateManga);
 // router.delete("/mangas/:id", mangasControllers.deleteManga);

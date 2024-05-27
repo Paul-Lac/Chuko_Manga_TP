@@ -1,13 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 const models = require("../modelsProviders");
 
-// const getAllUsers = (req, res) => {
-//   models.user
-//     .findAll()
-//     .then((users) => res.json(users))
-//     .catch((err) => console.error(err));
-// };
-
 const addUser = async (req, res) => {
   const user = req.body;
 

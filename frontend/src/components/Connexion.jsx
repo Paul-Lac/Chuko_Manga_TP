@@ -6,7 +6,7 @@ import { UserContext } from "../context/UserContext";
 import "./Connexion.css";
 
 function Connexion({ handleContentModal, handleClickOpen }) {
-  // Références pour les champs email et mot de passe
+  // References for email and password inputs
   const emailRef = useRef();
   const passwordRef = useRef();
   const [errorMessage, setErrorMessage] = useState("");

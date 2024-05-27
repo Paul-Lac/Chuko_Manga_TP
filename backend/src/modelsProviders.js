@@ -17,7 +17,6 @@ const UsersManager = require("./models/UsersManager");
 const VolumesManager = require("./models/VolumesManager");
 
 const managers = [
-  // Add other managers here
   AdvertsManager,
   AdvertImagesManager,
   AddressManager,

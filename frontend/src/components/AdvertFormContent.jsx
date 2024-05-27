@@ -93,7 +93,8 @@ function AdvertFormContent(props) {
       </label>
       <input
         className={`advert-input ${priceErr && "advert-wrong-input"}`}
-        type="text"
+        // type="text"
+        type="number"
         id="price"
         name="price"
         value={price}

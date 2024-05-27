@@ -3,7 +3,6 @@ const models = require("../modelsProviders");
 const getAdvertById = async (req, res) => {
   try {
     const advert = await models.advert.getAdvertById(req.params.id);
-    // console.info("dans le back:", advert);
     if (advert == null) {
       res.sendStatus(404);
     } else {
