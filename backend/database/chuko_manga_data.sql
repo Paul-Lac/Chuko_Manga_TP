@@ -113,7 +113,7 @@ INSERT INTO `advert` VALUES (1,3.00,'Vends manga Naruto en bon état. Seul défa
 (2,4.00,'Je mets en vente ce tome 2 de Naruto, comme neuf.',0,'Naruto tome 2 comme neuf','2024-02-20',0,2,2,3,1),
 (3,40.00,'Je vends un lot Dragon Ball à bon prix ! Se référencer aux photos pour les tomes constituant le lot.',1,'Lot Dragon Ball à saisir !','2024-02-12',0,4,NULL,1,2),
 (4,20.00,'One Piece 66 67 68 69 70. Je reste disponible si vous voulez plus de photos. Je vends également d\'autres livres n\'hésitez pas à faire un tour sur mon profil.',1,'Lot One Piece 66 à 70','2024-05-14',0,5,NULL,2,3),
-(5,15.00,'Lot de 3 mangas dragon Ball en excellent état - vendeur de confiance',1,'Lot Dragon Ball tomes 1 à 3 !','2024-02-21',0,6,NULL,3,2),
+(5,15.00,'Lot de 3 mangas dragon Ball en excellent état - vendeur de confiance',1,'Lot Dragon Ball tomes 1 à 3 !','2024-02-21',1,6,NULL,3,2),
 (6,2.00,'A vendre : tome 1 Nana',0,'Nana Tome 1','2024-04-18',0,1,64,1,4),
 (7,74.00,'Vends mon tome 100 édition collector One Piece, état neuf sous blister.',0,'One Piece tome 100 collector','2024-03-27',0,8,NULL,3,3),
 (8,110.00,'Vends collection complète HxH (1-36), en bon état.',1,'HunterxHunter tome 1 à 36','2024-03-15',0,2,NULL,3,6),
@@ -206,9 +206,7 @@ VALUES (1,'/static/Advert1_Picture1.jpeg',1,1),
 
 
 INSERT INTO `order` (id_user_buy, total_price, order_date, status_order, feedback_order, advert_id, user_id)
-VALUES ('2','3.80', '2024/02/20', 'completed', 0, '1', '1'),
-('2','4.80', '2024/02/20', 'completed', 0, '2', '1'),
-('1','15.80', '2024/02/21', 'completed', 0, '5', '2');
+VALUES ('1','15.80', '2024/02/21', 'completed', 0, '5', '2');
 
 INSERT INTO feedback (rating, comment, created_on, user_buyer, user_id)
 VALUES (5, 'Vendeuse très réactive !', '2024/02/19', 2, 1), 
